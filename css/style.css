@@ -1,0 +1,1642 @@
+/* ---------- Fontes ----------
+   Google Fonts gratuitas (licença OFL, em fonts/): DM Sans — bold nos títulos,
+   light nos textos — e DM Serif Display itálico no destaque dos títulos.
+   Servidas pelo próprio site, então não dependem do Google estar acessível.
+   DM Sans: o .woff2 é o arquivo variável oficial do Google Fonts (ajusta o
+   desenho ao tamanho; é ele que dá a largura aprovada dos títulos) e funciona
+   em qualquer navegador desde 2017 (iOS 11, Android/Chrome 62). Um bloco por
+   peso aponta para o mesmo arquivo; o .woff estático de cada peso só é baixado
+   por navegadores antigos que não leem woff2. */
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(../fonts/dm-sans-variable.woff2) format("woff2"), url(../fonts/dm-sans-300.woff) format("woff");
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/dm-sans-variable.woff2) format("woff2"), url(../fonts/dm-sans-400.woff) format("woff");
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/dm-sans-variable.woff2) format("woff2"), url(../fonts/dm-sans-500.woff) format("woff");
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../fonts/dm-sans-variable.woff2) format("woff2"), url(../fonts/dm-sans-600.woff) format("woff");
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/dm-sans-variable.woff2) format("woff2"), url(../fonts/dm-sans-700.woff) format("woff");
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(../fonts/dm-sans-variable.woff2) format("woff2"), url(../fonts/dm-sans-800.woff) format("woff");
+}
+@font-face {
+  font-family: "DM Serif Display";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/dm-serif-display-italic.woff2) format("woff2"), url(../fonts/dm-serif-display-italic.woff) format("woff");
+}
+
+:root {
+  --bg: #D5E8C0; /* verde pastel do mesmo matiz de --leaf; fundo de todas as seções e da navbar */
+  --forest: #123A23;
+  --body: #465552;
+  --leaf: #5AA824;
+  --leaf-dark: #3F8B1F;
+  --ease: cubic-bezier(.22,.61,.36,1); /* ease-out suave usado em todas as transições */
+  --btn: #4C9A22; --btn-hover: #3F8B1F; /* botões chapados, sem degradê/sombra */
+  --outline: #4D9B25;
+  --font: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* serifada só no destaque (<em>) de cada h1/h2 */
+  --font-serif: "DM Serif Display", Georgia, "Times New Roman", serif;
+  /* teto da escala dos palcos (px de tela por px de canvas); só o desktop tem */
+  --u-max: 99px;
+}
+/* Desktop: acima de ~1420 px de largura o palco para de crescer e fica
+   centralizado; as manchas que encostam na borda continuam indo até a borda
+   da tela (.deco-l / .deco-r / .deco-full, no fim do arquivo). */
+@media (orientation: landscape) { :root { --u-max: .85px; } }
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+html {
+  /* iPhone/Android não aumentam o texto sozinhos (ex.: celular deitado) */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Títulos: DM Sans bold + uma palavra-chave em DM Serif Display
+   itálico, no verde das folhas. */
+:is(h1, h2) em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.06em;
+  line-height: 0;
+  letter-spacing: 0;
+  color: var(--leaf-dark);
+}
+body {
+  background: var(--bg);
+  color: var(--body);
+  font-family: var(--font);
+  font-weight: 300; /* textos corridos em light; títulos e botões têm peso próprio */
+  /* nunca inventar negrito/itálico falso: todo peso usado tem arquivo próprio */
+  font-synthesis: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Hero ----------
+   A hero é um "palco" com a proporção da tela de origem de cada versão
+   (desktop 1672×941, tablet 1086×1448, mobile 941×1672). Todas as medidas
+   estão em pixels do canvas do hero-spec.json e viram tamanho real via --u
+   (1 px de canvas = largura do palco ÷ largura do canvas). */
+.hero {
+  container-type: inline-size;
+  position: relative;
+  z-index: 1;
+  /* corta só nas laterais: as folhas de baixo atravessam a emenda com os serviços */
+  overflow-x: clip;
+  background: var(--bg);
+}
+.hero-stage {
+  --u: min(100cqw / var(--cw), var(--u-max));
+  --ox: calc((100cqw - var(--cw) * var(--u)) / 2);
+  position: relative;
+  width: calc(var(--cw) * var(--u));
+  margin-inline: auto;
+  aspect-ratio: var(--cw) / var(--ch);
+}
+.hero-stage > * { position: absolute; }
+.px { /* atalho: left/top/width a partir de --x/--y/--w */
+  left: calc(var(--x) * var(--u));
+  top: calc((var(--y) + var(--hdy, 0)) * var(--u));
+  width: calc(var(--w) * var(--u));
+}
+
+.hero-green { inset: 0; width: 100%; height: 100%; display: none; }
+.hero-green-base { fill: var(--bg); }
+/* faixa verde atrás da foto (tablet/celular) desce junto com ela */
+.hero-band { transform: translateY(calc(var(--hdy) * 1px)); }
+@media (orientation: landscape) { .hero-green.v-d { display: block; } }
+@media (orientation: portrait) and (min-width: 641px) { .hero-green.v-t { display: block; } }
+@media (orientation: portrait) and (max-width: 640px) { .hero-green.v-m { display: block; } }
+
+
+/* Copy */
+.hero-copy { left: 0; top: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
+.hero-copy > * { position: absolute; margin: 0; pointer-events: auto; }
+.hero-location {
+  --x: var(--copy-x); --y: var(--loc-y); --w: 900;
+  font-size: calc(var(--loc-fs) * var(--u));
+  font-weight: 500;
+  letter-spacing: .15em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--body);
+  white-space: nowrap;
+}
+.hero-title {
+  --x: var(--copy-x); --y: var(--h1-y); --w: 1000;
+  font-size: calc(var(--h1-fs) * var(--u));
+  line-height: calc(var(--h1-lh) * var(--u));
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--forest);
+  white-space: nowrap;
+}
+.hero-title span { display: block; }
+.hero-desc {
+  --x: var(--copy-x); --y: var(--desc-y); --w: 1000;
+  font-size: calc(var(--desc-fs) * var(--u));
+  line-height: calc(var(--desc-lh) * var(--u));
+  font-weight: 300;
+  color: var(--body);
+  white-space: nowrap;
+}
+.hero-desc span { display: block; }
+
+/* Foto do jardim + anéis */
+.garden-photo {
+  --x: var(--photo-x); --y: var(--photo-y); --w: var(--photo-w);
+  height: calc(var(--photo-w) * var(--u));
+  z-index: 4;
+}
+.garden-photo img { display: block; width: 100%; height: 100%; }
+/* símbolo do cliente direto sobre o verde (sem medalhão), versão sem o contorno
+   branco externo (silverhand-emblem.webp, arquivo do cliente); sombra curta e discreta */
+.garden-logo { display: grid; place-items: center; }
+.garden-logo img { width: 108%; max-width: none; height: auto; filter: drop-shadow(0 calc(10 * var(--u)) calc(14 * var(--u)) rgb(8 46 32 / .28)); } /* cheia: o contorno do emblema quase encosta no aro */
+#garden-rings {
+  left: calc(var(--ring-cx) * var(--u));
+  top: calc((var(--ring-cy) + var(--hdy)) * var(--u));
+  width: 0; height: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+.garden-ring {
+  position: absolute;
+  left: calc(var(--r) * var(--u) * -1);
+  top: calc(var(--r) * var(--u) * -1);
+  width: calc(var(--r) * var(--u) * 2);
+  height: calc(var(--r) * var(--u) * 2);
+  border: max(1px, calc(2 * var(--u))) solid #fff;
+  border-radius: 50%;
+  opacity: var(--o);
+}
+.ring-1 { --r: var(--r1); --o: .82; }
+.ring-2 { --r: var(--r2); --o: .68; }
+.ring-3 { --r: var(--r3); --o: .45; }
+
+
+/* Manchas verdes em duas cores: cada uma leva por dentro uma cópia de si
+   mesma (.green-in, gerada no HTML), recortada pela original e deslocada para
+   a borda da tela; sobra uma faixa do verde claro no contorno visível. */
+.green-in path { fill: #24650F; fill-opacity: .42; } /* escuro de dentro; a borda clara (largura uniforme) vem da máscara */
+
+/* Folhas: um só recorte (img/hero/leaf.webp, tirado de floating-leaves.webp)
+   repetido nas posições da referência. --lx/--ly = centro, --lw = largura,
+   --rot = giro, --blur = desfoque de profundidade, tudo em px de canvas. */
+.leaves { inset: 0; z-index: 5; pointer-events: none; }
+.leaf {
+  position: absolute;
+  left: calc((var(--lx) - var(--lw) / 2) * var(--u));
+  top: calc((var(--ly) + var(--hdy, 0) - var(--lw) * .313) * var(--u));
+  width: calc(var(--lw) * var(--u));
+  rotate: var(--rot);
+  filter: blur(calc(var(--blur, 0) * var(--u))) drop-shadow(0 calc(10 * var(--u)) calc(12 * var(--u)) rgb(18 58 35 / .16));
+}
+.leaf { display: none; }
+
+/* ---------- Navegação ----------
+   Pílula de vidro fixa, flutuando um pouco abaixo do topo, sempre visível.
+   Desktop largo: logo · links · agendar. Telas menores: logo · (agendar) ·
+   hambúrguer, que abre .topbar-menu logo abaixo da pílula. Os botões
+   invertem as cores no hover/toque (bloco "Inversão" no fim do arquivo). */
+.topbar {
+  --pill-w: min(1180px, calc(100% - 24px));
+  --pill-h: 64px;
+  position: fixed;
+  top: 14px; left: 0; right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+.topbar-in {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: var(--pill-w);
+  height: var(--pill-h);
+  padding: 0 8px 0 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgb(255 255 255 / .2), rgb(255 255 255 / 0) 60%), rgb(255 255 255 / .62);
+  border: 1px solid rgb(255 255 255 / .75);
+  box-shadow: 0 10px 30px rgb(8 46 32 / .12);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+          backdrop-filter: blur(16px) saturate(160%);
+  transition: background-color .35s var(--ease), box-shadow .35s var(--ease);
+}
+.topbar.is-scrolled .topbar-in { background-color: rgb(255 255 255 / .78); box-shadow: 0 12px 34px rgb(8 46 32 / .16); }
+.topbar-brand { flex: none; display: flex; align-items: center; gap: 10px; margin-right: auto; border-radius: 999px; }
+.topbar-brand img { display: block; width: auto; }
+.brand-emblem { height: 46px; }
+.brand-word { height: 22px; }
+
+.topbar-links { display: none; }
+.topbar-links ul { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
+.topbar-links a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: var(--forest);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color .3s var(--ease), color .3s var(--ease);
+}
+
+.topbar-cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: var(--btn);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color .3s var(--ease), color .3s var(--ease), box-shadow .3s var(--ease);
+}
+
+/* hambúrguer: círculo verde com linhas brancas; vira X com o menu aberto */
+.topbar-toggle {
+  --ms: 2.5px; --mg: 6px;
+  position: relative;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--btn);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color .3s var(--ease), color .3s var(--ease), box-shadow .3s var(--ease);
+}
+.menu-line {
+  position: absolute;
+  left: 30%;
+  width: 40%;
+  height: var(--ms);
+  top: calc(50% - var(--ms) / 2);
+  border-radius: 99px;
+  background: currentColor;
+  transition: transform .3s var(--ease), opacity .25s var(--ease);
+}
+.line-1 { transform: translateY(calc(var(--mg) * -1)); }
+.line-3 { transform: translateY(var(--mg)); }
+.topbar-toggle[aria-expanded="true"] .line-1 { transform: rotate(45deg); }
+.topbar-toggle[aria-expanded="true"] .line-2 { opacity: 0; }
+.topbar-toggle[aria-expanded="true"] .line-3 { transform: rotate(-45deg); }
+
+/* desktop largo: links na própria pílula, sem hambúrguer */
+@media (min-width: 1100px) and (orientation: landscape) {
+  .topbar-links { display: block; }
+  .topbar-toggle, .topbar-menu { display: none !important; }
+}
+/* celular: pílula mais baixa; o agendar fica só dentro do menu */
+@media (max-width: 640px) {
+  .topbar { --pill-h: 56px; top: 10px; }
+  .topbar-in { padding: 0 6px 0 12px; gap: 8px; }
+  .brand-emblem { height: 40px; }
+  .brand-word { height: 18px; }
+  .topbar-toggle { width: 44px; height: 44px; }
+}
+@media (max-width: 520px) { .topbar-cta { display: none; } }
+
+.topbar-brand:focus-visible, .topbar-links a:focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; }
+
+.topbar-menu {
+  position: absolute;
+  top: calc(var(--pill-h) + 10px);
+  right: calc((100% - var(--pill-w)) / 2);
+  width: min(320px, calc(100% - 24px));
+  padding: 10px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 18px 50px rgb(18 58 35 / .22);
+  transform-origin: top right;
+  transition: opacity .3s var(--ease), transform .3s var(--ease), visibility 0s .2s;
+  pointer-events: auto;
+}
+.topbar-menu[hidden] { display: block; visibility: hidden; opacity: 0; transform: translateY(-6px) scale(.98); }
+.topbar-menu:not([hidden]) { transition-delay: 0s; }
+.topbar-menu ul { list-style: none; margin: 0; padding: 0; }
+.topbar-menu a {
+  display: block;
+  padding: 12px 16px;
+  border-radius: 999px;
+  color: var(--forest);
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color .3s var(--ease), color .3s var(--ease);
+}
+.topbar-menu .menu-cta {
+  margin-top: 6px;
+  background: var(--btn);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+}
+@media (prefers-reduced-motion: reduce) { .topbar-in, .topbar-links a, .topbar-toggle, .menu-line, .topbar-menu, .topbar-menu a, .topbar-cta { transition: none; } }
+
+/* âncoras: um respiro no topo (não há mais barra cobrindo) */
+html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante */
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* CTAs */
+.cta {
+  --w: var(--cta-w);
+  height: calc(var(--h) * var(--u));
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(16 * var(--u));
+  border-radius: 999px;
+  font-size: calc(var(--fs) * var(--u));
+  text-decoration: none;
+  transition: background-color .3s var(--ease);
+}
+.cta:focus-visible { outline: 3px solid var(--forest); outline-offset: 3px; }
+#cta-book-visit {
+  --x: var(--cta-x); --y: var(--cta1-y); --h: var(--cta1-h); --fs: var(--cta1-fs);
+  background: var(--btn);
+  color: #fff;
+  font-weight: 600;
+}
+#cta-book-visit:hover { background: var(--btn-hover); }
+#cta-see-work:hover { background: #E6F1D8; }
+#cta-book-visit svg { width: 1em; height: 1em; flex: none; }
+#cta-see-work {
+  --x: var(--cta-x); --y: var(--cta2-y); --h: var(--cta2-h); --fs: var(--cta2-fs);
+  border: max(1px, calc(2 * var(--u))) solid var(--outline);
+  background: var(--bg);
+  color: var(--forest);
+  font-weight: 500;
+}
+
+/* ---------- As três versões ---------- */
+
+/* Desktop — também qualquer tela deitada */
+.hero-stage {
+  --cw: 1672; --ch: 941;
+  --hdy: 80; /* conteúdo da hero mais para baixo (px de canvas) */
+  --brand-x: 205; --brand-y: 96; --brand-w: 335;
+  --copy-x: 197;
+  --loc-y: 266;  --loc-fs: 21.3;
+  --h1-y: 312;   --h1-fs: 71.6;  --h1-lh: 71;
+  --desc-y: 474; --desc-fs: 34.9; --desc-lh: 42;
+  --photo-x: 896; --photo-y: 148; --photo-w: 648;
+  --ring-cx: 1220; --ring-cy: 472; --r1: 316; --r2: 330; --r3: 345;
+  --menu-x: 1518; --menu-y: 111; --menu-w: 56; --menu-h: 46; --menu-stroke: 3.4; --menu-gap: 14.7;
+  --cta-x: 197; --cta-w: 516;
+  --cta1-y: 624; --cta1-h: 77; --cta1-fs: 31;
+  --cta2-y: 713; --cta2-h: 72; --cta2-fs: 29.5;
+}
+
+/* Tablet / iPad em pé */
+@media (orientation: portrait) and (min-width: 641px) {
+  .hero-stage {
+    --cw: 1086; --ch: 1448;
+    --hdy: 40;
+    --brand-x: 150; --brand-y: 55; --brand-w: 350;
+    --copy-x: 155;
+    --loc-y: 207;  --loc-fs: 24.8;
+    --h1-y: 247;   --h1-fs: 83;  --h1-lh: 80;
+    --desc-y: 437; --desc-fs: 43; --desc-lh: 47;
+    --photo-x: 274; --photo-y: 637; --photo-w: 540;  /* menor e mais baixo: respiro entre texto, símbolo e botões */
+    --ring-cx: 544; --ring-cy: 907; --r1: 255; --r2: 268; --r3: 283;
+    --menu-x: 947; --menu-y: 65; --menu-w: 67; --menu-h: 58; --menu-stroke: 5; --menu-gap: 18.6;
+    --cta-x: 294; --cta-w: 499;
+    --cta1-y: 1230; --cta1-h: 82; --cta1-fs: 33;
+    --cta2-y: 1322; --cta2-h: 76; --cta2-fs: 30.8;
+  }
+}
+
+/* Celular em pé */
+@media (orientation: portrait) and (max-width: 640px) {
+  .hero-stage {
+    --cw: 941; --ch: 1672;
+    --hdy: 75;
+    --brand-x: 92; --brand-y: 72; --brand-w: 378;
+    --copy-x: 100;
+    --loc-y: 256;  --loc-fs: 26;
+    --h1-y: 306;   --h1-fs: 81;  --h1-lh: 80;
+    --desc-y: 495; --desc-fs: 42.6; --desc-lh: 48;
+    --photo-x: 125; --photo-y: 700; --photo-w: 690;  /* menor e mais baixo: não encosta no texto */
+    --ring-cx: 470; --ring-cy: 1045; --r1: 324; --r2: 339; --r3: 354;
+    --menu-x: 818; --menu-y: 91; --menu-w: 66; --menu-h: 55; --menu-stroke: 5; --menu-gap: 17.6;
+    --cta-x: 176; --cta-w: 589;
+    --cta1-y: 1425; --cta1-h: 96; --cta1-fs: 39.5;
+    --cta2-y: 1533; --cta2-h: 92; --cta2-fs: 36.5;
+  }
+}
+
+/* Folhas por versão (as classes .d .t .m escolhem em qual palco cada uma aparece) */
+@media (orientation: landscape) { .leaf.d { display: block; } }
+@media (orientation: portrait) and (min-width: 641px) { .leaf.t { display: block; } }
+@media (orientation: portrait) and (max-width: 640px) { .leaf.m { display: block; } }
+
+/* ---------- Serviços ----------
+   Mesmo esquema da hero: palco com a proporção da tela de origem do kit
+   silverhand-servicos-elementos e medidas em px de canvas × --u. */
+.services {
+  container-type: inline-size;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+/* Desktop: a hero sobe só 10 px (de canvas) por cima da seção — antes eram
+   60; o cliente pediu os serviços um pouco mais para baixo. */
+@media (orientation: landscape) {
+  .services { margin-top: calc(-10 * min(100vw / 1672, var(--u-max))); }
+}
+/* tablet e celular: um respiro a mais entre a hero e os serviços */
+@media (orientation: portrait) and (min-width: 641px) { .services { margin-top: calc(80 * 100vw / 1086); } }
+@media (orientation: portrait) and (max-width: 640px) { .services { margin-top: calc(40 * 100vw / 941); } }
+.svc-stage {
+  --u: min(100cqw / var(--cw), var(--u-max));
+  --ox: calc((100cqw - var(--cw) * var(--u)) / 2);
+  position: relative;
+  width: calc(var(--cw) * var(--u));
+  margin-inline: auto;
+  aspect-ratio: var(--cw) / var(--ch);
+}
+.svc-stage > * { position: absolute; }
+
+.svc-eyebrow {
+  --x: var(--copy-x); --y: var(--eb-y); --w: 800;
+  margin: 0;
+  font-size: calc(var(--eb-fs) * var(--u));
+  font-weight: 600;
+  letter-spacing: .16em;
+  line-height: 1;
+  color: #56615B;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.svc-title {
+  --x: var(--copy-x); --y: var(--h2-y); --w: 1300;
+  margin: 0;
+  font-size: calc(var(--h2-fs) * var(--u));
+  line-height: calc(var(--h2-lh) * var(--u));
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #103A23;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.svc-card {
+  height: calc(var(--h) * var(--u));
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  border-radius: calc(var(--radius) * var(--u));
+  overflow: hidden;
+  background: #fff;
+  color: #103A23;
+  text-decoration: none;
+  box-shadow: 0 calc(12 * var(--u)) calc(34 * var(--u)) rgb(16 58 35 / .08), 0 calc(2 * var(--u)) calc(6 * var(--u)) rgb(16 58 35 / .05);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.svc-card img {
+  display: block;
+  width: 100%;
+  height: calc(var(--ph) * var(--u));
+  object-fit: cover;
+  transition: scale .5s var(--ease);
+}
+.svc-card-foot {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 calc(var(--pad-r) * var(--u)) 0 calc(var(--pad-l) * var(--u));
+}
+.svc-card-title {
+  font-size: calc(var(--card-fs) * var(--u));
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.svc-arrow {
+  flex: none;
+  width: calc(var(--ar) * 2 * var(--u));
+  height: calc(var(--ar) * 2 * var(--u));
+  border-radius: 50%;
+  border: max(1.5px, calc(2.8 * var(--u))) solid #4D9A24;
+  display: grid;
+  place-items: center;
+  color: #4D9A24;
+  background: #fff;
+  transition: background-color .3s var(--ease), color .3s var(--ease), scale .3s var(--ease);
+}
+.svc-arrow svg { width: 50%; height: 50%; }
+.svc-card:hover, .svc-card:focus-visible {
+  transform: translateY(calc(-4 * var(--u)));
+  box-shadow: 0 calc(18 * var(--u)) calc(40 * var(--u)) rgb(16 58 35 / .14), 0 calc(2 * var(--u)) calc(6 * var(--u)) rgb(16 58 35 / .05);
+}
+.svc-card:hover img, .svc-card:focus-visible img { scale: 1.03; }
+.svc-card:hover .svc-arrow, .svc-card:focus-visible .svc-arrow { background: #4D9A24; color: #fff; scale: 1.06; }
+.svc-card:active { transform: scale(.985); }
+.svc-card:focus-visible { outline: 3px solid #103A23; outline-offset: 3px; }
+
+/* Desktop — 2 cartões em cima, 3 embaixo */
+.svc-stage {
+  --cw: 1672; --ch: 941;
+  --copy-x: 128;
+  --eb-y: 112; --eb-fs: 22;
+  --h2-y: 138; --h2-fs: 63.7; --h2-lh: 72;
+  --radius: 20; --pad-l: 35; --pad-r: 31; --card-fs: 34.8; --ar: 25;
+}
+#service-lawn-care-mowing { --x: 124; --y: 231; --w: 704; --h: 300; --ph: 211; }
+#service-landscaping { --x: 846; --y: 231; --w: 707; --h: 300; --ph: 211; }
+#service-power-washing { --x: 124; --y: 550; --w: 466; --h: 300; --ph: 212; --ar: 24; }
+#service-car-washing { --x: 608; --y: 550; --w: 456; --h: 300; --ph: 212; --ar: 24; }
+#service-home-cleaning { --x: 1080; --y: 550; --w: 473; --h: 300; --ph: 212; --ar: 24; }
+.svc-title span + span::before { content: " "; }
+
+/* Tablet em pé — 2 + 2 + Home Cleaning centralizado */
+@media (orientation: portrait) and (min-width: 641px) {
+  .svc-stage {
+    --cw: 1086; --ch: 1448;
+    --copy-x: 152;
+    --eb-y: 114; --eb-fs: 27.1;
+    --h2-y: 154; --h2-fs: 74.7; --h2-lh: 74;
+    --radius: 18; --pad-l: 32; --pad-r: 26; --card-fs: 36; --ar: 31;
+  }
+  #service-lawn-care-mowing { --x: 41; --y: 335; --w: 488; --h: 335; --ph: 247; }
+  #service-landscaping { --x: 557; --y: 335; --w: 489; --h: 335; --ph: 247; }
+  #service-power-washing { --x: 41; --y: 698; --w: 488; --h: 340; --ph: 252; --ar: 31; }
+  #service-car-washing { --x: 557; --y: 698; --w: 489; --h: 340; --ph: 252; --ar: 31; }
+  #service-home-cleaning { --x: 218; --y: 1064; --w: 650; --h: 307; --ph: 214; --ar: 31; }
+}
+
+/* Celular em pé — uma coluna */
+@media (orientation: portrait) and (max-width: 640px) {
+  .svc-stage {
+    --cw: 941; --ch: 1672;
+    --copy-x: 155;
+    --eb-y: 79; --eb-fs: 22.9;
+    --h2-y: 112; --h2-fs: 58.6; --h2-lh: 60;
+    --radius: 18; --pad-l: 36; --pad-r: 29; --card-fs: 34.3; --ar: 28;
+  }
+  #service-lawn-care-mowing { --x: 130; --y: 258; --w: 682; --h: 266; --ph: 184; }
+  #service-landscaping { --x: 130; --y: 542; --w: 682; --h: 275; --ph: 194; }
+  #service-power-washing { --x: 130; --y: 834; --w: 682; --h: 274; --ph: 190; --ar: 28; }
+  #service-car-washing { --x: 130; --y: 1125; --w: 682; --h: 260; --ph: 180; --ar: 28; }
+  #service-home-cleaning { --x: 130; --y: 1402; --w: 682; --h: 243; --ph: 162; --ar: 28; }
+}
+@media (orientation: portrait) {
+  .svc-title span { display: block; }
+  .svc-title span + span::before { content: none; }
+}
+
+/* ---------- Lawn Care & Mowing ----------
+   Kit silverhand-mowing-components. Mesmo esquema de palco; a textura creme
+   e a camada de folhas do kit ficam de fora (fundo é o verde do site). */
+.mowing {
+  container-type: inline-size;
+  position: relative;
+  overflow-x: clip;
+  background: var(--bg);
+}
+.mow-stage {
+  --u: min(100cqw / var(--cw), var(--u-max));
+  --ox: calc((100cqw - var(--cw) * var(--u)) / 2);
+  position: relative;
+  width: calc(var(--cw) * var(--u));
+  margin-inline: auto;
+  aspect-ratio: var(--cw) / var(--ch);
+}
+.mow-stage > * { position: absolute; margin: 0; }
+
+
+.mow-eyebrow {
+  --x: var(--tx-x); --y: var(--eb-y); --w: var(--tx-w);
+  font-size: calc(var(--eb-fs) * var(--u));
+  font-weight: 600;
+  letter-spacing: .16em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #4E6B5E;
+}
+.mow-title {
+  --x: var(--tx-x); --y: var(--h-y); --w: var(--tx-w);
+  font-size: calc(var(--h-fs) * var(--u));
+  line-height: calc(var(--h-lh) * var(--u));
+  font-weight: 700;
+  letter-spacing: -.015em;
+  color: #082E20;
+}
+.mow-body {
+  --x: var(--tx-x); --y: var(--b-y); --w: var(--tx-w);
+  font-size: calc(var(--b-fs) * var(--u));
+  line-height: calc(var(--b-lh) * var(--u));
+  color: #4F5B57; /* o #737A7A do kit fica fraco sobre o verde */
+}
+.mow-title span, .mow-body span { display: block; }
+.mow-leaves { inset: 0; pointer-events: none; }
+.mow-blob { inset: 0; width: 100%; height: 100%; display: none; overflow: visible; } /* sem sombra: ela vazava para a seção seguinte e era cortada numa linha reta */
+@media (orientation: landscape) { .mow-blob.v-d { display: block; } }
+@media (orientation: portrait) and (min-width: 641px) { .mow-blob.v-t { display: block; } }
+@media (orientation: portrait) and (max-width: 640px) { .mow-blob.v-m { display: block; } }
+
+.mow-cta {
+  --x: var(--c-x); --y: var(--c-y); --w: var(--c-w);
+  height: calc(var(--c-h) * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--c-fs) * .9 * var(--u));
+  border-radius: 999px;
+  background: var(--btn);
+  color: #fff;
+  font-size: calc(var(--c-fs) * var(--u));
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color .3s var(--ease);
+}
+.mow-cta svg { width: 1em; height: 1em; flex: none; transition: transform .3s var(--ease); }
+.mow-cta:hover { background: var(--btn-hover); }
+.mow-cta:hover svg { transform: translateX(calc(7 * var(--u))); }
+.mow-cta:focus-visible { outline: 3px solid #123E24; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .mow-cta, .mow-cta svg { transition: none; } }
+
+/* Desktop — foto à esquerda, texto à direita */
+.mow-stage {
+  --cw: 1672; --ch: 941;
+ 
+  --tx-x: 1004; --tx-w: 640;
+  --eb-y: 224; --eb-fs: 23.9;
+  --h-y: 266; --h-fs: 75.2; --h-lh: 69;
+  --b-y: 500; --b-fs: 35.3; --b-lh: 39.5;
+  --c-x: 1004; --c-y: 692; --c-w: 488; --c-h: 92; --c-fs: 32.6;
+}
+
+/* Tablet em pé — foto em cima, texto centralizado embaixo (o kit não trouxe a
+   referência desta versão: posições da foto e do botão vêm do JSON) */
+@media (orientation: portrait) and (min-width: 641px) {
+  .mow-stage {
+    --cw: 1086; --ch: 1448;
+   
+    --tx-x: 93; --tx-w: 900;
+    --eb-y: 912; --eb-fs: 26;
+    --h-y: 950; --h-fs: 76; --h-lh: 78;
+    --b-y: 1128; --b-fs: 35; --b-lh: 44;
+    --c-x: 263; --c-y: 1300; --c-w: 560; --c-h: 104; --c-fs: 33.6;
+  }
+  .mow-eyebrow, .mow-title, .mow-body { text-align: center; }
+  .mow-title span, .mow-body span { display: inline; }
+  .mow-title, .mow-body { text-wrap: balance; }
+}
+
+/* Celular em pé — texto e botão em cima, foto embaixo */
+@media (orientation: portrait) and (max-width: 640px) {
+  .mow-stage {
+    --cw: 941; --ch: 1672;
+   
+    --tx-x: 110; --tx-w: 780;
+    --eb-y: 120; --eb-fs: 30.4;
+    --h-y: 171; --h-fs: 96.2; --h-lh: 86;
+    --b-y: 447; --b-fs: 42; --b-lh: 47;
+    --c-x: 109; --c-y: 668; --c-w: 724; --c-h: 114; --c-fs: 42;
+  }
+}
+
+/* ---------- Seasonal Care ----------
+   Kit silverhand-estacoes-elementos. Mesmo esquema de palco; textura creme
+   do kit fora (fundo verde do site), folhas com o .leaf da hero. */
+.seasons {
+  container-type: inline-size;
+  position: relative;
+  overflow-x: clip;
+  background: var(--bg);
+}
+.sea-stage {
+  --u: min(100cqw / var(--cw), var(--u-max));
+  --ox: calc((100cqw - var(--cw) * var(--u)) / 2);
+  position: relative;
+  width: calc(var(--cw) * var(--u));
+  margin-inline: auto;
+  aspect-ratio: var(--cw) / var(--ch);
+}
+.sea-stage > * { position: absolute; margin: 0; }
+.sea-leaves { inset: 0; pointer-events: none; }
+.sea-green { inset: 0; width: 100%; height: 100%; display: none; }
+@media (orientation: landscape) { .sea-green.v-d { display: block; } }
+@media (orientation: portrait) and (min-width: 641px) { .sea-green.v-t { display: block; } }
+@media (orientation: portrait) and (max-width: 640px) { .sea-green.v-m { display: block; } }
+
+.sea-eyebrow {
+  --x: var(--tx-x); --y: var(--eb-y); --w: 900;
+  font-size: calc(var(--eb-fs) * var(--u));
+  font-weight: 500;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #3F6B4F;
+}
+.sea-title {
+  --x: var(--tx-x); --y: var(--h-y); --w: 1400;
+  font-size: calc(var(--h-fs) * var(--u));
+  line-height: calc(var(--h-lh) * var(--u));
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: #082E20;
+  white-space: nowrap;
+}
+.sea-title span { display: block; }
+
+.sea-card {
+  --x: var(--c-x); --y: var(--c-y); --w: var(--c-w);
+  height: calc(var(--c-h) * var(--u));
+  display: flex;
+  flex-direction: var(--dir, row);
+  border-radius: calc(var(--rad) * var(--u));
+  overflow: hidden;
+  background: #fff;
+  color: #082E20;
+  text-decoration: none;
+  box-shadow: 0 calc(10 * var(--u)) calc(30 * var(--u)) rgb(8 46 32 / .07), 0 calc(2 * var(--u)) calc(5 * var(--u)) rgb(8 46 32 / .05);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.sea-card picture { flex: none; overflow: hidden; width: calc(var(--pw) * var(--u)); height: calc(var(--ph) * var(--u)); }
+.sea-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: scale .5s var(--ease); }
+.sea-card-body {
+  position: relative;
+  flex: 1;
+  padding: calc(var(--bp-t) * var(--u)) calc(var(--bp-r) * var(--u)) 0 calc(var(--bp-l) * var(--u));
+}
+.sea-card-title {
+  display: block;
+  font-size: calc(var(--t-fs) * var(--u));
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.sea-card-desc {
+  display: block;
+  margin-top: calc(var(--gap) * var(--u));
+  font-size: calc(var(--d-fs) * var(--u));
+  line-height: calc(var(--d-lh) * var(--u));
+  color: #5A6462;
+}
+.sea-card-desc span { display: block; white-space: nowrap; }
+.sea-arrow {
+  position: absolute;
+  right: calc((var(--ar-r) - var(--ar)) * var(--u));
+  top: calc((var(--ar-t) - var(--ar)) * var(--u));
+  width: calc(var(--ar) * 2 * var(--u));
+  height: calc(var(--ar) * 2 * var(--u));
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: max(1.5px, calc(2.4 * var(--u))) solid #4D8E31;
+  background: #fff;
+  color: #082E20;
+  transition: background-color .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease), scale .3s var(--ease);
+}
+.sea-arrow svg { width: 50%; height: 50%; transition: translate .3s var(--ease); }
+.sea-card:hover, .sea-card:focus-visible {
+  transform: translateY(calc(-4 * var(--u)));
+  box-shadow: 0 calc(16 * var(--u)) calc(36 * var(--u)) rgb(8 46 32 / .13), 0 calc(2 * var(--u)) calc(5 * var(--u)) rgb(8 46 32 / .05);
+}
+.sea-card:hover img, .sea-card:focus-visible img { scale: 1.04; }
+.sea-card:hover .sea-arrow, .sea-card:focus-visible .sea-arrow { background: #4D9D28; border-color: #4D9D28; color: #fff; scale: 1.06; }
+.sea-card:hover .sea-arrow svg, .sea-card:focus-visible .sea-arrow svg { translate: 8% 0; }
+.sea-card:active { transform: scale(.985); }
+.sea-card:focus-visible { outline: 3px solid #082E20; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .sea-card, .sea-card img, .sea-arrow, .sea-arrow svg { transition: none; } }
+
+/* Desktop — grade 2×2, foto à esquerda de cada cartão */
+.sea-stage {
+  --cw: 1672; --ch: 941;
+  --tx-x: 118; --eb-y: 147; --eb-fs: 26.3;
+  --h-y: 187; --h-fs: 73; --h-lh: 62;
+  --c-w: 728; --c-h: 198; --rad: 18;
+  --pw: 324; --ph: 198;
+  --bp-t: 42; --bp-l: 32; --bp-r: 20;
+  --t-fs: 33; --gap: 9; --d-fs: 27.5; --d-lh: 38;
+  --ar: 25; --ar-r: 50; --ar-t: 68;
+}
+.sea-title span:not(:last-child) { display: inline; }
+#season-spring { --c-x: 94;  --c-y: 346; }
+#season-summer { --c-x: 847; --c-y: 346; --c-w: 733; --pw: 328; }
+#season-fall   { --c-x: 94;  --c-y: 569; }
+#season-winter { --c-x: 847; --c-y: 569; --c-w: 733; --pw: 328; }
+
+/* Tablet em pé — grade 2×2, foto em cima de cada cartão */
+@media (orientation: portrait) and (min-width: 641px) {
+  .sea-stage {
+    --cw: 1086; --ch: 1448;
+    --tx-x: 97; --eb-y: 189; --eb-fs: 29.8;
+    --h-y: 233; --h-fs: 89.9; --h-lh: 85;
+    --c-w: 446; --c-h: 402; --rad: 18; --dir: column;
+    --pw: 446; --ph: 234;
+    --bp-t: 21; --bp-l: 31; --bp-r: 20;
+    --t-fs: 38; --gap: 4; --d-fs: 28.1; --d-lh: 38;
+    --ar: 27; --ar-r: 57; --ar-t: 55;
+  }
+  .sea-title span:not(:last-child) { display: block; }
+  #season-spring { --c-x: 82;  --c-y: 531; }
+  #season-summer { --c-x: 559; --c-y: 531; --c-w: 446; --pw: 446; }
+  #season-fall   { --c-x: 82;  --c-y: 959; }
+  #season-winter { --c-x: 559; --c-y: 959; --c-w: 446; --pw: 446; }
+}
+
+/* Celular em pé — uma coluna, foto à esquerda */
+@media (orientation: portrait) and (max-width: 640px) {
+  .sea-stage {
+    --cw: 941; --ch: 1672;
+    --tx-x: 61; --eb-y: 188; --eb-fs: 32.6;
+    --h-y: 235; --h-fs: 81.2; --h-lh: 74;
+    --c-w: 870; --c-h: 240; --rad: 20;
+    --pw: 351; --ph: 240;
+    --bp-t: 50; --bp-l: 36; --bp-r: 20;
+    --t-fs: 43.4; --gap: 8; --d-fs: 34.3; --d-lh: 46;
+    --ar: 33; --ar-r: 57; --ar-t: 77;
+  }
+  .sea-title span:not(:last-child) { display: block; }
+  #season-spring { --c-x: 38; --c-y: 501; }
+  #season-summer { --c-x: 38; --c-y: 767;  --c-w: 870; --pw: 351; }
+  #season-fall   { --c-x: 38; --c-y: 1033; }
+  #season-winter { --c-x: 38; --c-y: 1298; --c-w: 870; --pw: 351; }
+}
+
+/* ---------- Final: área atendida · FAQ · agendamento · rodapé ----------
+   Kit silverhand-secao-final-elementos, montado como palco (mesmo esquema
+   das outras seções) com as posições medidas em previews/*.webp. As faixas
+   claras viram o verde do site; o rodapé é o verde-floresta do kit. */
+.final { container-type: inline-size; position: relative; overflow: clip; /* nada passa do rodapé: ele é o fim da página */ background: var(--bg); color: #0B2118; }
+.fin-stage { --u: min(100cqw / var(--cw), var(--u-max)); --ox: calc((100cqw - var(--cw) * var(--u)) / 2); position: relative; width: calc(var(--cw) * var(--u)); margin-inline: auto; aspect-ratio: var(--cw) / var(--ch); }
+.fin-stage > * { position: absolute; margin: 0; }
+.fin-bg { inset: 0; width: 100%; height: 100%; display: none; pointer-events: none; }
+.fin-leaves { inset: 0; pointer-events: none; }
+.fin-blur { position: absolute; left: calc((var(--lx) - var(--lw) / 2) * var(--u)); top: calc((var(--ly) - var(--lw) * .5) * var(--u)); width: calc(var(--lw) * var(--u)); rotate: var(--rot); filter: blur(calc(var(--b) * var(--u))); opacity: .75; display: none; }
+
+.fin-t { left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); font-size: calc(var(--fs) * var(--u)); line-height: calc(var(--lh) * var(--u)); white-space: nowrap; }
+.fin-t span { display: block; }
+.fin-t .fin-m-only { display: none; }
+.fin-eb { scroll-margin-top: 40px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #1F4A33; }
+.fin-hd { font-weight: 700; letter-spacing: -.025em; color: #0B2118; }
+.fin-p { color: #4A5552; }
+
+.fin-map { left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); width: calc(var(--w) * var(--u)); display: block; border-radius: calc(16 * var(--u)); }
+.fin-map img { display: block; width: 100%; height: auto; mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(closest-side, #000 74%, transparent 100%); mask-image: radial-gradient(closest-side, #000 74%, transparent 100%); }
+.fin-map:focus-visible { outline: 3px solid #082E20; outline-offset: 4px; }
+
+.fin-q { left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); width: calc(var(--w) * var(--u)); display: grid; gap: calc(var(--gap) * var(--u)); z-index: 3; }
+.fin-q details { position: relative; }
+.fin-q summary {
+  display: flex; align-items: center; justify-content: space-between;
+  height: calc(var(--h) * var(--u));
+  padding: 0 calc(var(--pl) * var(--u));
+  border: max(1px, calc(1.6 * var(--u))) solid #D3DECB;
+  border-radius: calc(var(--r) * var(--u));
+  background: rgb(255 255 255 / .94);
+  font-size: calc(var(--fs) * var(--u));
+  color: #0B2118;
+  cursor: pointer; list-style: none;
+  transition: border-color .3s var(--ease), box-shadow .3s var(--ease);
+}
+.fin-q summary::-webkit-details-marker { display: none; }
+.fin-q summary:hover { border-color: #A9CF84; }
+.fin-q summary:focus-visible { outline: 3px solid #082E20; outline-offset: 2px; }
+.fin-q summary svg { width: calc(var(--fs) * 1.25 * var(--u)); height: calc(var(--fs) * 1.25 * var(--u)); color: #17652B; flex: none; transition: rotate .3s var(--ease); }
+.fin-q details[open] summary svg { rotate: 180deg; }
+/* a resposta abre como um cartão sobre as linhas de baixo: o palco não muda de altura */
+.fin-q details p {
+  position: absolute; left: 0; right: 0; top: calc(100% + 6 * var(--u)); z-index: 4;
+  margin: 0; padding: calc(14 * var(--u)) calc(var(--pl) * var(--u));
+  border-radius: calc(var(--r) * var(--u));
+  background: #fff;
+  box-shadow: 0 calc(12 * var(--u)) calc(30 * var(--u)) rgb(8 46 32 / .16);
+  font-size: calc(var(--fs) * .9 * var(--u)); line-height: 1.45; color: #4A5552;
+}
+
+.fin-box { left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); width: calc(var(--w) * var(--u)); height: calc(var(--h) * var(--u)); }
+.fin-form { display: contents; }
+.fin-form > * { position: absolute; margin: 0; }
+.fin-logo-link, .fin-foot > .fin-logo-link { inset: 0; pointer-events: none; } /* cobre o palco inteiro: só o logo (img) recebe clique, senão bloqueia o formulário */
+.fin-logo { position: absolute; pointer-events: auto; }
+.fin-field {
+  padding: 0 calc(var(--fld-pl) * var(--u));
+  border: max(1px, calc(1.6 * var(--u))) solid #D3DECB;
+  border-radius: calc(var(--fld-r) * var(--u));
+  background: rgb(255 255 255 / .9);
+  font: inherit; font-size: calc(var(--fld-fs) * var(--u)); color: #0B2118;
+  transition: border-color .3s var(--ease), box-shadow .3s var(--ease);
+}
+/* telas de toque: com menos de 16px o iPhone dá zoom na página ao tocar no campo */
+@media (pointer: coarse) { .fin-field { font-size: max(16px, calc(var(--fld-fs) * var(--u))); } }
+.fin-field::placeholder { color: #4A5552; }
+select.fin-field { appearance: none; color: #4A5552; cursor: pointer; }
+select.fin-field:valid { color: #0B2118; }
+.fin-sel-ico { position: absolute; width: calc(var(--fld-fs) * 1.25 * var(--u)); height: calc(var(--fld-fs) * 1.25 * var(--u)); color: #17652B; pointer-events: none;
+  left: calc((var(--x) + var(--w) - var(--fld-pl) * 1.3) * var(--u)); top: calc((var(--y) + var(--h) / 2) * var(--u)); translate: -50% -50%; }
+.fin-field:hover { border-color: #A9CF84; }
+.fin-field:focus-visible { outline: none; border-color: #4A991D; box-shadow: 0 0 0 calc(3 * var(--u)) rgb(142 191 83 / .45); }
+.fin-field[aria-invalid="true"] { border-color: #B3412E; }
+.fin-btn {
+  display: flex; align-items: center; justify-content: center; gap: calc(var(--fs) * .7 * var(--u));
+  border: 0; border-radius: 999px;
+  background: var(--btn);
+  color: #fff; font: inherit; font-size: calc(var(--fs) * var(--u)); font-weight: 500;
+  cursor: pointer;
+  transition: background-color .3s var(--ease);
+}
+.fin-btn svg { width: 1.1em; height: 1.1em; transition: transform .3s var(--ease); }
+.fin-btn:hover { background: var(--btn-hover); }
+.fin-btn:hover svg { transform: translateX(calc(5 * var(--u))); }
+.fin-btn:focus-visible { outline: 3px solid #082E20; outline-offset: 3px; }
+.fin-status { left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); width: calc(var(--w) * var(--u)); font-size: calc(var(--fs) * var(--u)); color: #17652B; z-index: 3; }
+.fin-status.err { color: #B3412E; }
+
+.fin-photo { display: none; overflow: visible; pointer-events: none; z-index: 2; }
+
+.fin-foot { inset: 0; pointer-events: none; color: #E3EEDB; z-index: 1; }
+.fin-foot > * { position: absolute; margin: 0; pointer-events: auto; }
+.fin-logo { left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); width: calc(var(--w) * var(--u)); height: auto; }
+.fin-fBrand { font-weight: 600; letter-spacing: .02em; color: #fff; text-transform: uppercase; }
+.fin-fLines { color: #E3EEDB; }
+.fin-fLines span:first-child { text-transform: uppercase; }
+.fin-nav { inset: 0; pointer-events: none; }
+.fin-nav a { position: absolute; left: calc(var(--cx) * var(--u)); top: calc(var(--y) * var(--u)); translate: -50% 0; pointer-events: auto;
+  font-size: calc(var(--fs) * var(--u)); line-height: 1.2; color: #E3EEDB; text-decoration: none; white-space: nowrap; transition: color .3s var(--ease); }
+.fin-nav a:hover { color: #B7E36A; }
+.fin-rule { left: calc(var(--x0) * var(--u)); top: calc(var(--y) * var(--u)); width: calc((var(--x1) - var(--x0)) * var(--u)); height: 0; border-top: 1px solid rgb(227 238 219 / calc(.28 * var(--on))); }
+.fin-legal { left: calc(var(--x0) * var(--u)); top: calc(var(--y) * var(--u)); width: calc((var(--x1) - var(--x0)) * var(--u)); display: flex; justify-content: space-between; font-size: calc(var(--fs) * var(--u)); line-height: 1.2; white-space: nowrap; }
+.fin-legal p { margin: 0; }
+.fin-legal ul { display: flex; margin: 0; padding: 0; list-style: none; }
+.fin-legal li + li::before { content: "|"; margin: 0 1.1em; opacity: .5; }
+.fin-legal a { color: #E3EEDB; text-decoration: none; }
+.fin-legal a:hover { color: #B7E36A; }
+.fin-nav a:focus-visible, .fin-legal a:focus-visible, .fin-logo-link:focus-visible { outline: 2px solid #B7E36A; outline-offset: 4px; border-radius: 4px; }
+@media (prefers-reduced-motion: reduce) { .fin-q summary, .fin-q summary svg, .fin-field, .fin-btn, .fin-btn svg { transition: none; } }
+
+/* Desktop */
+@media (orientation: landscape) {
+  .fin-stage { --cw: 1672; --ch: 1111; --fld-fs: 16.6; --fld-pl: 21; --fld-r: 18; }
+  .fin-stage .fin-aEb { --x: 279; --y: 47.4; --fs: 16.1; --lh: 19.3; }
+  .fin-stage .fin-aH { --x: 278; --y: 69; --fs: 51.3; --lh: 50; }
+  .fin-stage .fin-aP { --x: 281; --y: 128.3; --fs: 24.2; --lh: 29.5; }
+  .fin-stage .fin-qEb { --x: 279; --y: 351.9; --fs: 16.6; --lh: 19.9; }
+  .fin-stage .fin-qH { --x: 278; --y: 373.8; --fs: 49.1; --lh: 50; }
+  .fin-stage .fin-bEb { --x: 197; --y: 594.8; --fs: 14.6; --lh: 17.5; }
+  .fin-stage .fin-bH { --x: 196; --y: 616.4; --fs: 42.1; --lh: 46; }
+  .fin-stage .fin-bP { --x: 197; --y: 662.2; --fs: 21; --lh: 26; }
+  .fin-stage .fin-fBrand { --x: 182; --y: 990.6; --fs: 19; --lh: 22.8; }
+  .fin-stage .fin-fLines { --x: 182; --y: 1013.4; --fs: 13.7; --lh: 17; }
+  .fin-stage .fin-map { --x: 960; --y: 20; --w: 300; }
+  .fin-stage .fin-q { --x: 706; --y: 318; --w: 694; --h: 44; --gap: 5; --fs: 19.2; --pl: 25; --r: 22; }
+  .fin-stage .fin-name { --x: 197; --y: 704; --w: 297; --h: 37; }
+  .fin-stage .fin-phone { --x: 502; --y: 704; --w: 307; --h: 37; }
+  .fin-stage .fin-addr { --x: 197; --y: 747; --w: 612; --h: 37; }
+  .fin-stage .fin-sel { --x: 197; --y: 791; --w: 612; --h: 37; }
+  .fin-stage .fin-btn { --x: 197; --y: 840; --w: 612; --h: 50; --fs: 21.2; }
+  .fin-stage .fin-status { --x: 197; --y: 896; --w: 612; --fs: 14.110000000000001; }
+  .fin-stage .fin-logo { --x: 112; --y: 986; --w: 60; }
+  .fin-stage .fin-nav a:nth-child(1) { --cx: 777; --y: 1009.9; --fs: 14.5; }
+  .fin-stage .fin-nav a:nth-child(2) { --cx: 882; --y: 1009.9; --fs: 14.5; }
+  .fin-stage .fin-nav a:nth-child(3) { --cx: 988; --y: 1009.9; --fs: 14.5; }
+  .fin-stage .fin-nav a:nth-child(4) { --cx: 1097; --y: 1009.9; --fs: 14.5; }
+  .fin-stage .fin-nav a:nth-child(5) { --cx: 1198; --y: 1009.9; --fs: 14.5; }
+  .fin-stage .fin-nav a.fin-nav-cta { --x: 1387; --y: 998; --w: 146; --h: 48; --fs: 15.5; }
+  .fin-stage .fin-rule1 { --y: 0; --x0: 0; --x1: 0; --on: 0; }
+  .fin-stage .fin-rule2 { --y: 1070; --x0: 128; --x1: 1533; --on: 1; }
+  .fin-stage .fin-legal { --y: 1080.9; --x0: 182; --x1: 1533; --fs: 13.5; }
+  .fin-bg.v-d, .fin-photo.v-d, .fin-blur.d { display: block; }
+  .fin-t .fin-a-sm { display: none; }
+  .fin-nav a.fin-nav-cta {
+    left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); width: calc(var(--w) * var(--u)); height: calc(var(--h) * var(--u)); translate: none;
+    display: grid; place-items: center; border-radius: 999px; background: var(--btn); color: #fff; font-size: calc(var(--fs) * var(--u));
+  }
+  .fin-nav a.fin-nav-cta:hover { color: #fff; background: var(--btn-hover); }
+}
+/* Tablet em pé */
+@media (orientation: portrait) and (min-width: 641px) {
+  .fin-stage { --cw: 1086; --ch: 1678; --fld-fs: 18.8; --fld-pl: 20; --fld-r: 18; }
+  .fin-stage .fin-aEb { --x: 183; --y: 70.4; --fs: 18.1; --lh: 21.7; }
+  .fin-stage .fin-aH { --x: 184; --y: 102.8; --fs: 56; --lh: 57; }
+  .fin-stage .fin-aP { --x: 184; --y: 223; --fs: 24; --lh: 28.3; }
+  .fin-stage .fin-qEb { --x: 129; --y: 499.6; --fs: 16.9; --lh: 20.3; }
+  .fin-stage .fin-qH { --x: 126; --y: 521; --fs: 54.1; --lh: 54; }
+  .fin-stage .fin-bEb { --x: 56; --y: 855.7; --fs: 16.8; --lh: 20.2; }
+  .fin-stage .fin-bH { --x: 55; --y: 881.9; --fs: 48.9; --lh: 52; }
+  .fin-stage .fin-bP { --x: 57; --y: 937; --fs: 21.5; --lh: 26; }
+  .fin-stage .fin-fBrand { --x: 228; --y: 1423.2; --fs: 23.5; --lh: 28.2; }
+  .fin-stage .fin-fLines { --x: 228; --y: 1451.3; --fs: 17.4; --lh: 20.5; }
+  .fin-stage .fin-map { --x: 575; --y: 66; --w: 335; }
+  .fin-stage .fin-q { --x: 509; --y: 481; --w: 461; --h: 49; --gap: 9.8; --fs: 20; --pl: 25; --r: 20; }
+  .fin-stage .fin-name { --x: 56; --y: 989; --w: 267; --h: 45; }
+  .fin-stage .fin-phone { --x: 334; --y: 989; --w: 257; --h: 45; }
+  .fin-stage .fin-addr { --x: 56; --y: 1045; --w: 535; --h: 46; }
+  .fin-stage .fin-sel { --x: 56; --y: 1105; --w: 535; --h: 46; }
+  .fin-stage .fin-btn { --x: 56; --y: 1170; --w: 537; --h: 64; --fs: 24.5; }
+  .fin-stage .fin-status { --x: 56; --y: 1240; --w: 537; --fs: 15.98; }
+  .fin-stage .fin-logo { --x: 140; --y: 1418; --w: 74; }
+  .fin-stage .fin-nav a:nth-child(1) { --cx: 425; --y: 1539.5; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(2) { --cx: 540; --y: 1539.5; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(3) { --cx: 659; --y: 1539.5; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(4) { --cx: 425; --y: 1573.5; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(5) { --cx: 540; --y: 1573.5; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(6) { --cx: 659; --y: 1573.5; --fs: 18; }
+  .fin-stage .fin-rule1 { --y: 1524; --x0: 158; --x1: 928; --on: 1; }
+  .fin-stage .fin-rule2 { --y: 1608; --x0: 158; --x1: 928; --on: 1; }
+  .fin-stage .fin-legal { --y: 1624.6; --x0: 158; --x1: 928; --fs: 14.8; }
+  .fin-bg.v-t, .fin-photo.v-t, .fin-blur.t { display: block; }
+  .fin-t .fin-a-lg { display: none; }
+}
+/* Celular em pé */
+@media (orientation: portrait) and (max-width: 640px) {
+  .fin-stage { --cw: 941; --ch: 3540; --fld-fs: 38; --fld-pl: 32; --fld-r: 26; }
+  .fin-stage .fin-aEb { --x: 60; --y: 82.8; --fs: 28; --lh: 33.6; }
+  .fin-stage .fin-aH { --x: 58; --y: 128.4; --fs: 80; --lh: 84; }
+  .fin-stage .fin-aP { --x: 60; --y: 310.9; --fs: 38; --lh: 54; }
+  .fin-stage .fin-qEb { --x: 60; --y: 982.8; --fs: 28; --lh: 33.6; }
+  .fin-stage .fin-qH { --x: 58; --y: 1026.9; --fs: 76; --lh: 80; }
+  .fin-stage .fin-bEb { --x: 60; --y: 1752.8; --fs: 28; --lh: 33.6; }
+  .fin-stage .fin-bH { --x: 58; --y: 1800.6; --fs: 66; --lh: 70; }
+  .fin-stage .fin-bP { --x: 60; --y: 1894.9; --fs: 38; --lh: 52; }
+  .fin-stage .fin-fBrand { --x: 150; --y: 2956.2; --fs: 40; --lh: 48; }
+  .fin-stage .fin-fLines { --x: 150; --y: 3013.2; --fs: 32; --lh: 40; }
+  .fin-stage .fin-map { --x: 220; --y: 545; --w: 500; }
+  .fin-stage .fin-q { --x: 60; --y: 1140; --w: 821; --h: 100; --gap: 20; --fs: 36; --pl: 38; --r: 30; }
+  .fin-stage .fin-name { --x: 60; --y: 2040; --w: 400; --h: 104; }
+  .fin-stage .fin-phone { --x: 481; --y: 2040; --w: 400; --h: 104; }
+  .fin-stage .fin-addr { --x: 60; --y: 2164; --w: 821; --h: 104; }
+  .fin-stage .fin-sel { --x: 60; --y: 2288; --w: 821; --h: 104; }
+  .fin-stage .fin-btn { --x: 60; --y: 2412; --w: 821; --h: 112; --fs: 40; }
+  .fin-stage .fin-status { --x: 60; --y: 2530; --w: 821; --fs: 32.3; }
+  .fin-stage .fin-logo { --x: 40; --y: 2944; --w: 100; }
+  .fin-stage .fin-nav a:nth-child(1) { --cx: 200; --y: 3215.1; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(2) { --cx: 470; --y: 3215.1; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(3) { --cx: 740; --y: 3215.1; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(4) { --cx: 200; --y: 3280.1; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(5) { --cx: 470; --y: 3280.1; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(6) { --cx: 740; --y: 3280.1; --fs: 36; }
+  .fin-stage .fin-rule1 { --y: 3170; --x0: 60; --x1: 881; --on: 1; }
+  .fin-stage .fin-rule2 { --y: 3365; --x0: 60; --x1: 881; --on: 1; }
+  .fin-stage .fin-legal { --y: 3400.9; --x0: 60; --x1: 881; --fs: 30; }
+  .fin-bg.v-m, .fin-photo.v-m, .fin-blur.m { display: block; }
+  .fin-t .fin-m-only { display: block; }
+  .fin-t .fin-m-hide { display: none; }
+  .fin-legal { flex-direction: column; align-items: center; gap: calc(16 * var(--u)); }
+  .fin-t .fin-a-lg { display: none; }
+}
+
+/* ---------- Our work · Why choose · How it works ----------
+   Kit silverhand-secoes-combinadas-elementos: três blocos num palco só.
+   Medidas geradas de uma tabela por versão; fundo verde do site e mancha
+   verde da hero à esquerda (camada de folhas e textura do kit ficam de fora). */
+.work {
+  container-type: inline-size;
+  position: relative;
+  overflow-x: clip;
+  background: var(--bg);
+}
+/* respiro entre os passos e a seção final (mesmo fundo) */
+.work { padding-bottom: clamp(32px, 5vw, 90px); }
+.cmb-stage {
+  --u: min(100cqw / var(--cw), var(--u-max));
+  --ox: calc((100cqw - var(--cw) * var(--u)) / 2);
+  position: relative;
+  width: calc(var(--cw) * var(--u));
+  margin-inline: auto;
+  aspect-ratio: var(--cw) / var(--ch);
+}
+.cmb-stage > *, .cmb-stage .cmb-abs { position: absolute; margin: 0; }
+.cmb-blob { inset: 0; width: 100%; height: 100%; display: none; overflow: visible; filter: drop-shadow(0 calc(14 * var(--u)) calc(26 * var(--u)) rgb(8 46 32 / .15)); }
+@media (orientation: landscape) { .cmb-blob.v-d { display: block; } }
+@media (orientation: portrait) and (min-width: 641px) { .cmb-blob.v-t { display: block; } }
+@media (orientation: portrait) and (max-width: 640px) { .cmb-blob.v-m { display: block; } }
+.cmb-list { inset: 0; list-style: none; padding: 0; pointer-events: none; }
+.cmb-list > li > * { pointer-events: auto; }
+.cmb-txt { left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); font-size: calc(var(--fs) * var(--u)); }
+.cmb-eb { line-height: 1; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #3F6B4F; white-space: nowrap; }
+.cmb-hd { line-height: calc(var(--lh) * var(--u)); font-weight: 700; letter-spacing: -.02em; color: #082E20; white-space: nowrap; }
+.cmb-hd span { display: block; }
+.cmb-g-h span { display: inline; }
+.cmb-wrap { width: calc(var(--w) * var(--u)); white-space: normal; }
+.cmb-hd.cmb-b-h { white-space: nowrap; }
+.cmb-b-body { line-height: calc(var(--lh) * var(--u)); color: #4F5B57; }
+.cmb-b-eb, .cmb-b-h, .cmb-b-body { left: calc(var(--cw) / 2 * var(--u)); translate: -50% 0; text-align: center; }
+
+.cmb-box { left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); width: calc(var(--w) * var(--u)); height: calc(var(--h) * var(--u)); }
+/* Galeria giratória: a janela vai de borda a borda da tela (sai do palco
+   por --ox) e esmaece nas pontas; a faixa começa uma cópia à esquerda das
+   posições originais e anda exatamente uma cópia (--set, em px de canvas). */
+.cmb-stage > .cmb-carousel {
+  --set: calc(3 * (var(--pw) + var(--pg)));
+  --pad: 40;
+  left: calc(-1 * var(--ox)); width: 100cqw;
+  top: calc((var(--y) - var(--pad)) * var(--u));
+  height: calc((var(--h) + var(--pad) * 2) * var(--u));
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.cmb-track {
+  position: absolute;
+  top: calc(var(--pad) * var(--u));
+  left: calc(var(--ox) + (var(--x0) - var(--set)) * var(--u));
+  display: flex;
+  height: calc(var(--h) * var(--u));
+}
+.cmb-track .cmb-photo { flex: none; margin: 0 calc(var(--pg) * var(--u)) 0 0; width: calc(var(--pw) * var(--u)); height: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  .cmb-track { animation: cmb-spin var(--dur) linear infinite; will-change: transform; }
+  @keyframes cmb-spin { to { transform: translateX(calc(-1 * var(--set) * var(--u))); } }
+}
+.cmb-photo { border-radius: calc(var(--ph-r) * var(--u)); overflow: hidden; box-shadow: 0 calc(10 * var(--u)) calc(26 * var(--u)) rgb(8 46 32 / .12); }
+.cmb-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* os recortes do kit trazem o creme da arte nos cantos: zoom leve e raio maior os escondem */
+.cmb-photo img { scale: 1.04; transition: scale .5s var(--ease); }
+.cmb-photo:hover img { scale: 1.09; }
+
+.cmb-g-btn {
+  display: flex; align-items: center; justify-content: center;
+  gap: calc(var(--fs) * .6 * var(--u));
+  border-radius: 999px;
+  border: max(1.5px, calc(2 * var(--u))) solid #8CC45E;
+  background: #fff;
+  color: #2C5A27;
+  font-size: calc(var(--fs) * var(--u));
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color .3s var(--ease);
+}
+.cmb-g-btn svg { width: 1.05em; height: 1.05em; color: #4A9A26; transition: transform .3s var(--ease); }
+.cmb-g-btn:hover { background: #F1F8E6; }
+.cmb-g-btn:hover svg { transform: translateX(calc(5 * var(--u))); }
+.cmb-g-btn:focus-visible { outline: 3px solid #0A3A25; outline-offset: 3px; }
+
+.cmb-div { left: calc(var(--x0) * var(--u)); top: calc(var(--y) * var(--u)); width: calc((var(--x1) - var(--x0)) * var(--u)); height: 0; border-top: 1px solid rgb(74 154 38 / .28); }
+.cmb-div svg {
+  position: absolute;
+  left: calc((var(--cx) - var(--x0) - 28) * var(--u)); top: calc(-13 * var(--u));
+  width: calc(44 * var(--u)); height: calc(26 * var(--u));
+  padding: 0 calc(6 * var(--u));
+  background: var(--bg);
+  box-sizing: content-box;
+}
+
+.cmb-item .cmb-disc, .cmb-step .cmb-disc {
+  position: absolute;
+  left: calc((var(--cx) - var(--r)) * var(--u)); top: calc((var(--cy) - var(--r)) * var(--u));
+  width: calc(var(--r) * 2 * var(--u)); height: calc(var(--r) * 2 * var(--u));
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: #fff;
+  box-shadow: 0 calc(4 * var(--u)) calc(12 * var(--u)) rgb(8 46 32 / .08);
+  transition: scale .3s var(--ease), background-color .3s var(--ease);
+}
+.cmb-item .cmb-disc { --r: var(--ir); }
+.cmb-item .cmb-disc svg { width: 74%; height: 74%; fill: none; stroke: #17632D; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.cmb-item:hover .cmb-disc { scale: 1.06; }
+.cmb-lab {
+  position: absolute;
+  left: calc(var(--lx) * var(--u)); top: calc(var(--ly) * var(--u)); width: calc(var(--lw) * var(--u));
+  font-size: calc(var(--lfs) * var(--u)); line-height: calc(var(--llh) * var(--u));
+  text-align: var(--ta); color: #4F5B57;
+}
+.cmb-lab span, .cmb-step-d span { display: block; }
+
+.cmb-step .cmb-disc { --r: var(--sr); font-size: calc(var(--nfs) * var(--u)); font-weight: 600; color: #082E20; line-height: 1; }
+.cmb-step:hover .cmb-disc { background: #EEF7E2; }
+.cmb-step-txt {
+  position: absolute;
+  left: calc(var(--tx) * var(--u)); top: calc(var(--ty) * var(--u)); width: calc(var(--tw) * var(--u));
+  text-align: var(--ta);
+}
+.cmb-step-t { display: block; font-size: calc(var(--tfs) * var(--u)); line-height: calc(var(--tlh) * var(--u)); font-weight: 700; color: #082E20; }
+.cmb-step-d { display: block; font-size: calc(var(--dfs) * var(--u)); line-height: calc(var(--dlh) * var(--u)); color: #4F5B57; }
+.cmb-arrow {
+  left: calc((var(--ax) - var(--aw) / 2) * var(--u)); top: calc((var(--ay) - var(--aw) / 2) * var(--u));
+  width: calc(var(--aw) * var(--u)); height: calc(var(--aw) * var(--u));
+  rotate: var(--arot); color: #6FB839;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cmb-arrow path { stroke-dasharray: 40; animation: cmb-flow 2.8s ease-in-out infinite; }
+  @keyframes cmb-flow { 0%, 100% { stroke-dashoffset: 40; } 50% { stroke-dashoffset: 0; } }
+}
+@media (prefers-reduced-motion: reduce) { .cmb-photo img, .cmb-g-btn, .cmb-g-btn svg, .cmb-disc { transition: none; } }
+
+/* Desktop */
+  .cmb-stage { --cw: 1672; --ch: 1150; --ph-r: 16; --ir: 46; --sr: 45; --aw: 42; }
+  .cmb-stage .cmb-g-eb { --x: 132; --y: 17; --fs: 21.6; }
+  .cmb-stage .cmb-g-h { --x: 132; --y: 43; --fs: 54.6; --lh: 58; }
+  .cmb-stage .cmb-b-eb { --y: 492; --fs: 19.9; }
+  .cmb-stage .cmb-p-eb { --x: 133; --y: 944; --fs: 17.3; }
+  .cmb-stage .cmb-p-h { --x: 133; --y: 970; --fs: 41.8; --lh: 46; }
+  .cmb-stage .cmb-b-h { --y: 531; --w: 1000; --fs: 55.6; --lh: 60; }
+  .cmb-stage .cmb-b-body { --y: 667; --w: 760; --fs: 26; --lh: 34; }
+  .cmb-stage .cmb-g-btn { --x: 1267; --y: 29; --w: 277; --h: 67; --fs: 22; }
+  .cmb-stage .cmb-carousel { --x0: 132; --y: 112; --pw: 460; --pg: 17; --h: 266; --dur: 36s; }
+  .cmb-stage .cmb-div1 { --y: 435; --x0: 0; --x1: 1672; --cx: 836; }
+  .cmb-stage .cmb-div2 { --y: 931; --x0: 0; --x1: 1672; --cx: 836; }
+  .cmb-stage .cmb-item:nth-of-type(1) { --cx: 425; --cy: 820; --lx: 490; --ly: 791; --lw: 250; --lfs: 23; --llh: 29; --ta: left; }
+  .cmb-stage .cmb-item:nth-of-type(2) { --cx: 737; --cy: 820; --lx: 802; --ly: 791; --lw: 250; --lfs: 23; --llh: 29; --ta: left; }
+  .cmb-stage .cmb-item:nth-of-type(3) { --cx: 1049; --cy: 820; --lx: 1114; --ly: 791; --lw: 250; --lfs: 23; --llh: 29; --ta: left; }
+  .cmb-stage .cmb-step:nth-of-type(1) { --cx: 177; --cy: 1098; --tx: 248; --ty: 1053; --tw: 330; --tfs: 23; --tlh: 28; --dfs: 23; --dlh: 26; --ta: left; --nfs: 46; }
+  .cmb-stage .cmb-step:nth-of-type(2) { --cx: 700; --cy: 1096; --tx: 772; --ty: 1049; --tw: 330; --tfs: 23; --tlh: 28; --dfs: 23; --dlh: 26; --ta: left; --nfs: 46; }
+  .cmb-stage .cmb-step:nth-of-type(3) { --cx: 1199; --cy: 1096; --tx: 1270; --ty: 1049; --tw: 330; --tfs: 23; --tlh: 28; --dfs: 23; --dlh: 26; --ta: left; --nfs: 46; }
+  .cmb-stage .cmb-arrow-1 { --ax: 590; --ay: 1095; --arot: 0deg; }
+  .cmb-stage .cmb-arrow-2 { --ax: 1090; --ay: 1095; --arot: 0deg; }
+/* Tablet em pé */
+@media (orientation: portrait) and (min-width: 641px) {
+  .cmb-stage { --cw: 1086; --ch: 1448; --ph-r: 18; --ir: 51; --sr: 46; --aw: 42; }
+  .cmb-stage .cmb-g-eb { --x: 51; --y: 94; --fs: 24; }
+  .cmb-stage .cmb-g-h { --x: 49; --y: 129; --fs: 49.3; --lh: 56; }
+  .cmb-stage .cmb-b-eb { --y: 600; --fs: 22.8; }
+  .cmb-stage .cmb-p-eb { --x: 101; --y: 1131; --fs: 24.5; }
+  .cmb-stage .cmb-p-h { --x: 101; --y: 1164; --fs: 53.3; --lh: 56; }
+  .cmb-stage .cmb-b-h { --y: 644; --w: 960; --fs: 46; --lh: 54; }
+  .cmb-stage .cmb-b-body { --y: 768; --w: 780; --fs: 26; --lh: 34; }
+  .cmb-stage .cmb-g-btn { --x: 814; --y: 112; --w: 237; --h: 65; --fs: 21; }
+  .cmb-stage .cmb-carousel { --x0: 39; --y: 209; --pw: 325; --pg: 18; --h: 294; --dur: 30s; }
+  .cmb-stage .cmb-div1 { --y: 548; --x0: 24; --x1: 1062; --cx: 543; }
+  .cmb-stage .cmb-div2 { --y: 1072; --x0: 24; --x1: 1062; --cx: 543; }
+  .cmb-stage .cmb-item:nth-of-type(1) { --cx: 293; --cy: 913; --lx: 183; --ly: 972; --lw: 220; --lfs: 22; --llh: 28; --ta: center; }
+  .cmb-stage .cmb-item:nth-of-type(2) { --cx: 543; --cy: 913; --lx: 433; --ly: 972; --lw: 220; --lfs: 22; --llh: 28; --ta: center; }
+  .cmb-stage .cmb-item:nth-of-type(3) { --cx: 793; --cy: 913; --lx: 683; --ly: 972; --lw: 220; --lfs: 22; --llh: 28; --ta: center; }
+  .cmb-stage .cmb-step:nth-of-type(1) { --cx: 186; --cy: 1295; --tx: 21; --ty: 1346; --tw: 330; --tfs: 24; --tlh: 34; --dfs: 22.6; --dlh: 26; --ta: center; --nfs: 50; }
+  .cmb-stage .cmb-step:nth-of-type(2) { --cx: 543; --cy: 1295; --tx: 378; --ty: 1346; --tw: 330; --tfs: 24; --tlh: 34; --dfs: 22.6; --dlh: 26; --ta: center; --nfs: 50; }
+  .cmb-stage .cmb-step:nth-of-type(3) { --cx: 898; --cy: 1295; --tx: 733; --ty: 1346; --tw: 330; --tfs: 24; --tlh: 34; --dfs: 22.6; --dlh: 26; --ta: center; --nfs: 50; }
+  .cmb-stage .cmb-arrow-1 { --ax: 353; --ay: 1301; --arot: 0deg; }
+  .cmb-stage .cmb-arrow-2 { --ax: 725; --ay: 1301; --arot: 0deg; }
+}
+/* Celular em pé (o kit não trouxe a referência: posições do JSON) */
+@media (orientation: portrait) and (max-width: 640px) {
+  .cmb-stage { --cw: 941; --ch: 1910; --ph-r: 18; --ir: 56; --sr: 52; --aw: 40; }
+  .cmb-stage .cmb-g-eb { --x: 56; --y: 50; --fs: 28; }
+  .cmb-stage .cmb-g-h { --x: 56; --y: 90; --fs: 60; --lh: 66; }
+  .cmb-stage .cmb-b-eb { --x: 60; --y: 630; --fs: 26; }
+  .cmb-stage .cmb-p-eb { --x: 60; --y: 1305; --fs: 28; }
+  .cmb-stage .cmb-p-h { --x: 60; --y: 1345; --fs: 60; --lh: 66; }
+  .cmb-stage .cmb-b-h { --x: 60; --y: 672; --w: 820; --fs: 54; --lh: 60; }
+  .cmb-stage .cmb-b-body { --x: 60; --y: 812; --w: 820; --fs: 37; --lh: 50; }
+  .cmb-stage .cmb-g-btn { --x: 625; --y: 100; --w: 280; --h: 72; --fs: 28; }
+  .cmb-stage .cmb-carousel { --x0: 38; --y: 255; --pw: 280; --pg: 13; --h: 265; --dur: 26s; }
+  .cmb-stage .cmb-div1 { --y: 570; --x0: 24; --x1: 917; --cx: 470; }
+  .cmb-stage .cmb-div2 { --y: 1255; --x0: 24; --x1: 917; --cx: 470; }
+  .cmb-stage .cmb-item:nth-of-type(1) { --cx: 170; --cy: 1035; --lx: 25; --ly: 1107; --lw: 290; --lfs: 34; --llh: 42; --ta: center; }
+  .cmb-stage .cmb-item:nth-of-type(2) { --cx: 471; --cy: 1035; --lx: 326; --ly: 1107; --lw: 290; --lfs: 34; --llh: 42; --ta: center; }
+  .cmb-stage .cmb-item:nth-of-type(3) { --cx: 772; --cy: 1035; --lx: 627; --ly: 1107; --lw: 290; --lfs: 34; --llh: 42; --ta: center; }
+  .cmb-stage .cmb-step:nth-of-type(1) { --cx: 118; --cy: 1495; --tx: 200; --ty: 1445; --tw: 700; --tfs: 40; --tlh: 48; --dfs: 35; --dlh: 44; --ta: left; --nfs: 52; }
+  .cmb-stage .cmb-step:nth-of-type(2) { --cx: 118; --cy: 1650; --tx: 200; --ty: 1600; --tw: 700; --tfs: 40; --tlh: 48; --dfs: 35; --dlh: 44; --ta: left; --nfs: 52; }
+  .cmb-stage .cmb-step:nth-of-type(3) { --cx: 118; --cy: 1805; --tx: 200; --ty: 1755; --tw: 700; --tfs: 40; --tlh: 48; --dfs: 35; --dlh: 44; --ta: left; --nfs: 52; }
+  .cmb-stage .cmb-arrow-1 { --ax: 118; --ay: 1572; --arot: 90deg; }
+  .cmb-stage .cmb-arrow-2 { --ax: 118; --ay: 1727; --arot: 90deg; }
+  .cmb-g-h span { display: block; }
+  .cmb-b-h span { display: inline; }
+  .cmb-hd.cmb-b-h { white-space: normal; }
+  .cmb-step-d span { display: inline; }
+}
+
+/* ---------- Decorações nas bordas da tela ----------
+   O palco é centralizado (sobra --ox de cada lado em telas largas); o que
+   encosta numa borda sai do palco até a borda da tela. */
+.deco-l { left: calc(-1 * var(--ox)); }
+.deco-r { left: var(--ox); }
+.deco-full { left: calc(-1 * var(--ox)); width: 100cqw; }
+
+/* ---------- Movimento ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .leaf {
+    will-change: translate;  /* folha desfocada vira camada: o blur não é refeito a cada quadro */
+    animation: leaf-float var(--dur, 7s) ease-in-out var(--delay, 0s) infinite alternate;
+  }
+  @keyframes leaf-float {
+    from { translate: 0 0; }
+    to   { translate: calc(var(--dx, 4) * var(--u)) calc(-14 * var(--u)); }
+  }
+  /* anéis: ondas que nascem por trás do símbolo (z abaixo dele), crescem para
+     fora e somem; três defasadas, em loop contínuo */
+  .js .garden-ring {
+    will-change: scale, opacity;
+    opacity: 0;
+    animation: ring-wave 4.2s cubic-bezier(.25,.6,.3,1) infinite;
+  }
+  .js .ring-1 { animation-delay: .3s; }
+  .js .ring-2 { animation-delay: 1.7s; }
+  .js .ring-3 { animation-delay: 3.1s; }
+  @keyframes ring-wave {
+    0%   { scale: .9;  opacity: 0; }
+    18%  { opacity: var(--o); }
+    100% { scale: var(--ring-max, 1.2); opacity: 0; }
+  }
+}
+
+/* Entrada ao rolar (js/main.js põe .rv e depois .is-in). Usa transform na
+   animação e fill "backwards": terminada a entrada, o hover dos cartões
+   (transform) e o translate de centralização continuam valendo. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .rv:not(.is-in) { opacity: 0; }
+  .js .rv:not(.rv-done) { will-change: transform, opacity; } /* só enquanto não entrou */
+  .js .rv.is-in { animation: rv-up .8s cubic-bezier(.2,.7,.2,1) var(--rv-d, 0s) backwards; }
+  .js .rv-zoom.is-in { animation-name: rv-zoom; animation-duration: 1s; }
+  .js .rv-left.is-in { animation-name: rv-left; animation-duration: 1.1s; }
+  .js .rv-fade.is-in { animation-name: rv-fade; }
+  @keyframes rv-up   { from { opacity: 0; transform: translateY(calc(36 * var(--u, 1px))); } }
+  @keyframes rv-zoom { from { opacity: 0; transform: scale(.94); } }
+  @keyframes rv-left { from { opacity: 0; transform: translateX(-4%); } }
+  @keyframes rv-fade { from { opacity: 0; } }
+
+  /* cartões presos à rolagem (js/main.js define --sp de 0 a 1); usa translate/scale
+     para não brigar com o transform do hover */
+  .js .scrub {
+    --e: calc(1 - var(--sp, 1));
+    opacity: calc(.15 + .85 * var(--sp, 1));
+    translate: 0 calc(var(--e) * 90 * var(--u));
+    scale: calc(1 - var(--e) * .08);
+    will-change: translate, scale, opacity;
+  }
+  /* estações empilhadas (js/main.js: --dx/--dy até o centro, --rot, --sp 0→1) */
+  .js .stack {
+    --e: calc(1 - var(--sp, 1));
+    translate: calc(var(--dx, 0px) * var(--e)) calc(var(--dy, 0px) * var(--e));
+    rotate: calc(var(--rot, 0deg) * var(--e));
+    scale: calc(1 - var(--e) * .06);
+    will-change: translate, rotate, scale;
+  }
+}
+
+/* ---------- Glassmorfismo ----------
+   Botões e cartões viram vidro nas cores atuais: verde dos botões (#4C9A22)
+   e branco, translúcidos, com desfoque do que passa atrás, um brilho diagonal
+   bem leve e uma borda clara fina. Sem sombra nova nem degradê de cima para
+   baixo (o cliente tirou o 3D dos botões). Fica no fim para valer sobre as
+   regras de cada seção. */
+:root {
+  --glass-blur: blur(14px) saturate(160%);
+  --glass-sheen: linear-gradient(135deg, rgb(255 255 255 / .16), rgb(255 255 255 / .03) 50%, rgb(255 255 255 / 0));
+  --glass-green: rgb(76 154 34 / .88);
+  --glass-green-h: rgb(63 139 31 / .94);
+  --glass-white: rgb(255 255 255 / .55);
+  --glass-white-h: rgb(255 255 255 / .75);
+  --glass-edge: rgb(255 255 255 / .65);
+  --glass-edge-g: rgb(255 255 255 / .38);
+}
+
+/* botões verdes */
+#cta-book-visit, .topbar-cta, .topbar-toggle, .topbar-menu .menu-cta,
+.mow-cta, .fin-btn, .fin-nav a.fin-nav-cta {
+  background: var(--glass-sheen), var(--glass-green);
+  box-shadow: inset 0 0 0 1px var(--glass-edge-g);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+}
+#cta-book-visit:hover, .topbar-cta:hover, .topbar-menu .menu-cta:hover, .topbar-menu .menu-cta:focus-visible,
+.mow-cta:hover, .fin-btn:hover, .fin-nav a.fin-nav-cta:hover {
+  background: var(--glass-sheen), var(--glass-green-h);
+}
+
+/* botões claros (mantêm a borda verde para não sumirem no fundo pastel) */
+#cta-see-work, .cmb-g-btn {
+  background: var(--glass-sheen), var(--glass-white);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+}
+#cta-see-work:hover, .cmb-g-btn:hover { background: var(--glass-sheen), var(--glass-white-h); }
+
+/* setas redondas dos cartões e discos dos ícones/passos */
+.svc-arrow, .sea-arrow, .cmb-disc {
+  background: var(--glass-sheen), var(--glass-white);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+}
+.svc-card:hover .svc-arrow, .svc-card:focus-visible .svc-arrow,
+.sea-card:hover .sea-arrow, .sea-card:focus-visible .sea-arrow { background: var(--glass-sheen), var(--glass-green-h); }
+.cmb-step:hover .cmb-disc { background: var(--glass-sheen), var(--glass-white-h); }
+
+/* cartões: serviços, estações, perguntas, campos e o menu aberto */
+.svc-card, .sea-card {
+  background: var(--glass-sheen), var(--glass-white);
+  outline: 1px solid var(--glass-edge);
+  outline-offset: -1px;
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+}
+.svc-card:focus-visible, .sea-card:focus-visible { outline: 3px solid #103A23; outline-offset: 3px; }
+.fin-q summary, .fin-field {
+  background: var(--glass-sheen), var(--glass-white-h);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+}
+.fin-q details p, .topbar-menu {
+  background: var(--glass-sheen), rgb(255 255 255 / .8);
+  border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+          backdrop-filter: blur(18px) saturate(160%);
+}
+.topbar-menu a:hover, .topbar-menu a:focus-visible { background: rgb(255 255 255 / .6); }
+
+/* ---------- Inversão de cores dos botões ----------
+   Mouse por cima (só em aparelhos com mouse, para não "grudar" no toque),
+   toque/clique (:active) e foco de teclado: o botão verde fica branco com
+   texto e contorno verdes; o claro fica verde com texto branco. */
+:root { --inv-ring: inset 0 0 0 2px var(--btn); }
+/* verdes -> brancos */
+:is(#cta-book-visit, .topbar-toggle, .topbar-menu .menu-cta, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta):is(:active, :focus-visible) {
+  background: #fff; color: var(--btn); box-shadow: var(--inv-ring);
+}
+@media (hover: hover) {
+  :is(#cta-book-visit, .topbar-toggle, .topbar-menu .menu-cta, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta):hover {
+    background: #fff; color: var(--btn); box-shadow: var(--inv-ring);
+  }
+}
+/* claros -> verdes */
+:is(#cta-see-work, .cmb-g-btn, .topbar-cta, .topbar-links a, .topbar-menu a:not(.menu-cta)):is(:active, :focus-visible) {
+  background: var(--btn); color: #fff; border-color: var(--btn);
+}
+@media (hover: hover) {
+  :is(#cta-see-work, .cmb-g-btn, .topbar-cta, .topbar-links a, .topbar-menu a:not(.menu-cta)):hover {
+    background: var(--btn); color: #fff; border-color: var(--btn);
+  }
+}
+:is(#cta-see-work, .cmb-g-btn, .topbar-cta):is(:hover, :active, :focus-visible) svg { color: #fff; }
+.topbar-toggle[aria-expanded="true"] { background: #fff; color: var(--btn); box-shadow: var(--inv-ring); }
+
+/* FAQ: a pergunta também é botão; aberta fica verde */
+.fin-q summary { transition: background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease); }
+.fin-q summary:is(:active, :focus-visible), .fin-q details[open] summary { background: var(--btn); color: #fff; border-color: var(--btn); }
+@media (hover: hover) { .fin-q summary:hover { background: var(--btn); color: #fff; border-color: var(--btn); } }
+.fin-q summary:is(:hover, :active, :focus-visible) svg, .fin-q details[open] summary svg { color: #fff; }
+
+/* questionário: foco do campo com o verde dos botões */
+.fin-field:focus, .fin-field:focus-visible { outline: none; border-color: var(--btn); box-shadow: 0 0 0 3px rgb(76 154 34 / .25); background: #fff; }
+
+/* questionário e FAQ: texto nunca menor que 15px (no desktop o palco escala para baixo) */
+.fin-q summary { font-size: max(15px, calc(var(--fs) * var(--u))); }
+.fin-q details p { font-size: max(15px, 1em); }
+.fin-field { font-size: max(15px, calc(var(--fld-fs) * var(--u))); }
+@media (pointer: coarse) { .fin-field { font-size: max(16px, calc(var(--fld-fs) * var(--u))); } }
+.fin-btn { font-size: max(16px, calc(var(--fs) * var(--u))); }
+
+/* ---------- Navbar mais calma (hierarquia) ----------
+   A hero manda: a pílula fica mais transparente, com sombra curta, um pouco
+   mais baixa e, no desktop, da largura da coluna da hero (logo alinhado ao
+   texto, borda direita com a foto). O agendar da navbar é contornado
+   (secundário); o botão cheio principal continua sendo o da hero. */
+.topbar { --pill-h: 58px; }
+@media (orientation: landscape) {
+  /* encurtada: a pílula abraça o conteúdo (logo · links · agendar), centralizada */
+  .topbar-in { width: auto; max-width: var(--pill-w); gap: 22px; }
+  .topbar-brand { margin-right: 8px; }
+}
+.topbar-in {
+  padding: 0 7px 0 16px;
+  background: linear-gradient(135deg, rgb(255 255 255 / .18), rgb(255 255 255 / 0) 60%), rgb(255 255 255 / .6);
+  border-color: rgb(255 255 255 / .6);
+  box-shadow: 0 4px 16px rgb(8 46 32 / .06);
+}
+.topbar.is-scrolled .topbar-in { background-color: rgb(255 255 255 / .78); box-shadow: 0 6px 20px rgb(8 46 32 / .09); }
+.brand-emblem { height: 42px; }
+.brand-word { height: 21px; }
+.topbar-links a { color: #2B4A37; font-weight: 500; }
+.topbar .topbar-cta {
+  height: 42px; padding: 0 20px;
+  background: rgb(255 255 255 / .7);
+  color: var(--btn);
+  box-shadow: inset 0 0 0 1.5px var(--btn);
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.topbar-toggle { width: 42px; height: 42px; }
+@media (max-width: 640px) {
+  .topbar { --pill-h: 54px; }
+  .brand-emblem { height: 38px; }
+  .brand-word { height: 17px; }
+}
+
+/* ---------- Seletor de serviço (js/main.js, só com mouse) ---------- */
+.fin-sel-native { opacity: 0; pointer-events: none; }
+.fin-dd { z-index: 6; }
+.fin-dd-btn {
+  display: flex; align-items: center;
+  width: 100%; height: 100%;
+  padding-right: calc(var(--fld-pl) * 2.6 * var(--u));
+  text-align: left; cursor: pointer;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  color: #0B2118;
+}
+.fin-dd-btn.is-empty { color: #4A5552; }
+.fin-dd.is-open .fin-dd-btn { border-color: var(--btn); background: #fff; box-shadow: 0 0 0 3px rgb(76 154 34 / .2); }
+.fin-sel-ico { z-index: 7; transition: rotate .3s var(--ease); }
+.fin-sel-ico.is-open { rotate: 180deg; }
+.fin-dd-list {
+  position: absolute; left: 0; right: 0; top: calc(100% + 8px);
+  margin: 0; padding: 6px; list-style: none;
+  border-radius: 18px;
+  background: rgb(255 255 255 / .92);
+  border: 1px solid rgb(255 255 255 / .8);
+  box-shadow: 0 18px 44px rgb(8 46 32 / .18), 0 2px 6px rgb(8 46 32 / .06);
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+  outline: none;
+  transform-origin: top center;
+  animation: fin-dd-in .22s var(--ease);
+}
+@keyframes fin-dd-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } }
+.fin-dd.is-up .fin-dd-list { top: auto; bottom: calc(100% + 8px); transform-origin: bottom center; animation-name: fin-dd-up; }
+@keyframes fin-dd-up { from { opacity: 0; transform: translateY(6px) scale(.98); } }
+@media (prefers-reduced-motion: reduce) { .fin-dd-list { animation: none; } .fin-sel-ico { transition: none; } }
+.fin-dd-list li {
+  position: relative;
+  padding: 11px 44px 11px 16px;
+  border-radius: 12px;
+  font-size: max(15px, calc(var(--fld-fs) * var(--u)));
+  color: #0B2118;
+  cursor: pointer;
+  transition: background-color .2s var(--ease), color .2s var(--ease);
+}
+.fin-dd-list li.is-active { background: #EAF4DF; color: #17652B; }
+.fin-dd-list li[aria-selected="true"] { font-weight: 600; color: #17652B; }
+.fin-dd-list li[aria-selected="true"]::after {
+  content: ""; position: absolute; right: 16px; top: 50%; width: 14px; height: 8px;
+  border: solid var(--btn); border-width: 0 0 2.5px 2.5px;
+  transform: translateY(-70%) rotate(-45deg);
+}
+
+/* FAQ: a resposta abre dentro da lista e empurra as perguntas de baixo (antes
+   flutuava por cima delas e bloqueava o clique). Só uma aberta por vez (main.js),
+   então a lista cresce no máximo o mesmo que o cartão flutuante ocupava. */
+.fin-q details p {
+  position: relative; top: auto; left: auto; right: auto; z-index: auto;
+  margin-top: calc(6 * var(--u));
+  box-shadow: 0 calc(6 * var(--u)) calc(16 * var(--u)) rgb(8 46 32 / .1);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fin-q details[open] p { animation: fin-ans-in .3s var(--ease); }
+  @keyframes fin-ans-in { from { opacity: 0; transform: translateY(-4px); } }
+}
+
+/* "Book a visit" do rodapé no tablet/celular: na grade de links ele vira uma
+   pílula de verdade (antes era só o texto com o fundo verde colado), centrada
+   na mesma posição; o padding é compensado para não sair da linha. */
+@media (orientation: portrait) {
+  .fin-stage .fin-nav a.fin-nav-cta {
+    --py: .42em; --px: 1.15em;
+    padding: var(--py) var(--px);
+    margin-top: calc(var(--py) * -1);
+    border-radius: 999px;
+    line-height: 1.2;
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+/* símbolo da hero 12,5% maior (96% → 108% da caixa): os anéis crescem junto, a partir do centro */
+#garden-rings { transform: scale(1.125); }
+@media (orientation: portrait) and (min-width: 641px) { #garden-rings { transform: scale(1.05); } } /* tablet: anel externo não cruza o texto */
+
+/* Celular: a seção de serviços só começa abaixo da primeira tela. A hero
+   tem 1672/941 da largura de altura; se a tela visível (svh: com as barras
+   do navegador abertas) for mais alta, o espaço que sobra vira margem. */
+@media (orientation: portrait) and (max-width: 640px) {
+  .services { margin-top: max(calc(40 * 100vw / 941), calc(100svh - 1672 * 100vw / 941 + 12px)); }
+}
+
+/* anéis atrás do símbolo (antes passavam por cima dele): o símbolo é z 4 */
+#garden-rings { z-index: 3; }
+@media (orientation: portrait) and (min-width: 641px) { #garden-rings { --ring-max: 1.1; } } /* tablet: a onda não chega no texto */

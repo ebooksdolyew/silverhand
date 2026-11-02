@@ -1,0 +1,20 @@
+# Cloudflare Pages: cabeçalhos por caminho (este arquivo não é publicado como página).
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# fontes não mudam: cache longo
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# imagens, CSS e JS: cache de 1 dia (os nomes não têm versão; se trocar um
+# arquivo mantendo o nome, em até 1 dia todos os visitantes recebem o novo)
+/img/*
+  Cache-Control: public, max-age=86400
+/css/*
+  Cache-Control: public, max-age=86400
+/js/*
+  Cache-Control: public, max-age=86400

@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#D5E8C0"> <!-- = --bg (fundo do site): barra do navegador no celular na cor do topo -->
+<title>Silver Hand — Home &amp; Landscaping</title>
+<meta name="description" content="Mowing, landscaping, power washing and home cleaning in Silver Spring and Montgomery County.">
+<!-- fontes do Google Fonts (DM Sans + DM Serif Display) servidas pelo próprio site, em fonts/ -->
+<link rel="preload" as="font" type="font/woff2" href="fonts/dm-sans-variable.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/dm-serif-display-italic.woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<!-- Navegação: pílula de vidro fixa e flutuante no topo (logo · links ·
+     agendar; em telas menores, hambúrguer com o menu). -->
+<header class="topbar" id="topbar">
+  <div class="topbar-in">
+    <a class="topbar-brand" href="#" aria-label="Silver Hand — back to top">
+      <img class="brand-emblem" src="img/logo/silverhand-emblem-sm.webp" width="240" height="206" alt="">
+      <img class="brand-word" src="img/logo/silverhand-wordmark.svg" width="1935" height="358" alt="">
+    </a>
+    <nav class="topbar-links" aria-label="Main">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#lawn-care-mowing">Mowing</a></li>
+        <li><a href="#seasonal-care">Seasons</a></li>
+        <li><a href="#work">Our work</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a class="topbar-cta" href="#book">Book a free visit</a>
+    <button class="topbar-toggle" type="button" data-menu="topbar-menu"
+            aria-label="Open menu" aria-expanded="false" aria-controls="topbar-menu">
+      <span class="menu-line line-1"></span>
+      <span class="menu-line line-2"></span>
+      <span class="menu-line line-3"></span>
+    </button>
+  </div>
+  <nav class="topbar-menu" id="topbar-menu" aria-label="Main menu" hidden>
+    <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#lawn-care-mowing">Mowing</a></li>
+        <li><a href="#seasonal-care">Seasons</a></li>
+        <li><a href="#work">Our work</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="menu-cta" href="#book">Book a free visit</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-stage">
+
+    <!-- Desktop: fundo inteiro em vetor (o background-base do kit não é mais
+         usado). A mancha do canto superior esquerdo foi rastreada do kit. A
+         grande é uma onda única (Catmull-Rom centrípeta por 11 pontos do traço
+         do cliente): desce do topo, passa por trás da foto e escorre pelos
+         serviços até a borda direita. -->
+    <svg class="hero-green v-d" style="overflow: visible" viewBox="0 0 1672 941" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="hero-green-fill" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1672" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+      </defs>
+      <rect class="hero-green-base" width="1672" height="941"/>
+      <path fill="url(#hero-green-fill)" d="
+        M 2900 -160
+        L 1060 -160
+        L 1060 0
+        C 1096 54, 1216 82, 1225 140
+        C 1236 207, 1137 320, 1075 385
+        C 1018 446, 886 471, 872 525
+        C 861 569, 949 620, 945 670
+        C 940 730, 798 813, 808 860
+        C 816 899, 890 924, 950 942
+        C 1037 968, 1193 932, 1290 960
+        C 1372 984, 1434 1042, 1500 1080
+        C 1560 1115, 1613 1153, 1672 1180
+        C 1730 1206, 1788 1225, 1850 1240
+        C 1914 1255, 1979 1262, 2050 1268
+        C 2129 1275, 2213 1274, 2300 1275
+        L 2900 1275
+        Z"/>
+      <mask id="in-1" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 2900 -160 L 1060 -160 L 1060 0 C 1096 54, 1216 82, 1225 140 C 1236 207, 1137 320, 1075 385 C 1018 446, 886 471, 872 525 C 861 569, 949 620, 945 670 C 940 730, 798 813, 808 860 C 816 899, 890 924, 950 942 C 1037 968, 1193 932, 1290 960 C 1372 984, 1434 1042, 1500 1080 C 1560 1115, 1613 1153, 1672 1180 C 1730 1206, 1788 1225, 1850 1240 C 1914 1255, 1979 1262, 2050 1268 C 2129 1275, 2213 1274, 2300 1275 L 2900 1275 Z" fill="#fff"/><path d="M 1006.7 -79.9 L 1060 0 C 1096 54, 1216 82, 1225 140 C 1236 207, 1137 320, 1075 385 C 1018 446, 886 471, 872 525 C 861 569, 949 620, 945 670 C 940 730, 798 813, 808 860 C 816 899, 890 924, 950 942 C 1037 968, 1193 932, 1290 960 C 1372 984, 1434 1042, 1500 1080 C 1560 1115, 1613 1153, 1672 1180 C 1730 1206, 1788 1225, 1850 1240 C 1914 1255, 1979 1262, 2050 1268 C 2129 1275, 2213 1274, 2300 1275 C 2300 1275, 2900 1275, 2900 1275 C 2900 1275, 2900 -160, 2900 -160 L 2900 -256" fill="none" stroke="#000" stroke-width="64" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-1)"><path d="M 2900 -160 L 1060 -160 L 1060 0 C 1096 54, 1216 82, 1225 140 C 1236 207, 1137 320, 1075 385 C 1018 446, 886 471, 872 525 C 861 569, 949 620, 945 670 C 940 730, 798 813, 808 860 C 816 899, 890 924, 950 942 C 1037 968, 1193 932, 1290 960 C 1372 984, 1434 1042, 1500 1080 C 1560 1115, 1613 1153, 1672 1180 C 1730 1206, 1788 1225, 1850 1240 C 1914 1255, 1979 1262, 2050 1268 C 2129 1275, 2213 1274, 2300 1275 L 2900 1275 Z"/></g>
+    </svg>
+    <svg class="hero-green v-d deco-l" viewBox="0 0 1672 941" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="url(#hero-green-fill)" d="
+        M 0 0 L 32 0
+        C 40 1, 68 4, 80 6
+        C 92 8, 97 10, 104 12
+        C 111 14, 116 16, 121 18
+        C 126 20, 130 22, 134 24
+        C 138 26, 142 28, 145 30
+        C 148 32, 150 33, 153 36
+        C 157 39, 162 44, 166 48
+        C 170 52, 173 56, 175 60
+        C 177 64, 179 68, 180 72
+        C 181 76, 182 80, 183 84
+        C 184 88, 184 92, 184 96
+        C 184 100, 183 104, 182 108
+        C 181 112, 181 116, 180 120
+        C 179 124, 176 128, 174 132
+        C 172 136, 170 140, 167 144
+        C 164 148, 161 152, 158 156
+        C 155 160, 151 164, 147 168
+        C 143 172, 139 176, 133 180
+        C 127 184, 119 189, 113 192
+        C 107 195, 105 196, 99 198
+        C 94 200, 88 202, 80 204
+        C 72 206, 60 208, 50 209
+        C 40 210, 28 210, 20 209
+        C 12 209, 3 207, 0 206
+        Z"/>
+      <mask id="in-2" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 0 0 L 32 0 C 40 1, 68 4, 80 6 C 92 8, 97 10, 104 12 C 111 14, 116 16, 121 18 C 126 20, 130 22, 134 24 C 138 26, 142 28, 145 30 C 148 32, 150 33, 153 36 C 157 39, 162 44, 166 48 C 170 52, 173 56, 175 60 C 177 64, 179 68, 180 72 C 181 76, 182 80, 183 84 C 184 88, 184 92, 184 96 C 184 100, 183 104, 182 108 C 181 112, 181 116, 180 120 C 179 124, 176 128, 174 132 C 172 136, 170 140, 167 144 C 164 148, 161 152, 158 156 C 155 160, 151 164, 147 168 C 143 172, 139 176, 133 180 C 127 184, 119 189, 113 192 C 107 195, 105 196, 99 198 C 94 200, 88 202, 80 204 C 72 206, 60 208, 50 209 C 40 210, 28 210, 20 209 C 12 209, 3 207, 0 206 Z" fill="#fff"/><path d="M -63.3 -11.9 L 32 0 C 40 1, 68 4, 80 6 C 92 8, 97 10, 104 12 C 111 14, 116 16, 121 18 C 126 20, 130 22, 134 24 C 138 26, 142 28, 145 30 C 148 32, 150 33, 153 36 C 157 39, 162 44, 166 48 C 170 52, 173 56, 175 60 C 177 64, 179 68, 180 72 C 181 76, 182 80, 183 84 C 184 88, 184 92, 184 96 C 184 100, 183 104, 182 108 C 181 112, 181 116, 180 120 C 179 124, 176 128, 174 132 C 172 136, 170 140, 167 144 C 164 148, 161 152, 158 156 C 155 160, 151 164, 147 168 C 143 172, 139 176, 133 180 C 127 184, 119 189, 113 192 C 107 195, 105 196, 99 198 C 94 200, 88 202, 80 204 C 72 206, 60 208, 50 209 C 40 210, 28 210, 20 209 C 12 209, 3 207, 0 206 L -91.1 175.6" fill="none" stroke="#000" stroke-width="64" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-2)"><path d="M 0 0 L 32 0 C 40 1, 68 4, 80 6 C 92 8, 97 10, 104 12 C 111 14, 116 16, 121 18 C 126 20, 130 22, 134 24 C 138 26, 142 28, 145 30 C 148 32, 150 33, 153 36 C 157 39, 162 44, 166 48 C 170 52, 173 56, 175 60 C 177 64, 179 68, 180 72 C 181 76, 182 80, 183 84 C 184 88, 184 92, 184 96 C 184 100, 183 104, 182 108 C 181 112, 181 116, 180 120 C 179 124, 176 128, 174 132 C 172 136, 170 140, 167 144 C 164 148, 161 152, 158 156 C 155 160, 151 164, 147 168 C 143 172, 139 176, 133 180 C 127 184, 119 189, 113 192 C 107 195, 105 196, 99 198 C 94 200, 88 202, 80 204 C 72 206, 60 208, 50 209 C 40 210, 28 210, 20 209 C 12 209, 3 207, 0 206 Z"/></g>
+    </svg>
+
+    <!-- Tablet e celular: o verde do kit não bate com a preview-reference, então
+         o fundo é desenhado inteiro em vetor. Bordas
+         rastreadas da referência: as duas manchas do topo e a grande, que desce
+         pela direita, passa atrás da foto e fecha numa faixa logo acima dos CTAs. -->
+    <svg class="hero-green v-t" style="overflow: visible" viewBox="0 0 1086 1448" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="hero-green-fill-t" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1086" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+      </defs>
+      <rect class="hero-green-base" width="1086" height="1448"/>
+      <path fill="url(#hero-green-fill-t)" d="
+        M 167 0
+        C 166 3, 163 12, 160 18
+        C 157 24, 153 30, 149 36
+        C 145 42, 140 48, 135 54
+        C 130 60, 123 67, 117 72
+        C 112 77, 108 80, 102 84
+        C 96 88, 90 92, 83 96
+        C 76 100, 69 104, 59 108
+        C 49 112, 34 117, 24 120
+        C 14 123, 4 123, 0 124
+        L 0 124 L 0 0
+        Z"/>
+      <mask id="in-3" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 167 0 C 166 3, 163 12, 160 18 C 157 24, 153 30, 149 36 C 145 42, 140 48, 135 54 C 130 60, 123 67, 117 72 C 112 77, 108 80, 102 84 C 96 88, 90 92, 83 96 C 76 100, 69 104, 59 108 C 49 112, 34 117, 24 120 C 14 123, 4 123, 0 124 L 0 124 L 0 0 Z" fill="#fff"/><path d="M 186.9 -59.8 L 167 0 C 166 3, 163 12, 160 18 C 157 24, 153 30, 149 36 C 145 42, 140 48, 135 54 C 130 60, 123 67, 117 72 C 112 77, 108 80, 102 84 C 96 88, 90 92, 83 96 C 76 100, 69 104, 59 108 C 49 112, 34 117, 24 120 C 14 123, 4 123, 0 124 L -61.1 139.3" fill="none" stroke="#000" stroke-width="42" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-3)"><path d="M 167 0 C 166 3, 163 12, 160 18 C 157 24, 153 30, 149 36 C 145 42, 140 48, 135 54 C 130 60, 123 67, 117 72 C 112 77, 108 80, 102 84 C 96 88, 90 92, 83 96 C 76 100, 69 104, 59 108 C 49 112, 34 117, 24 120 C 14 123, 4 123, 0 124 L 0 124 L 0 0 Z"/></g>
+      <path fill="url(#hero-green-fill-t)" d="
+        M 834 0
+        C 832 2, 825 8, 821 12
+        C 817 16, 814 20, 810 24
+        C 807 28, 803 32, 800 36
+        C 797 40, 795 44, 792 48
+        C 790 52, 787 56, 785 60
+        C 783 64, 781 66, 780 72
+        C 779 78, 776 86, 777 95
+        C 778 104, 780 116, 785 125
+        C 790 134, 798 142, 808 148
+        C 818 154, 834 158, 845 162
+        C 856 166, 864 170, 875 174
+        C 886 178, 900 182, 911 186
+        C 922 190, 933 194, 943 198
+        C 953 202, 962 206, 970 210
+        C 978 214, 985 218, 991 222
+        C 997 226, 1003 230, 1008 234
+        C 1013 238, 1019 242, 1023 246
+        C 1028 250, 1031 254, 1035 258
+        C 1039 262, 1043 266, 1046 270
+        C 1050 274, 1053 278, 1056 282
+        C 1059 286, 1062 290, 1065 294
+        C 1068 298, 1071 302, 1073 306
+        C 1076 310, 1078 313, 1080 316
+        C 1082 319, 1085 321, 1086 322
+        L 1086 0
+        Z"/>
+      <mask id="in-4" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 834 0 C 832 2, 825 8, 821 12 C 817 16, 814 20, 810 24 C 807 28, 803 32, 800 36 C 797 40, 795 44, 792 48 C 790 52, 787 56, 785 60 C 783 64, 781 66, 780 72 C 779 78, 776 86, 777 95 C 778 104, 780 116, 785 125 C 790 134, 798 142, 808 148 C 818 154, 834 158, 845 162 C 856 166, 864 170, 875 174 C 886 178, 900 182, 911 186 C 922 190, 933 194, 943 198 C 953 202, 962 206, 970 210 C 978 214, 985 218, 991 222 C 997 226, 1003 230, 1008 234 C 1013 238, 1019 242, 1023 246 C 1028 250, 1031 254, 1035 258 C 1039 262, 1043 266, 1046 270 C 1050 274, 1053 278, 1056 282 C 1059 286, 1062 290, 1065 294 C 1068 298, 1071 302, 1073 306 C 1076 310, 1078 313, 1080 316 C 1082 319, 1085 321, 1086 322 L 1086 0 Z" fill="#fff"/><path d="M 878.5 -44.5 L 834 0 C 832 2, 825 8, 821 12 C 817 16, 814 20, 810 24 C 807 28, 803 32, 800 36 C 797 40, 795 44, 792 48 C 790 52, 787 56, 785 60 C 783 64, 781 66, 780 72 C 779 78, 776 86, 777 95 C 778 104, 780 116, 785 125 C 790 134, 798 142, 808 148 C 818 154, 834 158, 845 162 C 856 166, 864 170, 875 174 C 886 178, 900 182, 911 186 C 922 190, 933 194, 943 198 C 953 202, 962 206, 970 210 C 978 214, 985 218, 991 222 C 997 226, 1003 230, 1008 234 C 1013 238, 1019 242, 1023 246 C 1028 250, 1031 254, 1035 258 C 1039 262, 1043 266, 1046 270 C 1050 274, 1053 278, 1056 282 C 1059 286, 1062 290, 1065 294 C 1068 298, 1071 302, 1073 306 C 1076 310, 1078 313, 1080 316 C 1082 319, 1085 321, 1086 322 L 1130.5 366.5" fill="none" stroke="#000" stroke-width="42" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-4)"><path d="M 834 0 C 832 2, 825 8, 821 12 C 817 16, 814 20, 810 24 C 807 28, 803 32, 800 36 C 797 40, 795 44, 792 48 C 790 52, 787 56, 785 60 C 783 64, 781 66, 780 72 C 779 78, 776 86, 777 95 C 778 104, 780 116, 785 125 C 790 134, 798 142, 808 148 C 818 154, 834 158, 845 162 C 856 166, 864 170, 875 174 C 886 178, 900 182, 911 186 C 922 190, 933 194, 943 198 C 953 202, 962 206, 970 210 C 978 214, 985 218, 991 222 C 997 226, 1003 230, 1008 234 C 1013 238, 1019 242, 1023 246 C 1028 250, 1031 254, 1035 258 C 1039 262, 1043 266, 1046 270 C 1050 274, 1053 278, 1056 282 C 1059 286, 1062 290, 1065 294 C 1068 298, 1071 302, 1073 306 C 1076 310, 1078 313, 1080 316 C 1082 319, 1085 321, 1086 322 L 1086 0 Z"/></g>
+      <g class="hero-band">
+      <path fill="url(#hero-green-fill-t)" d="M 1086 507 C 993 532, 877 573, 789 607 C 739 627, 699 641, 679 655 C 649 661, 379 986, 254 1052 C 185 1088, 92 1125, 0 1139 L 0 1316 C 104 1268, 219 1222, 381 1203 C 542 1184, 739 1186, 879 1191 C 983 1195, 1050 1221, 1086 1239 Z"/>
+      <mask id="in-5" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 1086 507 C 993 532, 877 573, 789 607 C 739 627, 699 641, 679 655 C 649 661, 379 986, 254 1052 C 185 1088, 92 1125, 0 1139 L 0 1316 C 104 1268, 219 1222, 381 1203 C 542 1184, 739 1186, 879 1191 C 983 1195, 1050 1221, 1086 1239 Z" fill="#fff"/><path d="M -57.2 1342.4 L 0 1316 C 104 1268, 219 1222, 381 1203 C 542 1184, 739 1186, 879 1191 C 983 1195, 1050 1221, 1086 1239 L 1142.3 1267.2 M 1146.8 490.6 L 1086 507 C 993 532, 877 573, 789 607 C 739 627, 699 641, 679 655 C 649 661, 379 986, 254 1052 C 185 1088, 92 1125, 0 1139 L -62.3 1148.5" fill="none" stroke="#000" stroke-width="42" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-5)"><path d="M 1086 507 C 993 532, 877 573, 789 607 C 739 627, 699 641, 679 655 C 649 661, 379 986, 254 1052 C 185 1088, 92 1125, 0 1139 L 0 1316 C 104 1268, 219 1222, 381 1203 C 542 1184, 739 1186, 879 1191 C 983 1195, 1050 1221, 1086 1239 Z"/></g>
+      </g>
+    </svg>
+
+    <svg class="hero-green v-m" viewBox="0 0 941 1672" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="hero-green-fill-m" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="941" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+      </defs>
+      <rect class="hero-green-base" width="941" height="1672"/>
+      <path fill="url(#hero-green-fill-m)" d="
+        M 131 0
+        C 130 3, 127 12, 125 18
+        C 123 24, 120 30, 117 36
+        C 114 42, 109 49, 105 54
+        C 102 59, 100 62, 96 66
+        C 93 70, 88 74, 84 78
+        C 80 82, 75 86, 70 90
+        C 65 94, 60 98, 53 102
+        C 47 106, 40 110, 31 114
+        C 23 118, 7 124, 2 126
+        C -3 128, 0 127, 0 127
+        L 0 127 L 0 0
+        Z"/>
+      <mask id="in-6" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 131 0 C 130 3, 127 12, 125 18 C 123 24, 120 30, 117 36 C 114 42, 109 49, 105 54 C 102 59, 100 62, 96 66 C 93 70, 88 74, 84 78 C 80 82, 75 86, 70 90 C 65 94, 60 98, 53 102 C 47 106, 40 110, 31 114 C 23 118, 7 124, 2 126 C -3 128, 0 127, 0 127 L 0 127 L 0 0 Z" fill="#fff"/><path d="M 148.1 -51.2 L 131 0 C 130 3, 127 12, 125 18 C 123 24, 120 30, 117 36 C 114 42, 109 49, 105 54 C 102 59, 100 62, 96 66 C 93 70, 88 74, 84 78 C 80 82, 75 86, 70 90 C 65 94, 60 98, 53 102 C 47 106, 40 110, 31 114 C 23 118, 7 124, 2 126 C -3 128, 0 127, 0 127 L -48.3 151.1" fill="none" stroke="#000" stroke-width="36" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-6)"><path d="M 131 0 C 130 3, 127 12, 125 18 C 123 24, 120 30, 117 36 C 114 42, 109 49, 105 54 C 102 59, 100 62, 96 66 C 93 70, 88 74, 84 78 C 80 82, 75 86, 70 90 C 65 94, 60 98, 53 102 C 47 106, 40 110, 31 114 C 23 118, 7 124, 2 126 C -3 128, 0 127, 0 127 L 0 127 L 0 0 Z"/></g>
+      <path fill="url(#hero-green-fill-m)" d="
+        M 728 0
+        C 726 2, 720 8, 716 12
+        C 712 16, 708 20, 704 24
+        C 700 28, 697 32, 694 36
+        C 691 40, 688 44, 685 48
+        C 682 52, 679 56, 676 60
+        C 673 64, 671 68, 669 72
+        C 667 76, 665 80, 663 84
+        C 661 88, 659 92, 658 96
+        C 657 100, 655 102, 655 108
+        C 655 115, 654 126, 656 135
+        C 658 144, 663 156, 668 163
+        C 673 171, 682 176, 688 180
+        C 694 184, 698 183, 705 186
+        C 713 189, 723 194, 733 198
+        C 743 202, 755 206, 766 210
+        C 777 214, 789 218, 799 222
+        C 809 226, 817 230, 825 234
+        C 833 238, 840 242, 847 246
+        C 854 250, 860 254, 865 258
+        C 871 262, 875 266, 880 270
+        C 885 274, 889 278, 893 282
+        C 897 286, 901 290, 904 294
+        C 908 298, 911 302, 914 306
+        C 917 310, 920 314, 923 318
+        C 926 322, 929 327, 932 330
+        C 935 333, 940 337, 941 338
+        L 941 0
+        Z"/>
+      <mask id="in-7" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 728 0 C 726 2, 720 8, 716 12 C 712 16, 708 20, 704 24 C 700 28, 697 32, 694 36 C 691 40, 688 44, 685 48 C 682 52, 679 56, 676 60 C 673 64, 671 68, 669 72 C 667 76, 665 80, 663 84 C 661 88, 659 92, 658 96 C 657 100, 655 102, 655 108 C 655 115, 654 126, 656 135 C 658 144, 663 156, 668 163 C 673 171, 682 176, 688 180 C 694 184, 698 183, 705 186 C 713 189, 723 194, 733 198 C 743 202, 755 206, 766 210 C 777 214, 789 218, 799 222 C 809 226, 817 230, 825 234 C 833 238, 840 242, 847 246 C 854 250, 860 254, 865 258 C 871 262, 875 266, 880 270 C 885 274, 889 278, 893 282 C 897 286, 901 290, 904 294 C 908 298, 911 302, 914 306 C 917 310, 920 314, 923 318 C 926 322, 929 327, 932 330 C 935 333, 940 337, 941 338 L 941 0 Z" fill="#fff"/><path d="M 766.2 -38.2 L 728 0 C 726 2, 720 8, 716 12 C 712 16, 708 20, 704 24 C 700 28, 697 32, 694 36 C 691 40, 688 44, 685 48 C 682 52, 679 56, 676 60 C 673 64, 671 68, 669 72 C 667 76, 665 80, 663 84 C 661 88, 659 92, 658 96 C 657 100, 655 102, 655 108 C 655 115, 654 126, 656 135 C 658 144, 663 156, 668 163 C 673 171, 682 176, 688 180 C 694 184, 698 183, 705 186 C 713 189, 723 194, 733 198 C 743 202, 755 206, 766 210 C 777 214, 789 218, 799 222 C 809 226, 817 230, 825 234 C 833 238, 840 242, 847 246 C 854 250, 860 254, 865 258 C 871 262, 875 266, 880 270 C 885 274, 889 278, 893 282 C 897 286, 901 290, 904 294 C 908 298, 911 302, 914 306 C 917 310, 920 314, 923 318 C 926 322, 929 327, 932 330 C 935 333, 940 337, 941 338 L 979.2 376.2" fill="none" stroke="#000" stroke-width="36" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-7)"><path d="M 728 0 C 726 2, 720 8, 716 12 C 712 16, 708 20, 704 24 C 700 28, 697 32, 694 36 C 691 40, 688 44, 685 48 C 682 52, 679 56, 676 60 C 673 64, 671 68, 669 72 C 667 76, 665 80, 663 84 C 661 88, 659 92, 658 96 C 657 100, 655 102, 655 108 C 655 115, 654 126, 656 135 C 658 144, 663 156, 668 163 C 673 171, 682 176, 688 180 C 694 184, 698 183, 705 186 C 713 189, 723 194, 733 198 C 743 202, 755 206, 766 210 C 777 214, 789 218, 799 222 C 809 226, 817 230, 825 234 C 833 238, 840 242, 847 246 C 854 250, 860 254, 865 258 C 871 262, 875 266, 880 270 C 885 274, 889 278, 893 282 C 897 286, 901 290, 904 294 C 908 298, 911 302, 914 306 C 917 310, 920 314, 923 318 C 926 322, 929 327, 932 330 C 935 333, 940 337, 941 338 L 941 0 Z"/></g>
+      <g class="hero-band">
+      <path fill="url(#hero-green-fill-m)" d="M 941 574 C 860 604, 760 652, 684 692 C 562 756, 328 1138, 220 1215 C 160 1258, 80 1302, 0 1318 L 0 1526 C 90 1470, 190 1416, 330 1393 C 470 1371, 640 1373, 762 1379 C 852 1384, 910 1414, 941 1436 Z"/>
+      <mask id="in-8" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 941 574 C 860 604, 760 652, 684 692 C 562 756, 328 1138, 220 1215 C 160 1258, 80 1302, 0 1318 L 0 1526 C 90 1470, 190 1416, 330 1393 C 470 1371, 640 1373, 762 1379 C 852 1384, 910 1414, 941 1436 Z" fill="#fff"/><path d="M -45.8 1554.5 L 0 1526 C 90 1470, 190 1416, 330 1393 C 470 1371, 640 1373, 762 1379 C 852 1384, 910 1414, 941 1436 L 985 1467.3 M 991.6 555.2 L 941 574 C 860 604, 760 652, 684 692 C 562 756, 328 1138, 220 1215 C 160 1258, 80 1302, 0 1318 L -53 1328.6" fill="none" stroke="#000" stroke-width="36" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-8)"><path d="M 941 574 C 860 604, 760 652, 684 692 C 562 756, 328 1138, 220 1215 C 160 1258, 80 1302, 0 1318 L 0 1526 C 90 1470, 190 1416, 330 1393 C 470 1371, 640 1373, 762 1379 C 852 1384, 910 1414, 941 1436 Z"/></g>
+      </g>
+    </svg>
+
+
+    <div class="hero-copy">
+      <p class="hero-location px">Silver Spring &amp; Montgomery County</p>
+      <h1 class="hero-title px" id="hero-title">
+        <span>Your yard, <em>handled.</em></span>
+        <span>Every week, on time.</span>
+      </h1>
+      <p class="hero-desc px">
+        <span>Mowing, landscaping, power washing</span>
+        <span>and home cleaning, so you can enjoy</span>
+        <span>a cleaner, greener home.</span>
+      </p>
+    </div>
+
+    <div class="garden-photo garden-logo px">
+      <img src="img/logo/silverhand-emblem.webp" width="1200" height="1030" alt="Silver Hand Home &amp; Landscaping logo: a silver hand holding a house, a tree and green grass">
+    </div>
+
+    <div id="garden-rings" aria-hidden="true">
+      <span class="garden-ring ring-1"></span>
+      <span class="garden-ring ring-2"></span>
+      <span class="garden-ring ring-3"></span>
+    </div>
+
+    <div class="leaves" aria-hidden="true">
+      <!-- desktop -->
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" style="--lx:831;--ly:135;--lw:131;--rot:0deg;--dur:7s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" style="--lx:92;--ly:342;--lw:160;--rot:-103deg;--blur:1.6;--dur:8s;--delay:-2s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" style="--lx:73;--ly:658;--lw:141;--rot:-25deg;--blur:2;--dur:9s;--delay:-5s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" style="--lx:60;--ly:848;--lw:170;--rot:-19deg;--blur:4;--dur:10s;--delay:-1s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" style="--lx:842;--ly:742;--lw:150;--rot:58deg;--dur:8s;--delay:-3s;--dx:-4">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" style="--lx:1593;--ly:239;--lw:197;--rot:-18deg;--dur:9s;--delay:-6s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" style="--lx:1544;--ly:693;--lw:210;--rot:-25deg;--blur:1.5;--dur:7.5s;--delay:-4s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" style="--lx:1606;--ly:858;--lw:181;--rot:68deg;--blur:2.5;--dur:10s;--delay:-7s;--dx:-4">
+      <!-- tablet -->
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" style="--lx:746;--ly:134;--lw:142;--rot:1deg;--dur:7s">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" style="--lx:194;--ly:674;--lw:142;--rot:72deg;--blur:1.5;--dur:8s;--delay:-2s;--dx:-4">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" style="--lx:877;--ly:709;--lw:200;--rot:-10deg;--dur:9s;--delay:-5s">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" style="--lx:175;--ly:1040;--lw:140;--rot:62deg;--dur:8s;--delay:-3s;--dx:-4">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" style="--lx:897;--ly:1112;--lw:189;--rot:-27deg;--blur:1.2;--dur:7.5s;--delay:-6s">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" style="--lx:80;--ly:1235;--lw:210;--rot:-10deg;--blur:5;--dur:10s;--delay:-1s">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" style="--lx:1020;--ly:1330;--lw:170;--rot:68deg;--blur:3;--dur:9s;--delay:-7s;--dx:-4">
+      <!-- mobile -->
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" style="--lx:606;--ly:172;--lw:170;--rot:1deg;--dur:7s">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" style="--lx:105;--ly:762;--lw:148;--rot:76deg;--blur:1.5;--dur:8s;--delay:-2s;--dx:-4">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" style="--lx:785;--ly:774;--lw:210;--rot:-11deg;--dur:9s;--delay:-5s">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" style="--lx:70;--ly:1185;--lw:150;--rot:62deg;--dur:8s;--delay:-3s;--dx:-4">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" style="--lx:821;--ly:1236;--lw:216;--rot:-26deg;--blur:1.2;--dur:7.5s;--delay:-6s">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" style="--lx:82;--ly:1382;--lw:208;--rot:-13deg;--blur:4;--dur:10s;--delay:-1s">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" style="--lx:876;--ly:1556;--lw:192;--rot:79deg;--blur:2;--dur:9s;--delay:-7s;--dx:-4">
+    </div>
+
+    <a id="cta-book-visit" class="cta primary px" href="#book" data-action="book-visit">
+      Book a free visit
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a id="cta-see-work" class="cta secondary px" href="#work" data-action="view-work">See the work</a>
+
+
+  </div>
+</section>
+
+<section class="services" id="services" aria-labelledby="services-title">
+  <div class="svc-stage">
+
+    <p class="svc-eyebrow px">Our services</p>
+    <h2 class="svc-title px" id="services-title"><span>Five services. <em>One crew</em></span><span>you can reach.</span></h2>
+
+    <a class="svc-card px" id="service-lawn-care-mowing" href="#lawn-care-mowing" data-service-id="lawn-care-mowing">
+      <picture>
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/services/mobile/service-01-lawn-care-mowing.webp">
+        <source media="(orientation: portrait)" srcset="img/services/tablet/service-01-lawn-care-mowing.webp">
+        <img src="img/services/desktop/service-01-lawn-care-mowing.webp" width="704" height="211" alt="" loading="lazy">
+      </picture>
+      <span class="svc-card-foot">
+        <span class="svc-card-title">Lawn Care &amp; Mowing</span>
+        <span class="svc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </a>
+
+    <a class="svc-card px" id="service-landscaping" href="#book" data-service-id="landscaping">
+      <picture>
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/services/mobile/service-02-landscaping.webp">
+        <source media="(orientation: portrait)" srcset="img/services/tablet/service-02-landscaping.webp">
+        <img src="img/services/desktop/service-02-landscaping.webp" width="707" height="211" alt="" loading="lazy">
+      </picture>
+      <span class="svc-card-foot">
+        <span class="svc-card-title">Landscaping</span>
+        <span class="svc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </a>
+
+    <a class="svc-card px" id="service-power-washing" href="#book" data-service-id="power-washing">
+      <picture>
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/services/mobile/service-03-power-washing.webp">
+        <source media="(orientation: portrait)" srcset="img/services/tablet/service-03-power-washing.webp">
+        <img src="img/services/desktop/service-03-power-washing.webp" width="466" height="212" alt="" loading="lazy">
+      </picture>
+      <span class="svc-card-foot">
+        <span class="svc-card-title">Power Washing</span>
+        <span class="svc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </a>
+
+    <a class="svc-card px" id="service-car-washing" href="#book" data-service-id="car-washing">
+      <picture>
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/services/mobile/service-04-car-washing.webp">
+        <source media="(orientation: portrait)" srcset="img/services/tablet/service-04-car-washing.webp">
+        <img src="img/services/desktop/service-04-car-washing.webp" width="456" height="212" alt="" loading="lazy">
+      </picture>
+      <span class="svc-card-foot">
+        <span class="svc-card-title">Car Washing</span>
+        <span class="svc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </a>
+
+    <a class="svc-card px" id="service-home-cleaning" href="#book" data-service-id="home-cleaning">
+      <picture>
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/services/mobile/service-05-home-cleaning.webp">
+        <source media="(orientation: portrait)" srcset="img/services/tablet/service-05-home-cleaning.webp">
+        <img src="img/services/desktop/service-05-home-cleaning.webp" width="473" height="212" alt="" loading="lazy">
+      </picture>
+      <span class="svc-card-foot">
+        <span class="svc-card-title">Home Cleaning</span>
+        <span class="svc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </a>
+
+  </div>
+</section>
+
+<section class="mowing" id="lawn-care-mowing" aria-labelledby="mowing-title">
+  <div class="mow-stage">
+
+    <!-- A foto tem o formato da mancha verde da hero: sai da borda esquerda,
+         recortada pelo contorno orgânico; atrás, a mesma mancha em verde,
+         deslocada, como acento. Não toca o topo nem a base da seção. -->
+    <svg class="mow-blob v-d deco-l" viewBox="0 0 1672 941" preserveAspectRatio="none" role="img" aria-label="A freshly mowed striped lawn in front of a light suburban home with mature trees and shrubs">
+      <defs>
+        <linearGradient id="mow-green-d" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1672" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+        <clipPath id="mow-clip-d"><path d="M 0 70 C 200 40, 520 40, 700 90 C 860 135, 930 260, 925 440 C 920 620, 900 780, 740 860 C 580 925, 280 890, 0 905 Z"/></clipPath>
+      </defs>
+      <path class="mow-blob-accent" fill="url(#mow-green-d)" transform="translate(24 18)" d="M -24 70 C 200 40, 520 40, 700 90 C 860 135, 930 260, 925 440 C 920 620, 900 780, 740 860 C 580 925, 280 890, -24 905 Z"/>
+      <image href="img/mowing/desktop/garden-photo-card.webp" x="-40" y="20" width="990" height="910" preserveAspectRatio="xMaxYMid slice" clip-path="url(#mow-clip-d)"/>
+    </svg>
+    <svg class="mow-blob v-t" viewBox="0 0 1086 1448" preserveAspectRatio="none" role="img" aria-label="A freshly mowed striped lawn in front of a light suburban home with mature trees and shrubs">
+      <defs>
+        <linearGradient id="mow-green-t" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1086" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+        <clipPath id="mow-clip-t"><path d="M 0 70 C 200 40, 520 30, 760 70 C 960 105, 1040 220, 1020 400 C 1000 600, 960 760, 760 820 C 560 875, 260 850, 0 860 Z"/></clipPath>
+      </defs>
+      <path class="mow-blob-accent" fill="url(#mow-green-t)" transform="translate(20 12)" d="M -20 70 C 200 40, 520 30, 760 70 C 960 105, 1040 220, 1020 400 C 1000 600, 960 760, 760 820 C 560 875, 260 850, -20 860 Z"/>
+      <image href="img/mowing/tablet/garden-photo-card.webp" x="-40" y="20" width="1100" height="860" preserveAspectRatio="xMidYMid slice" clip-path="url(#mow-clip-t)"/>
+    </svg>
+    <svg class="mow-blob v-m" viewBox="0 0 941 1672" preserveAspectRatio="none" role="img" aria-label="A freshly mowed striped lawn in front of a light suburban home with mature trees and shrubs">
+      <defs>
+        <linearGradient id="mow-green-m" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="941" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+        <clipPath id="mow-clip-m"><path d="M 0 830 C 220 800, 560 800, 760 850 C 900 885, 930 1000, 915 1180 C 900 1400, 860 1560, 640 1610 C 420 1640, 180 1615, 0 1625 Z"/></clipPath>
+      </defs>
+      <path class="mow-blob-accent" fill="url(#mow-green-m)" transform="translate(18 16)" d="M -18 830 C 220 800, 560 800, 760 850 C 900 885, 930 1000, 915 1180 C 900 1400, 860 1560, 640 1610 C 420 1640, 180 1615, -18 1625 Z"/>
+      <image href="img/mowing/mobile/garden-photo-card.webp" x="-40" y="780" width="990" height="880" preserveAspectRatio="xMidYMid slice" clip-path="url(#mow-clip-m)"/>
+    </svg>
+
+    <!-- Folhas nas posições das referências do kit (a camada leaf-accents dele
+         tem folhas cortadas e halo creme); mesmo recorte e .leaf da hero. -->
+    <div class="mow-leaves" aria-hidden="true">
+      <!-- desktop -->
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:48;--ly:88;--lw:153;--rot:79deg;--dur:8s;--dx:-4">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1620;--ly:105;--lw:178;--rot:-29deg;--dur:9s;--delay:-3s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:32;--ly:809;--lw:135;--rot:-35deg;--blur:1.5;--dur:7.5s;--delay:-5s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1573;--ly:835;--lw:221;--rot:-21deg;--dur:10s;--delay:-2s">
+      <!-- tablet (o kit não trouxe referência: um canto cada, como no celular) -->
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:30;--ly:58;--lw:140;--rot:75deg;--dur:8s;--dx:-4">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1058;--ly:62;--lw:150;--rot:-25deg;--dur:9s;--delay:-3s">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:38;--ly:1372;--lw:140;--rot:-33deg;--blur:1.5;--dur:7.5s;--delay:-5s">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1044;--ly:1388;--lw:158;--rot:-22deg;--dur:10s;--delay:-2s">
+      <!-- mobile -->
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:50;--ly:62;--lw:133;--rot:75deg;--dur:8s;--dx:-4">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:888;--ly:91;--lw:158;--rot:-23deg;--dur:9s;--delay:-3s">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:32;--ly:1555;--lw:125;--rot:-33deg;--blur:1.5;--dur:7.5s;--delay:-5s">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:889;--ly:1612;--lw:123;--rot:-23deg;--dur:10s;--delay:-2s">
+    </div>
+
+    <p class="mow-eyebrow px">Lawn Care &amp; Mowing</p>
+    <h2 class="mow-title px" id="mowing-title"><span>Mowing days you</span> <span>never have to</span> <span><em>think about.</em></span></h2>
+    <p class="mow-body px"><span>A consistently clean, healthy lawn,</span> <span>always on schedule. Same crew, reliable</span> <span>service, and a yard that looks great</span> <span>week after week.</span></p>
+
+    <a class="mow-cta px" href="#book" data-service-id="lawn-care-mowing">
+      Book a mowing visit
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+  </div>
+</section>
+
+<section class="seasons" id="seasonal-care" aria-labelledby="seasons-title">
+  <div class="sea-stage">
+
+    <!-- Variação da mancha verde da hero: entra pela borda direita, passa por
+         trás dos cartões e fecha arredondada antes das bordas de cima e de
+         baixo (nada de linha reta na emenda com as seções vizinhas). -->
+    <svg class="sea-green v-d deco-r" viewBox="0 0 1672 941" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="url(#sea-green-d)" d="M 1672 100 C 1590 105, 1470 150, 1430 240 C 1395 320, 1180 300, 1090 380 C 1000 460, 1050 620, 990 730 C 940 830, 1060 890, 1240 880 C 1420 870, 1560 905, 1672 900 Z"/>
+      <mask id="in-9" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 1672 100 C 1590 105, 1470 150, 1430 240 C 1395 320, 1180 300, 1090 380 C 1000 460, 1050 620, 990 730 C 940 830, 1060 890, 1240 880 C 1420 870, 1560 905, 1672 900 Z" fill="#fff"/><path d="M 1767.8 94.2 L 1672 100 C 1590 105, 1470 150, 1430 240 C 1395 320, 1180 300, 1090 380 C 1000 460, 1050 620, 990 730 C 940 830, 1060 890, 1240 880 C 1420 870, 1560 905, 1672 900 L 1767.9 895.7" fill="none" stroke="#000" stroke-width="64" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-9)"><path d="M 1672 100 C 1590 105, 1470 150, 1430 240 C 1395 320, 1180 300, 1090 380 C 1000 460, 1050 620, 990 730 C 940 830, 1060 890, 1240 880 C 1420 870, 1560 905, 1672 900 Z"/></g>
+    </svg>
+    <svg class="sea-green v-d deco-l" viewBox="0 0 1672 941" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="sea-green-d" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1672" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#sea-green-d)" d="M 0 700 C 70 700, 160 760, 150 850 C 140 910, 60 930, 0 925 Z"/>
+      <mask id="in-10" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 0 700 C 70 700, 160 760, 150 850 C 140 910, 60 930, 0 925 Z" fill="#fff"/><path d="M -96 700 L 0 700 C 70 700, 160 760, 150 850 C 140 910, 60 930, 0 925 L -95.7 917" fill="none" stroke="#000" stroke-width="64" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-10)"><path d="M 0 700 C 70 700, 160 760, 150 850 C 140 910, 60 930, 0 925 Z"/></g>
+    </svg>
+    <svg class="sea-green v-t" viewBox="0 0 1086 1448" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="sea-green-t" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1086" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#sea-green-t)" d="M 1086 470 C 1010 475, 900 510, 860 590 C 800 710, 650 760, 570 860 C 480 970, 540 1150, 420 1260 C 340 1335, 360 1400, 520 1400 C 760 1400, 950 1390, 1086 1360 Z"/>
+      <mask id="in-11" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 1086 470 C 1010 475, 900 510, 860 590 C 800 710, 650 760, 570 860 C 480 970, 540 1150, 420 1260 C 340 1335, 360 1400, 520 1400 C 760 1400, 950 1390, 1086 1360 Z" fill="#fff"/><path d="M 1148.9 465.9 L 1086 470 C 1010 475, 900 510, 860 590 C 800 710, 650 760, 570 860 C 480 970, 540 1150, 420 1260 C 340 1335, 360 1400, 520 1400 C 760 1400, 950 1390, 1086 1360 L 1147.5 1346.4" fill="none" stroke="#000" stroke-width="42" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-11)"><path d="M 1086 470 C 1010 475, 900 510, 860 590 C 800 710, 650 760, 570 860 C 480 970, 540 1150, 420 1260 C 340 1335, 360 1400, 520 1400 C 760 1400, 950 1390, 1086 1360 Z"/></g>
+      <path fill="url(#sea-green-t)" d="M 0 1120 C 70 1125, 130 1180, 120 1260 C 110 1320, 50 1340, 0 1338 Z"/>
+      <mask id="in-12" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 0 1120 C 70 1125, 130 1180, 120 1260 C 110 1320, 50 1340, 0 1338 Z" fill="#fff"/><path d="M -62.8 1115.5 L 0 1120 C 70 1125, 130 1180, 120 1260 C 110 1320, 50 1340, 0 1338 L -62.9 1335.5" fill="none" stroke="#000" stroke-width="42" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-12)"><path d="M 0 1120 C 70 1125, 130 1180, 120 1260 C 110 1320, 50 1340, 0 1338 Z"/></g>
+    </svg>
+    <svg class="sea-green v-m" viewBox="0 0 941 1672" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="sea-green-m" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="941" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#sea-green-m)" d="M 941 400 C 860 405, 800 450, 760 520 C 640 720, 300 900, 0 960 L 0 1520 C 120 1600, 300 1640, 520 1630 C 720 1620, 860 1600, 941 1560 Z"/>
+      <mask id="in-13" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 941 400 C 860 405, 800 450, 760 520 C 640 720, 300 900, 0 960 L 0 1520 C 120 1600, 300 1640, 520 1630 C 720 1620, 860 1600, 941 1560 Z" fill="#fff"/><path d="M -44.9 1490 L 0 1520 C 120 1600, 300 1640, 520 1630 C 720 1620, 860 1600, 941 1560 L 989.4 1536.1 M 994.9 396.7 L 941 400 C 860 405, 800 450, 760 520 C 640 720, 300 900, 0 960 L -53 970.6" fill="none" stroke="#000" stroke-width="36" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-13)"><path d="M 941 400 C 860 405, 800 450, 760 520 C 640 720, 300 900, 0 960 L 0 1520 C 120 1600, 300 1640, 520 1630 C 720 1620, 860 1600, 941 1560 Z"/></g>
+    </svg>
+
+    <div class="sea-leaves" aria-hidden="true">
+      <!-- desktop -->
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:45;--ly:118;--lw:150;--rot:79deg;--dur:8s;--dx:-4">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1530;--ly:145;--lw:170;--rot:-29deg;--dur:9s;--delay:-3s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:82;--ly:815;--lw:150;--rot:-35deg;--dur:7.5s;--delay:-5s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1575;--ly:872;--lw:150;--rot:-21deg;--dur:10s;--delay:-2s">
+      <!-- tablet -->
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:75;--ly:122;--lw:170;--rot:79deg;--dur:8s;--dx:-4">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:933;--ly:165;--lw:190;--rot:-29deg;--dur:9s;--delay:-3s">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:80;--ly:1355;--lw:130;--rot:-35deg;--dur:7.5s;--delay:-5s">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1005;--ly:1395;--lw:140;--rot:-21deg;--dur:10s;--delay:-2s">
+      <!-- mobile -->
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:70;--ly:100;--lw:150;--rot:79deg;--dur:8s;--dx:-4">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:845;--ly:175;--lw:170;--rot:-29deg;--dur:9s;--delay:-3s">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:75;--ly:1580;--lw:140;--rot:-35deg;--dur:7.5s;--delay:-5s">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:845;--ly:1610;--lw:160;--rot:-21deg;--dur:10s;--delay:-2s">
+    </div>
+
+    <p class="sea-eyebrow px">Seasonal care</p>
+    <h2 class="sea-title px" id="seasons-title"><span>The yard asks for</span> <span>something different</span> <span><em>every season.</em></span></h2>
+
+    <a class="sea-card px" id="season-spring" href="#book" data-season="spring">
+      <picture>
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-spring.webp">
+        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-spring.webp">
+        <img src="img/seasons/desktop/season-spring.webp" alt="" loading="lazy">
+      </picture>
+      <span class="sea-card-body">
+        <span class="sea-card-title">Spring</span>
+        <span class="sea-card-desc"><span>Cleanups, fresh mulch</span> <span>and new growth.</span></span>
+        <span class="sea-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </a>
+
+    <a class="sea-card px" id="season-summer" href="#book" data-season="summer">
+      <picture>
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-summer.webp">
+        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-summer.webp">
+        <img src="img/seasons/desktop/season-summer.webp" alt="" loading="lazy">
+      </picture>
+      <span class="sea-card-body">
+        <span class="sea-card-title">Summer</span>
+        <span class="sea-card-desc"><span>Regular mowing and</span> <span>landscape maintenance.</span></span>
+        <span class="sea-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </a>
+
+    <a class="sea-card px" id="season-fall" href="#book" data-season="fall">
+      <picture>
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-fall.webp">
+        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-fall.webp">
+        <img src="img/seasons/desktop/season-fall.webp" alt="" loading="lazy">
+      </picture>
+      <span class="sea-card-body">
+        <span class="sea-card-title">Fall</span>
+        <span class="sea-card-desc"><span>Leaf removal and</span> <span>property protection.</span></span>
+        <span class="sea-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </a>
+
+    <a class="sea-card px" id="season-winter" href="#book" data-season="winter">
+      <picture>
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-winter.webp">
+        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-winter.webp">
+        <img src="img/seasons/desktop/season-winter.webp" alt="" loading="lazy">
+      </picture>
+      <span class="sea-card-body">
+        <span class="sea-card-title">Winter</span>
+        <span class="sea-card-desc"><span>Keep your property</span> <span>clean and safe.</span></span>
+        <span class="sea-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </a>
+
+  </div>
+</section>
+
+<section class="work" id="work" aria-label="Our work, why choose Silver Hand and how it works">
+  <div class="cmb-stage">
+
+    <!-- Só as manchinhas verdes de canto: a foto/mancha grande dos benefícios saiu
+         e o bloco "Why choose" ocupa a largura toda. -->
+    <svg class="cmb-blob v-d deco-r" viewBox="0 0 1672 1150" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="cmb-green-d" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1672" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#cmb-green-d)" d="M 1672 645 C 1622 653, 1586 738, 1590 850 C 1594 963, 1628 1043, 1672 1066 Z"/>
+      <mask id="in-14" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 1672 645 C 1622 653, 1586 738, 1590 850 C 1594 963, 1628 1043, 1672 1066 Z" fill="#fff"/><path d="M 1766.8 629.8 L 1672 645 C 1622 653, 1586 738, 1590 850 C 1594 963, 1628 1043, 1672 1066 L 1757.1 1110.5" fill="none" stroke="#000" stroke-width="64" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-14)"><path d="M 1672 645 C 1622 653, 1586 738, 1590 850 C 1594 963, 1628 1043, 1672 1066 Z"/></g>
+    </svg>
+    <svg class="cmb-blob v-t" viewBox="0 0 1086 1448" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="cmb-green-t" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1086" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#cmb-green-t)" d="M 1086 1080 C 1012 1086, 952 1128, 956 1180 C 960 1228, 1018 1254, 1086 1248 Z"/>
+      <mask id="in-17" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 1086 1080 C 1012 1086, 952 1128, 956 1180 C 960 1228, 1018 1254, 1086 1248 Z" fill="#fff"/><path d="M 1148.8 1074.9 L 1086 1080 C 1012 1086, 952 1128, 956 1180 C 960 1228, 1018 1254, 1086 1248 L 1148.8 1242.5" fill="none" stroke="#000" stroke-width="42" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-17)"><path d="M 1086 1080 C 1012 1086, 952 1128, 956 1180 C 960 1228, 1018 1254, 1086 1248 Z"/></g>
+    </svg>
+    <svg class="cmb-blob v-m" viewBox="0 0 941 1910" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="cmb-green-m" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="941" y2="0">
+          <stop offset="0" stop-color="#6FB839"/>
+          <stop offset="1" stop-color="#3E8B1D"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#cmb-green-m)" d="M 941 1280 C 860 1286, 790 1322, 792 1370 C 794 1416, 862 1442, 941 1436 Z"/>
+      <mask id="in-19" maskUnits="userSpaceOnUse" x="-99999" y="-99999" width="199998" height="199998"><path d="M 941 1280 C 860 1286, 790 1322, 792 1370 C 794 1416, 862 1442, 941 1436 Z" fill="#fff"/><path d="M 994.9 1276 L 941 1280 C 860 1286, 790 1322, 792 1370 C 794 1416, 862 1442, 941 1436 L 994.8 1431.9" fill="none" stroke="#000" stroke-width="36" stroke-linejoin="round"/></mask>
+      <g class="green-in" mask="url(#in-19)"><path d="M 941 1280 C 860 1286, 790 1322, 792 1370 C 794 1416, 862 1442, 941 1436 Z"/></g>
+    </svg>
+
+    <!-- Our work -->
+    <p class="cmb-txt cmb-eb cmb-g-eb">Our work</p>
+    <h2 class="cmb-txt cmb-hd cmb-g-h"><span>What it looks like</span> <span>when it is <em>kept up.</em></span></h2>
+    <a class="cmb-box cmb-g-btn" href="#more-work">See more work <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <!-- Galeria giratória: quatro cópias das três fotos numa faixa que anda
+         uma cópia para a esquerda e recomeça (loop sem emenda). A 2ª cópia
+         fica exatamente onde as fotos estavam, então parada (movimento
+         reduzido) a galeria é a mesma de antes. Só a 2ª cópia é lida por leitores de tela. -->
+    <div class="cmb-carousel" role="region" aria-label="Photos of our work">
+      <div class="cmb-track">
+        <figure class="cmb-photo" aria-hidden="true"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-01.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-01.webp">
+          <img src="img/work/desktop/gallery-photo-01.webp" width="460" height="266" alt="" loading="lazy">
+          </picture></figure>
+        <figure class="cmb-photo" aria-hidden="true"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-02.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-02.webp">
+          <img src="img/work/desktop/gallery-photo-02.webp" width="456" height="266" alt="" loading="lazy">
+          </picture></figure>
+        <figure class="cmb-photo" aria-hidden="true"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-03.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-03.webp">
+          <img src="img/work/desktop/gallery-photo-03.webp" width="461" height="266" alt="" loading="lazy">
+          </picture></figure>
+        <figure class="cmb-photo"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-01.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-01.webp">
+          <img src="img/work/desktop/gallery-photo-01.webp" width="460" height="266" alt="Lush garden with stone steps and flowers" loading="lazy">
+          </picture></figure>
+        <figure class="cmb-photo"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-02.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-02.webp">
+          <img src="img/work/desktop/gallery-photo-02.webp" width="456" height="266" alt="Warm-lit patio with seating and a fire feature" loading="lazy">
+          </picture></figure>
+        <figure class="cmb-photo"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-03.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-03.webp">
+          <img src="img/work/desktop/gallery-photo-03.webp" width="461" height="266" alt="Hydrangea garden beside a suburban house" loading="lazy">
+          </picture></figure>
+        <figure class="cmb-photo" aria-hidden="true"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-01.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-01.webp">
+          <img src="img/work/desktop/gallery-photo-01.webp" width="460" height="266" alt="" loading="lazy">
+          </picture></figure>
+        <figure class="cmb-photo" aria-hidden="true"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-02.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-02.webp">
+          <img src="img/work/desktop/gallery-photo-02.webp" width="456" height="266" alt="" loading="lazy">
+          </picture></figure>
+        <figure class="cmb-photo" aria-hidden="true"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-03.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-03.webp">
+          <img src="img/work/desktop/gallery-photo-03.webp" width="461" height="266" alt="" loading="lazy">
+          </picture></figure>
+        <figure class="cmb-photo" aria-hidden="true"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-01.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-01.webp">
+          <img src="img/work/desktop/gallery-photo-01.webp" width="460" height="266" alt="" loading="lazy">
+          </picture></figure>
+        <figure class="cmb-photo" aria-hidden="true"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-02.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-02.webp">
+          <img src="img/work/desktop/gallery-photo-02.webp" width="456" height="266" alt="" loading="lazy">
+          </picture></figure>
+        <figure class="cmb-photo" aria-hidden="true"><picture>
+          <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/work/mobile/gallery-photo-03.webp">
+          <source media="(orientation: portrait)" srcset="img/work/tablet/gallery-photo-03.webp">
+          <img src="img/work/desktop/gallery-photo-03.webp" width="461" height="266" alt="" loading="lazy">
+          </picture></figure>
+      </div>
+    </div>
+
+    <div class="cmb-div cmb-div1" aria-hidden="true"><svg viewBox="0 0 44 26" aria-hidden="true"><path d="M22 24C22 14 15 6 4 4c1 10 8 18 18 20Z" fill="#8CC45E"/><path d="M22 24c0-10 7-18 18-20-1 10-8 18-18 20Z" fill="#6FB839"/></svg></div>
+
+    <!-- Why choose Silver Hand -->
+    <p class="cmb-txt cmb-eb cmb-b-eb">Why choose Silver Hand</p>
+    <h2 class="cmb-txt cmb-hd cmb-wrap cmb-b-h"><span>You should not have to <em>chase</em></span> <span>the person who cuts your grass.</span></h2>
+    <p class="cmb-txt cmb-wrap cmb-b-body">We make it simple and reliable, with clear communication and a crew you can count on.</p>
+    <ul class="cmb-abs cmb-list" role="list">
+      <li class="cmb-item"><span class="cmb-disc" aria-hidden="true"><svg viewBox="704 673 68 68"><circle cx="731" cy="699" r="7"/><circle cx="747" cy="702" r="6"/><path d="M 716 725c0-11 7-18 15-18s15 7 15 18v3h-30zM 742 727v-8c0-6-3-10-7-12M 742 708c10-2 17 5 17 14v5h-7"/></svg></span><span class="cmb-lab"><span>Same crew</span> <span>at your property</span></span></li>
+      <li class="cmb-item"><span class="cmb-disc" aria-hidden="true"><svg viewBox="1016 673 68 68"><path d="M 1039 686c-3 1-6 5-6 9 0 17 17 34 34 34 4 0 8-3 9-6l2-7-13-7-6 7c-6-2-11-7-13-13l7-6-7-13z"/></svg></span><span class="cmb-lab"><span>A text before</span> <span>we arrive</span></span></li>
+      <li class="cmb-item"><span class="cmb-disc" aria-hidden="true"><svg viewBox="1322 673 68 68"><path d="M 1341 684h22l12 12v35h-34zM 1363 684v13h12M 1348 708h18M 1348 717h18M 1348 726h13"/></svg></span><span class="cmb-lab"><span>Price agreed</span> <span>up front</span></span></li>
+    </ul>
+
+    <div class="cmb-div cmb-div2" aria-hidden="true"><svg viewBox="0 0 44 26" aria-hidden="true"><path d="M22 24C22 14 15 6 4 4c1 10 8 18 18 20Z" fill="#8CC45E"/><path d="M22 24c0-10 7-18 18-20-1 10-8 18-18 20Z" fill="#6FB839"/></svg></div>
+
+    <!-- How it works -->
+    <p class="cmb-txt cmb-eb cmb-p-eb">How it works</p>
+    <h2 class="cmb-txt cmb-hd cmb-p-h">Three <em>easy</em> steps.</h2>
+    <ol class="cmb-abs cmb-list" role="list">
+      <li class="cmb-step"><span class="cmb-disc" aria-hidden="true">1</span><span class="cmb-step-txt"><span class="cmb-step-t">Send the request</span><span class="cmb-step-d"><span>Tell us about your property</span> <span>and what you need.</span></span></span></li>
+      <li class="cmb-step"><span class="cmb-disc" aria-hidden="true">2</span><span class="cmb-step-txt"><span class="cmb-step-t">We come and price it</span><span class="cmb-step-d"><span>We visit, walk the property</span> <span>and give a clear plan.</span></span></span></li>
+      <li class="cmb-step"><span class="cmb-disc" aria-hidden="true">3</span><span class="cmb-step-txt"><span class="cmb-step-t">Pick a day and we begin</span><span class="cmb-step-d"><span>We get you on the schedule</span> <span>and take care of the rest.</span></span></span></li>
+    </ol>
+    <svg class="cmb-arrow cmb-arrow-1" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 20h30m-9-9 9 9-9 9" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <svg class="cmb-arrow cmb-arrow-2" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 20h30m-9-9 9 9-9 9" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+  </div>
+</section>
+
+<section class="final" id="service-area" aria-label="Service area, questions, booking and footer">
+  <div class="fin-stage">
+    <svg class="fin-bg v-d deco-full" viewBox="0 0 1672 1111" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="fin-forest-d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C4A28"/><stop offset="1" stop-color="#05301A"/></linearGradient></defs>
+      <path d="M 0 219 C 200 264, 500 259, 760 246 C 1000 234, 1300 244, 1672 179 L 1672 570 C 1400 575, 1000 600, 700 592 C 450 585, 250 540, 0 560 Z" fill="#E9F3DE"/>
+      <path d="M 0 219 C 200 264, 500 259, 760 246 C 1000 234, 1300 244, 1672 179" fill="none" stroke="#F4F9EE" stroke-width="5" stroke-linecap="round"/>
+      <path d="M 0 820 C 60 830, 150 890, 250 940 C 330 975, 600 982, 900 976 L 1672 970 L 1672 1111 L 0 1111 Z" fill="url(#fin-forest-d)"/>
+    </svg>
+    <svg class="fin-bg v-t" viewBox="0 0 1086 1678" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="fin-forest-t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C4A28"/><stop offset="1" stop-color="#05301A"/></linearGradient></defs>
+      <path d="M 0 314 C 150 354, 350 399, 560 394 C 800 389, 950 364, 1086 324 L 1086 805 C 900 830, 650 780, 450 795 C 250 810, 120 830, 0 820 Z" fill="#E9F3DE"/>
+      <path d="M 0 314 C 150 354, 350 399, 560 394 C 800 389, 950 364, 1086 324" fill="none" stroke="#F4F9EE" stroke-width="5" stroke-linecap="round"/>
+      <path d="M 0 1380 C 150 1350, 380 1380, 600 1408 C 800 1428, 950 1412, 1086 1398 L 1086 1678 L 0 1678 Z" fill="url(#fin-forest-t)"/>
+    </svg>
+    <svg class="fin-bg v-m" viewBox="0 0 941 3540" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="fin-forest-m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C4A28"/><stop offset="1" stop-color="#05301A"/></linearGradient></defs>
+      <path d="M 0 880 C 150 910, 400 905, 600 905 C 760 905, 860 895, 941 860 L 941 1680 C 800 1670, 600 1700, 450 1692 C 300 1684, 150 1670, 0 1695 Z" fill="#E9F3DE"/>
+      <path d="M 0 880 C 150 910, 400 905, 600 905 C 760 905, 860 895, 941 860" fill="none" stroke="#F4F9EE" stroke-width="5" stroke-linecap="round"/>
+      <path d="M 0 2780 C 150 2785, 300 2825, 500 2835 C 700 2845, 850 2830, 941 2815 L 941 3540 L 0 3540 Z" fill="url(#fin-forest-m)"/>
+    </svg>
+
+    <div class="fin-leaves" aria-hidden="true">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:165;--ly:75;--lw:125;--rot:-35deg;--dur:8s;--delay:-3s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:112;--ly:222;--lw:92;--rot:35deg;--dur:7s;--delay:-0s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1540;--ly:140;--lw:80;--rot:-60deg;--dur:7s;--delay:-2s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1600;--ly:175;--lw:70;--rot:80deg;--dur:7s;--delay:-1s">
+      <img class="leaf d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1510;--ly:455;--lw:110;--rot:-35deg;--dur:9s;--delay:-5s">
+      <img class="fin-blur d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1640;--ly:740;--lw:200;--rot:30deg;--b:8">
+      <img class="fin-blur d" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:30;--ly:1070;--lw:180;--rot:-20deg;--b:8">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:90;--ly:88;--lw:130;--rot:-35deg;--dur:9s;--delay:-4s">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1015;--ly:230;--lw:100;--rot:-60deg;--dur:10s;--delay:-2s">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1055;--ly:290;--lw:90;--rot:80deg;--dur:10s;--delay:-2s">
+      <img class="leaf t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1028;--ly:652;--lw:90;--rot:-55deg;--dur:7s;--delay:-4s">
+      <img class="fin-blur t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:60;--ly:1190;--lw:180;--rot:-20deg;--b:8">
+      <img class="fin-blur t" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:1060;--ly:1480;--lw:160;--rot:30deg;--b:8">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:885;--ly:470;--lw:90;--rot:-60deg;--dur:8s;--delay:-2s">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:885;--ly:1720;--lw:90;--rot:40deg;--dur:8s;--delay:-4s">
+      <img class="leaf m" src="img/hero/leaf.webp" alt="" loading="lazy" style="--lx:60;--ly:2560;--lw:90;--rot:40deg;--dur:7s;--delay:-4s">
+    </div>
+
+    <!-- Local service -->
+    <p class="fin-t fin-eb fin-aEb">Local service</p>
+    <h2 class="fin-t fin-hd fin-aH"><span class="fin-a-lg">Local care in <em>Silver Spring.</em></span><span class="fin-a-sm">Local care</span><span class="fin-a-sm">in <em>Silver Spring.</em></span></h2>
+    <p class="fin-t fin-p fin-aP"><span class="fin-a-lg">We proudly serve Silver Spring and nearby areas in</span><span class="fin-a-lg">Montgomery County with reliable, high-quality home</span><span class="fin-a-lg">and landscaping services.</span><span class="fin-a-sm">We proudly serve Silver Spring and</span><span class="fin-a-sm">nearby areas in Montgomery County</span><span class="fin-a-sm">with reliable, high-quality home</span><span class="fin-a-sm">and landscaping services.</span></p>
+    <a class="fin-map" href="https://www.google.com/maps/search/?api=1&amp;query=Silver+Spring,+Maryland" target="_blank" rel="noopener" aria-label="Silver Spring, Maryland — open in Google Maps">
+      <picture>
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/final/mobile/map-service-area-reference.webp">
+        <source media="(orientation: portrait)" srcset="img/final/tablet/map-service-area-reference.webp">
+        <img src="img/final/desktop/map-service-area-reference.webp" alt="Map of the Silver Spring, Maryland service area" loading="lazy">
+      </picture>
+    </a>
+
+    <!-- FAQ -->
+    <p class="fin-t fin-eb fin-qEb" id="faq">Frequently asked questions</p>
+    <h2 class="fin-t fin-hd fin-qH">Good to <em>know.</em></h2>
+    <div class="fin-q" data-accordion>
+      <details name="faq">
+        <summary>What areas do you serve? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <p>Silver Spring and nearby areas in Montgomery County, Maryland.</p>
+      </details>
+      <details name="faq">
+        <summary>How do I get a quote? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <p>Book a free visit with the form below. We come by, walk the property with you and agree on the price up front.</p>
+      </details>
+      <details name="faq">
+        <summary>Do you offer recurring service? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <p>Yes. Mowing and landscape maintenance can run on a regular schedule, with the same crew at your property every visit.</p>
+      </details>
+      <details name="faq">
+        <summary>What if the weather is bad? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <p>If rain or storms make it unsafe to work, we send you a text and move the visit to the next open day.</p>
+      </details>
+    </div>
+
+    <!-- Book a visit -->
+    <p class="fin-t fin-eb fin-bEb" id="book">Book a visit</p>
+    <h2 class="fin-t fin-hd fin-bH">Tell us about the <em>property.</em></h2>
+    <p class="fin-t fin-p fin-bP"><span class="fin-m-hide">We will visit, answer your questions and give a clear plan.</span><span class="fin-m-only">We will visit, answer your questions</span><span class="fin-m-only">and give a clear plan.</span></p>
+    <!-- Sem servidor ainda: o JS valida e mostra a confirmação, mas não envia nada. -->
+    <form class="fin-form" id="book-form" novalidate>
+      <input class="fin-box fin-field fin-name" name="name" autocomplete="name" placeholder="Name" aria-label="Name" required>
+      <input class="fin-box fin-field fin-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Phone" aria-label="Phone" required>
+      <input class="fin-box fin-field fin-addr" name="address" autocomplete="street-address" placeholder="Property address" aria-label="Property address" required>
+      <select class="fin-box fin-field fin-sel" name="service" aria-label="What services are you interested in?" required>
+        <option value="" disabled selected>What services are you interested in?</option>
+        <option value="lawn-care-mowing">Lawn care &amp; mowing</option>
+        <option value="landscaping">Landscaping</option>
+        <option value="power-washing">Power washing</option>
+        <option value="car-washing">Car washing</option>
+        <option value="home-cleaning">Home cleaning</option>
+        <option value="not-sure">Not sure yet</option>
+      </select>
+      <span class="fin-sel-ico fin-sel" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <button class="fin-box fin-btn fin-btn" type="submit">Book a free visit <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="fin-status" role="status" aria-live="polite"></p>
+    </form>
+
+    <svg class="fin-photo v-d" viewBox="0 0 792 336" role="img" aria-label="A light stone house with a curved garden path, mature trees and white hydrangeas"
+         style="left: calc(var(--ox) + 880 * var(--u)); top: calc(572 * var(--u)); width: calc(792 * var(--u)); height: calc(336 * var(--u));">
+      <defs><clipPath id="fin-clip-d"><path d="M 60 60 C 120 5, 250 2, 420 4 C 560 6, 700 4, 760 40 C 785 60, 792 90, 792 110 L 792 336 C 600 338, 300 336, 140 328 C 50 320, 0 240, 0 170 C 0 120, 20 85, 60 60 Z"/></clipPath></defs>
+      <image href="img/final/desktop/garden-photo.webp" x="-48" y="-24" width="887" height="383" preserveAspectRatio="xMidYMid slice" clip-path="url(#fin-clip-d)"/>
+      <path d="M 60 60 C 120 5, 250 2, 420 4 C 560 6, 700 4, 760 40 C 785 60, 792 90, 792 110 L 792 336 C 600 338, 300 336, 140 328 C 50 320, 0 240, 0 170 C 0 120, 20 85, 60 60 Z" fill="none" stroke="#F4F9EE" stroke-width="3"/>
+    </svg>
+    <svg class="fin-photo v-t" viewBox="0 0 460 494" role="img" aria-label="A light stone house with a curved garden path, mature trees and white hydrangeas"
+         style="left: calc(612 * var(--u)); top: calc(818 * var(--u)); width: calc(460 * var(--u)); height: calc(494 * var(--u));">
+      <defs><clipPath id="fin-clip-t"><path d="M 70 10 C 200 -2, 330 0, 400 20 C 450 40, 460 110, 458 220 C 456 340, 462 430, 420 466 C 370 496, 200 494, 90 486 C 30 480, 2 440, 2 330 C 2 200, -4 60, 70 10 Z"/></clipPath></defs>
+      <image href="img/final/tablet/garden-photo.webp" x="-28" y="-35" width="515" height="563" preserveAspectRatio="xMidYMid slice" clip-path="url(#fin-clip-t)"/>
+      <path d="M 70 10 C 200 -2, 330 0, 400 20 C 450 40, 460 110, 458 220 C 456 340, 462 430, 420 466 C 370 496, 200 494, 90 486 C 30 480, 2 440, 2 330 C 2 200, -4 60, 70 10 Z" fill="none" stroke="#F4F9EE" stroke-width="3"/>
+    </svg>
+    <svg class="fin-photo v-m" viewBox="0 0 863 297" role="img" aria-label="A light stone house with a curved garden path, mature trees and white hydrangeas"
+         style="left: calc(40 * var(--u)); top: calc(2600 * var(--u)); width: calc(863 * var(--u)); height: calc(297 * var(--u));">
+      <defs><clipPath id="fin-clip-m"><path d="M 80 25 C 260 -2, 600 3, 780 25 C 855 40, 868 110, 855 180 C 840 250, 760 297, 560 295 C 360 293, 160 297, 70 270 C 0 245, -4 85, 80 25 Z"/></clipPath></defs>
+      <image href="img/final/mobile/garden-photo.webp" x="-52" y="-21" width="967" height="339" preserveAspectRatio="xMidYMid slice" clip-path="url(#fin-clip-m)"/>
+      <path d="M 80 25 C 260 -2, 600 3, 780 25 C 855 40, 868 110, 855 180 C 840 250, 760 297, 560 295 C 360 293, 160 297, 70 270 C 0 245, -4 85, 80 25 Z" fill="none" stroke="#F4F9EE" stroke-width="3"/>
+    </svg>
+
+    <!-- Rodapé -->
+    <footer class="fin-foot" id="contact">
+      <a class="fin-logo-link" href="#" aria-label="Silver Hand — back to top"><img class="fin-logo" src="img/logo/silverhand-emblem-sm.webp" width="240" height="206" alt=""></a>
+      <p class="fin-t fin-fBrand">Silver Hand</p>
+      <p class="fin-t fin-fLines"><span>Home &amp; Landscaping</span><span>Silver Spring, Maryland</span><span>Serving Silver Spring &amp; Montgomery County</span></p>
+      <nav class="fin-nav" aria-label="Footer"><a href="#services">Services</a><a href="#lawn-care-mowing">Mowing</a><a href="#seasonal-care">Seasons</a><a href="#work">The work</a><a href="#faq">FAQs</a><a class="fin-nav-cta" href="#book">Book a visit</a></nav>
+      <span class="fin-rule fin-rule1"></span>
+      <span class="fin-rule fin-rule2"></span>
+      <div class="fin-legal">
+        <p>© <span id="fin-year">2026</span> Silver Hand. All rights reserved.</p>
+        <ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="#contact">Contact</a></li></ul>
+      </div>
+    </footer>
+
+  </div>
+</section>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
