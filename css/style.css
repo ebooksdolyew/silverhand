@@ -1012,6 +1012,10 @@ select.fin-field:valid { color: #0B2118; }
 .fin-legal li + li::before { content: "|"; margin: 0 1.1em; opacity: .5; }
 .fin-legal a { color: #E3EEDB; text-decoration: none; }
 .fin-legal a:hover { color: #B7E36A; }
+/* Crédito "Made by": link discreto para o Instagram, mais apagado que os
+   links legais, ganha cor e sublinhado no hover. */
+.fin-legal .fin-credit { color: rgb(227 238 219 / .62); border-bottom: 1px solid transparent; transition: color .2s ease, border-color .2s ease; }
+.fin-legal .fin-credit:hover { color: #B7E36A; border-bottom-color: rgb(183 227 106 / .4); }
 .fin-nav a:focus-visible, .fin-legal a:focus-visible, .fin-logo-link:focus-visible { outline: 2px solid #B7E36A; outline-offset: 4px; border-radius: 4px; }
 @media (prefers-reduced-motion: reduce) { .fin-q summary, .fin-q summary svg, .fin-field, .fin-btn, .fin-btn svg { transition: none; } }
 
@@ -1123,6 +1127,7 @@ select.fin-field:valid { color: #0B2118; }
   .fin-t .fin-m-only { display: block; }
   .fin-t .fin-m-hide { display: none; }
   .fin-legal { flex-direction: column; align-items: center; gap: calc(16 * var(--u)); }
+  .fin-legal .fin-credit { order: 3; }
   .fin-t .fin-a-lg { display: none; }
 }
 

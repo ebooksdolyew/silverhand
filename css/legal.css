@@ -69,3 +69,5 @@ html:has(body.legal) { scroll-padding-top: 110px; }
 .legal-foot p { margin: 0; }
 .legal-foot a { color: #E3EEDB; text-decoration: none; }
 .legal-foot a:hover { color: #B7E36A; }
+.legal-foot .legal-credit { color: rgb(227 238 219 / .62); border-bottom: 1px solid transparent; transition: color .2s ease, border-color .2s ease; }
+.legal-foot .legal-credit:hover { color: #B7E36A; border-bottom-color: rgb(183 227 106 / .4); }
