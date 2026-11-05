@@ -288,8 +288,8 @@
   var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
   var ease = function (q) { return q < .5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2; };
 
-  /* Serviços: --sp 0 (abaixo da tela) → 1; mais à direita começa um pouco depois. */
-  var svc = [].slice.call(document.querySelectorAll('.svc-card'));
+  /* Serviços (linhas do índice): --sp 0 (abaixo da tela) → 1; a coluna da direita começa um pouco depois. */
+  var svc = [].slice.call(document.querySelectorAll('.svc-list li'));
   svc.forEach(function (el) { el.classList.add('scrub'); items.push({ el: el, target: 0, cur: 0, kind: 'svc' }); });
 
   /* Estações: monte no centro do grupo (girados como cartas) que se desfaz em

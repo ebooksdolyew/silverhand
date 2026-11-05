@@ -530,109 +530,121 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   z-index: 2;
 }
 
-.svc-card {
-  height: calc(var(--h) * var(--u));
+/* Índice dos serviços: só texto (número, nome e seta), separados por linhas
+   finas; cada linha leva à seção do serviço. Medidas em px de canvas × --u. */
+.svc-list {
+  --x: var(--l-x); --y: var(--l-y); --w: var(--l-w);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), auto);
+  grid-auto-flow: column;
+  column-gap: calc(var(--l-gap) * var(--u));
   z-index: 3;
-  display: flex;
-  flex-direction: column;
-  border-radius: calc(var(--radius) * var(--u));
-  overflow: hidden;
-  background: #fff;
-  color: #103A23;
-  text-decoration: none;
-  box-shadow: 0 calc(12 * var(--u)) calc(34 * var(--u)) rgb(16 58 35 / .08), 0 calc(2 * var(--u)) calc(6 * var(--u)) rgb(16 58 35 / .05);
-  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
 }
-.svc-card img {
-  display: block;
-  width: 100%;
-  height: calc(var(--ph) * var(--u));
-  object-fit: cover;
-  transition: scale .5s var(--ease);
-}
-.svc-card-foot {
-  flex: 1;
+.svc-list li { border-bottom: max(1px, calc(1.5 * var(--u))) solid rgb(16 58 35 / .16); }
+.svc-item {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 calc(var(--pad-r) * var(--u)) 0 calc(var(--pad-l) * var(--u));
+  gap: calc(var(--i-gap) * var(--u));
+  height: calc(var(--i-h) * var(--u));
+  padding-right: calc(6 * var(--u));
+  color: #103A23;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
-.svc-card-title {
-  font-size: calc(var(--card-fs) * var(--u));
-  font-weight: 700;
-  letter-spacing: -.01em;
-}
-.svc-arrow {
+.svc-num {
   flex: none;
-  width: calc(var(--ar) * 2 * var(--u));
-  height: calc(var(--ar) * 2 * var(--u));
-  border-radius: 50%;
-  border: max(1.5px, calc(2.8 * var(--u))) solid #4D9A24;
-  display: grid;
-  place-items: center;
+  width: calc(var(--n-w) * var(--u));
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: calc(var(--n-fs) * var(--u));
+  line-height: 1;
+  color: var(--leaf-dark);
+}
+.svc-name {
+  flex: 1;
+  font-size: calc(var(--i-fs) * var(--u));
+  font-weight: 700;
+  letter-spacing: -.015em;
+  line-height: 1.1;
+  transition: color .3s var(--ease), translate .4s var(--ease);
+}
+.svc-go {
+  flex: none;
+  width: calc(var(--i-fs) * .8 * var(--u));
+  height: calc(var(--i-fs) * .8 * var(--u));
   color: #4D9A24;
-  background: #fff;
-  transition: background-color .3s var(--ease), color .3s var(--ease), scale .3s var(--ease);
+  transition: translate .4s var(--ease);
 }
-.svc-arrow svg { width: 50%; height: 50%; }
-.svc-card:hover, .svc-card:focus-visible {
-  transform: translateY(calc(-4 * var(--u)));
-  box-shadow: 0 calc(18 * var(--u)) calc(40 * var(--u)) rgb(16 58 35 / .14), 0 calc(2 * var(--u)) calc(6 * var(--u)) rgb(16 58 35 / .05);
+/* linha verde que cresce da esquerda por cima da linha fina */
+.svc-item::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: max(-1px, calc(-1.5 * var(--u)));
+  height: max(2px, calc(3 * var(--u)));
+  background: var(--btn);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .5s var(--ease);
 }
-.svc-card:hover img, .svc-card:focus-visible img { scale: 1.03; }
-.svc-card:hover .svc-arrow, .svc-card:focus-visible .svc-arrow { background: #4D9A24; color: #fff; scale: 1.06; }
-.svc-card:active { transform: scale(.985); }
-.svc-card:focus-visible { outline: 3px solid #103A23; outline-offset: 3px; }
+@media (hover: hover) {
+  .svc-item:hover .svc-name { color: var(--leaf-dark); translate: calc(8 * var(--u)) 0; }
+  .svc-item:hover .svc-go { translate: calc(10 * var(--u)) 0; }
+  .svc-item:hover::after { transform: scaleX(1); }
+}
+.svc-item:is(:focus-visible, :active) .svc-name { color: var(--leaf-dark); }
+.svc-item:is(:focus-visible, :active)::after { transform: scaleX(1); }
+.svc-item:focus-visible { outline: 3px solid #103A23; outline-offset: 4px; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) { .svc-name, .svc-go, .svc-item::after { transition: none; } }
 
-/* Desktop — 2 cartões em cima, 3 embaixo */
+/* Desktop — duas colunas (3 + 2) */
 .svc-stage {
-  --cw: 1672; --ch: 941;
+  --cw: 1672; --ch: 640;
   --copy-x: 128;
   --eb-y: 112; --eb-fs: 22;
   --h2-y: 138; --h2-fs: 63.7; --h2-lh: 72;
-  --radius: 20; --pad-l: 35; --pad-r: 31; --card-fs: 34.8; --ar: 25;
+  --l-x: 128; --l-y: 262; --l-w: 1416; --l-gap: 110;
+  --cols: 2; --rows: 3;
+  --i-h: 104; --i-fs: 40; --i-gap: 26; --n-w: 46; --n-fs: 30;
 }
-#service-lawn-care-mowing { --x: 124; --y: 231; --w: 704; --h: 300; --ph: 211; }
-#service-landscaping { --x: 846; --y: 231; --w: 707; --h: 300; --ph: 211; }
-#service-power-washing { --x: 124; --y: 550; --w: 466; --h: 300; --ph: 212; --ar: 24; }
-#service-car-washing { --x: 608; --y: 550; --w: 456; --h: 300; --ph: 212; --ar: 24; }
-#service-home-cleaning { --x: 1080; --y: 550; --w: 473; --h: 300; --ph: 212; --ar: 24; }
 .svc-title span + span::before { content: " "; }
+/* primeira linha de cada coluna ganha a linha de cima */
+.svc-list li:is(:nth-child(1), :nth-child(4)) { border-top: max(1px, calc(1.5 * var(--u))) solid rgb(16 58 35 / .16); }
 
-/* Tablet em pé — 2 + 2 + Home Cleaning centralizado */
+/* Tablet em pé — uma coluna */
 @media (orientation: portrait) and (min-width: 641px) {
   .svc-stage {
-    --cw: 1086; --ch: 1448;
+    --cw: 1086; --ch: 970;
     --copy-x: 152;
     --eb-y: 114; --eb-fs: 27.1;
     --h2-y: 154; --h2-fs: 74.7; --h2-lh: 74;
-    --radius: 18; --pad-l: 32; --pad-r: 26; --card-fs: 36; --ar: 31;
+    --l-x: 152; --l-y: 330; --l-w: 782; --l-gap: 0;
+    --cols: 1; --rows: 5;
+    --i-h: 112; --i-fs: 46; --i-gap: 28; --n-w: 52; --n-fs: 34;
   }
-  #service-lawn-care-mowing { --x: 41; --y: 335; --w: 488; --h: 335; --ph: 247; }
-  #service-landscaping { --x: 557; --y: 335; --w: 489; --h: 335; --ph: 247; }
-  #service-power-washing { --x: 41; --y: 698; --w: 488; --h: 340; --ph: 252; --ar: 31; }
-  #service-car-washing { --x: 557; --y: 698; --w: 489; --h: 340; --ph: 252; --ar: 31; }
-  #service-home-cleaning { --x: 218; --y: 1064; --w: 650; --h: 307; --ph: 214; --ar: 31; }
 }
 
 /* Celular em pé — uma coluna */
 @media (orientation: portrait) and (max-width: 640px) {
   .svc-stage {
-    --cw: 941; --ch: 1672;
+    --cw: 941; --ch: 900;
     --copy-x: 155;
     --eb-y: 79; --eb-fs: 22.9;
     --h2-y: 112; --h2-fs: 58.6; --h2-lh: 60;
-    --radius: 18; --pad-l: 36; --pad-r: 29; --card-fs: 34.3; --ar: 28;
+    --l-x: 155; --l-y: 280; --l-w: 716; --l-gap: 0;
+    --cols: 1; --rows: 5;
+    --i-h: 118; --i-fs: 48; --i-gap: 24; --n-w: 54; --n-fs: 36;
   }
-  #service-lawn-care-mowing { --x: 130; --y: 258; --w: 682; --h: 266; --ph: 184; }
-  #service-landscaping { --x: 130; --y: 542; --w: 682; --h: 275; --ph: 194; }
-  #service-power-washing { --x: 130; --y: 834; --w: 682; --h: 274; --ph: 190; --ar: 28; }
-  #service-car-washing { --x: 130; --y: 1125; --w: 682; --h: 260; --ph: 180; --ar: 28; }
-  #service-home-cleaning { --x: 130; --y: 1402; --w: 682; --h: 243; --ph: 162; --ar: 28; }
 }
 @media (orientation: portrait) {
   .svc-title span { display: block; }
   .svc-title span + span::before { content: none; }
+  .svc-list li:nth-child(4) { border-top: 0; }
 }
 
 /* ---------- Botão verde das seções de serviço (.mow-cta) ----------
@@ -1439,23 +1451,22 @@ select.fin-field:valid { color: #0B2118; }
 #cta-see-work:hover, .cmb-g-btn:hover { background: var(--glass-sheen), var(--glass-white-h); }
 
 /* setas redondas dos cartões e discos dos ícones/passos */
-.svc-arrow, .cmb-disc {
+.cmb-disc {
   background: var(--glass-sheen), var(--glass-white);
   -webkit-backdrop-filter: var(--glass-blur);
           backdrop-filter: var(--glass-blur);
 }
-.svc-card:hover .svc-arrow, .svc-card:focus-visible .svc-arrow { background: var(--glass-sheen), var(--glass-green-h); }
 .cmb-step:hover .cmb-disc { background: var(--glass-sheen), var(--glass-white-h); }
 
 /* cartões: serviços, estações, perguntas, campos e o menu aberto */
-.svc-card, .sea-card {
+.sea-card {
   background: var(--glass-sheen), var(--glass-white);
   outline: 1px solid var(--glass-edge);
   outline-offset: -1px;
   -webkit-backdrop-filter: var(--glass-blur);
           backdrop-filter: var(--glass-blur);
 }
-.svc-card:focus-visible, .sea-card:focus-visible { outline: 3px solid #103A23; outline-offset: 3px; }
+.sea-card:focus-visible { outline: 3px solid #103A23; outline-offset: 3px; }
 .fin-q summary, .fin-field {
   background: var(--glass-sheen), var(--glass-white-h);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -1675,20 +1686,20 @@ select.fin-field:valid { color: #0B2118; }
 /* camada de preenchimento, por baixo do texto (as regras da camada usam
    :where, peso zero, para qualquer estado de hover/foco ganhar delas) */
 :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow) {
+    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta) {
   isolation: isolate;
   -webkit-tap-highlight-color: transparent;
   /* o texto troca de cor quando o preenchimento chega no meio do botão */
   transition: color .3s ease .14s, border-color .45s var(--ease-fx), scale .25s var(--ease-fx);
 }
-:is(.topbar .topbar-cta, .topbar-menu .menu-cta, .svc-arrow) { position: relative; }
+:is(.topbar .topbar-cta, .topbar-menu .menu-cta) { position: relative; }
 :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
     #cta-see-work, .cmb-g-btn, .topbar .topbar-cta) { overflow: hidden; }
 /* um círculo com 2,2× a largura do botão (raio 1,1×), centrado no ponto de
    entrada: cobre o botão inteiro de qualquer ponto, no mesmo ritmo de antes. Cresce com scale (só a placa de vídeo
    trabalha; clip-path redesenhava o botão a cada quadro). */
 :where(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow)::before {
+    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta)::before {
   content: "";
   position: absolute;
   left: var(--mx, 50%);
@@ -1715,7 +1726,7 @@ select.fin-field:valid { color: #0B2118; }
   opacity: 0;
   transition: opacity .3s ease .1s;
 }
-:where(#cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow)::before { background: var(--btn); }
+:where(#cta-see-work, .cmb-g-btn, .topbar .topbar-cta)::before { background: var(--btn); }
 
 /* o fundo do botão fica como está; quem muda é a camada de cima.
    (as listas repetem o #id das regras de inversão para ter o mesmo peso) */
@@ -1725,20 +1736,17 @@ select.fin-field:valid { color: #0B2118; }
 }
 :is(#cta-see-work, .cmb-g-btn):is(:hover, :active, :focus-visible) { background: var(--glass-sheen), var(--glass-white); }
 .topbar .topbar-cta:not(#_):is(:hover, :active, :focus-visible) { background: rgb(255 255 255 / .7); }
-.svc-card:is(:hover, :focus-visible) .svc-arrow { background: var(--glass-sheen), var(--glass-white); scale: 1.06; }
 
 /* acender: mouse por cima, toque e foco de teclado */
 @media (hover: hover) {
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):hover::before,
-  .svc-card:hover .svc-arrow::before {
+      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):hover::before {
     scale: 1;
     transition-duration: var(--fill-in);
   }
 }
 :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):is(:active, :focus-visible)::before,
-.svc-card:is(:active, :focus-visible) .svc-arrow::before {
+    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):is(:active, :focus-visible)::before {
   scale: 1;
   transition-duration: .3s;
 }
@@ -1759,10 +1767,9 @@ select.fin-field:valid { color: #0B2118; }
   39%  { transform: translateX(-120%); opacity: 0; }
   100% { transform: none; opacity: 1; }
 }
-.svc-arrow { overflow: hidden; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   :is(#cta-book-visit, .mow-cta, .fin-btn, .cmb-g-btn):hover svg,
-  .svc-card:hover .svc-arrow svg {
+  .svc-item:hover .svc-go {
     transform: none;
     animation: btn-arrow .7s var(--ease-fx);
   }
@@ -1771,9 +1778,9 @@ select.fin-field:valid { color: #0B2118; }
 
 @media (prefers-reduced-motion: reduce) {
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow),
+      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta),
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow)::before,
+      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta)::before,
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta)::after { transition: none !important; }
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
       #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):active { scale: none; }
