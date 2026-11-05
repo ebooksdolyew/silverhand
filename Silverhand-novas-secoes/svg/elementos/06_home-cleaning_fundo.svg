@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="724" height="366" viewBox="0 0 724 366" role="img" aria-labelledby="title">
+<title id="title">Home Cleaning — fundo</title>
+<desc>Textos, formas e botoes vetoriais. Fotografias e folhas sao imagens incorporadas.</desc>
+<defs><linearGradient id="06_home_cleaning_fundo" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d8edbe"/><stop offset="0.55" stop-color="#e3f2cf"/><stop offset="1" stop-color="#d7ecbb"/></linearGradient><linearGradient id="06_home_cleaning_verde"><stop stop-color="#4ba922"/><stop offset="1" stop-color="#5ab329"/></linearGradient></defs>
+<g transform="translate(0,-1806)"><g id="fundo"><rect x="0" y="1806" width="724" height="366" fill="url(#06_home_cleaning_fundo)"/><path fill="#59ae29" d="M0 1806 C59 1804 108 1814 147 1834 L0 1850 Z M724 2105 C630 2105 559 2128 504 2172 L724 2172 Z"/></g></g>
+</svg>

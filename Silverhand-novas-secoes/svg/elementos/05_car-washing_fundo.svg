@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="724" height="316" viewBox="0 0 724 316" role="img" aria-labelledby="title">
+<title id="title">Car Washing — fundo</title>
+<desc>Textos, formas e botoes vetoriais. Fotografias e folhas sao imagens incorporadas.</desc>
+<defs><linearGradient id="05_car_washing_fundo" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d8edbe"/><stop offset="0.55" stop-color="#e3f2cf"/><stop offset="1" stop-color="#d7ecbb"/></linearGradient><linearGradient id="05_car_washing_verde"><stop stop-color="#4ba922"/><stop offset="1" stop-color="#5ab329"/></linearGradient></defs>
+<g transform="translate(0,-1490)"><g id="fundo"><rect x="0" y="1490" width="724" height="316" fill="url(#05_car_washing_fundo)"/><path fill="#59ae29" d="M724 1490 C656 1486 592 1493 538 1511 L724 1530 Z"/></g></g>
+</svg>
