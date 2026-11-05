@@ -31,12 +31,12 @@ Depois abrir <http://localhost:8000>.
 
 ## Trocar de domínio
 
-O site usa o endereço `https://silverhand.pages.dev` nas tags de compartilhamento
+O site usa o endereço `https://silverrhand.pages.dev` nas tags de compartilhamento
 (imagem do WhatsApp/Facebook), no link canônico, nos dados estruturados, no
 `robots.txt` e no `sitemap.xml`. Quando o domínio final estiver no ar, trocar tudo de uma vez:
 
 ```bash
-grep -rl 'https://silverhand.pages.dev' --include='*.html' --include='*.txt' --include='*.xml' . | xargs sed -i 's#https://silverhand.pages.dev#https://www.exemplo.com#g'
+grep -rl 'https://silverrhand.pages.dev' --include='*.html' --include='*.txt' --include='*.xml' . | xargs sed -i 's#https://silverrhand.pages.dev#https://www.exemplo.com#g'
 ```
 
 Depois, enviar o `sitemap.xml` no Google Search Console.

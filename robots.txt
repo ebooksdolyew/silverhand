@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://silverhand.pages.dev/sitemap.xml
+Sitemap: https://silverrhand.pages.dev/sitemap.xml
