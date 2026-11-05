@@ -63,16 +63,49 @@
     });
   })();
 
+/* Animações em loop (folhas, anéis, carrossel, setas) param quando a seção
+   sai da tela: style.css pausa tudo dentro de .is-off. */
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.target.classList.toggle('is-off', !e.isIntersecting); });
+    }, { rootMargin: '100px 0px' });
+    Array.prototype.forEach.call(document.querySelectorAll('main > section'), function (sec) { io.observe(sec); });
+  })();
+
+/* Fotos dentro de <svg> (Mowing e a do formulário) existem em três versões
+   (desktop, tablet, celular), mas só uma aparece. Um <image> com href é
+   baixado mesmo escondido, então o endereço fica em data-href e só a versão
+   visível recebe o href (de novo ao girar o aparelho ou mudar a janela). */
+  (function () {
+    var imgs = [].slice.call(document.querySelectorAll('image[data-href]'));
+    function load() {
+      imgs = imgs.filter(function (im) {
+        var svg = im.ownerSVGElement;
+        if (!svg || getComputedStyle(svg).display === 'none') return true;
+        im.setAttribute('href', im.getAttribute('data-href'));
+        im.removeAttribute('data-href');
+        return false;
+      });
+      if (!imgs.length) window.removeEventListener('resize', load);
+    }
+    load();
+    if (imgs.length) window.addEventListener('resize', load);
+  })();
+
 /* Fundo atrás da página: verde-escuro do rodapé da metade para baixo, para o
    "puxar além do fim" (iPhone, Mac) não mostrar uma barra verde-clara. */
   (function () {
-    var root = document.documentElement;
+    var root = document.documentElement, half = 0, end = null;
+    function measure() { half = root.scrollHeight / 2; update(); }
     function update() {
-      root.classList.toggle('at-end', window.scrollY + window.innerHeight / 2 > root.scrollHeight / 2);
+      var v = window.scrollY + window.innerHeight / 2 > half;
+      if (v !== end) { end = v; root.classList.toggle('at-end', v); }
     }
     window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
+    window.addEventListener('resize', measure);
+    window.addEventListener('load', measure);
+    measure();
   })();
 
 /* Seção final: ano do rodapé, formulário (validação local) e serviço
@@ -232,7 +265,23 @@
     });
     if (moving) requestAnimationFrame(frame); else { running = false; last = 0; }
   }
-  function kick() { targets(); if (!running) { running = true; requestAnimationFrame(frame); } }
+  function kick() { if (!near) return; targets(); if (!running) { running = true; requestAnimationFrame(frame); } }
+
+  /* longe das duas seções os cartões já estão no fim (ou no começo) do
+     efeito: não precisa medir nada a cada rolagem. Ao sair, calcula uma última
+     vez para assentar no valor final. */
+  var near = true;
+  if ('IntersectionObserver' in window) {
+    var seen = new Map();
+    var watch = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { seen.set(e.target, e.isIntersecting); });
+      var was = near;
+      near = false; seen.forEach(function (v) { if (v) near = true; });
+      if (was && !near) { near = true; kick(); near = false; }
+      else if (near) kick();
+    }, { rootMargin: '50% 0px' });
+    [document.querySelector('.services'), document.querySelector('.seasons')].forEach(function (sec) { if (sec) watch.observe(sec); });
+  }
 
   window.addEventListener('scroll', kick, { passive: true });
   window.addEventListener('resize', function () { box = null; kick(); });

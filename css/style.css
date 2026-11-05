@@ -1356,6 +1356,15 @@ select.fin-field:valid { color: #0B2118; }
 .deco-full { left: calc(-1 * var(--ox)); width: 100cqw; }
 
 /* ---------- Movimento ---------- */
+/* --sp/--e (cartões presos à rolagem) mudam a cada quadro: registradas como
+   números que não passam para os filhos, o navegador recalcula só o cartão,
+   não tudo o que está dentro dele. Mesmo valor inicial de antes (sem --sp = 1). */
+@property --sp { syntax: "<number>"; inherits: false; initial-value: 1; }
+@property --e  { syntax: "<number>"; inherits: false; initial-value: 0; }
+
+/* Animações em loop param quando a seção está fora da tela (js/main.js põe
+   .is-off na <section>); voltam de onde estavam ao reaparecer. */
+.is-off :is(.leaf, .garden-ring, .cmb-track, .cmb-arrow path) { animation-play-state: paused; }
 @media (prefers-reduced-motion: no-preference) {
   .js .leaf {
     will-change: translate;  /* folha desfocada vira camada: o blur não é refeito a cada quadro */
@@ -1677,21 +1686,38 @@ select.fin-field:valid { color: #0B2118; }
   transition: color .3s ease .14s, border-color .45s var(--ease-fx), scale .25s var(--ease-fx);
 }
 :is(.topbar .topbar-cta, .topbar-menu .menu-cta, .svc-arrow) { position: relative; }
+:is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
+    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta) { overflow: hidden; }
+/* um círculo com 2,2× a largura do botão (raio 1,1×), centrado no ponto de
+   entrada: cobre o botão inteiro de qualquer ponto, no mesmo ritmo de antes. Cresce com scale (só a placa de vídeo
+   trabalha; clip-path redesenhava o botão a cada quadro). */
 :where(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
     #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow)::before {
   content: "";
   position: absolute;
-  inset: 0;
+  left: var(--mx, 50%);
+  top: var(--my, 50%);
+  width: 220%;
+  aspect-ratio: 1;
   z-index: -1;
-  border-radius: inherit;
+  border-radius: 50%;
   pointer-events: none;
-  clip-path: circle(0 at var(--mx, 50%) var(--my, 50%));
-  transition: clip-path var(--fill-out) var(--ease-fill);
+  translate: -50% -50%;
+  scale: 0;
+  transition: scale var(--fill-out) var(--ease-fill);
 }
-/* verdes enchem de branco (com o contorno verde); claros enchem de verde */
-:where(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta)::before {
-  background: #fff;
+/* verdes enchem de branco, com o contorno verde (::after, por cima do branco);
+   claros enchem de verde */
+:where(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta)::before { background: #fff; }
+:where(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
   box-shadow: inset 0 0 0 2px var(--btn);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s ease .1s;
 }
 :where(#cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow)::before { background: var(--btn); }
 
@@ -1711,16 +1737,21 @@ select.fin-field:valid { color: #0B2118; }
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
       #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):hover::before,
   .svc-card:hover .svc-arrow::before, .sea-card:hover .sea-arrow::before {
-    clip-path: circle(150% at var(--mx, 50%) var(--my, 50%));
+    scale: 1;
     transition-duration: var(--fill-in);
   }
 }
 :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
     #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):is(:active, :focus-visible)::before,
 .svc-card:is(:active, :focus-visible) .svc-arrow::before, .sea-card:is(:active, :focus-visible) .sea-arrow::before {
-  clip-path: circle(150% at var(--mx, 50%) var(--my, 50%));
+  scale: 1;
   transition-duration: .3s;
 }
+
+@media (hover: hover) {
+  :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta):hover::after { opacity: 1; }
+}
+:is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta):is(:active, :focus-visible)::after { opacity: 1; }
 
 /* clique/toque: comprime um pouco (scale é separado do transform das entradas) */
 :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
@@ -1748,7 +1779,8 @@ select.fin-field:valid { color: #0B2118; }
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
       #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow),
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow)::before { transition: none !important; }
+      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow)::before,
+  :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta)::after { transition: none !important; }
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
       #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):active { scale: none; }
 }
