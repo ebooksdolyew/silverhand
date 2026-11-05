@@ -1028,7 +1028,7 @@ select.fin-field:valid { color: #0B2118; }
 
 /* Desktop */
 @media (orientation: landscape) {
-  .fin-stage { --cw: 1672; --ch: 1111; --fld-fs: 16.6; --fld-pl: 21; --fld-r: 18; }
+  .fin-stage { --cw: 1672; --ch: 1160; --fld-fs: 16.6; --fld-pl: 21; --fld-r: 18; }
   .fin-stage .fin-aEb { --x: 279; --y: 47.4; --fs: 16.1; --lh: 19.3; }
   .fin-stage .fin-aH { --x: 278; --y: 69; --fs: 51.3; --lh: 50; }
   .fin-stage .fin-aP { --x: 281; --y: 128.3; --fs: 24.2; --lh: 29.5; }
@@ -1037,8 +1037,8 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-bEb { --x: 197; --y: 594.8; --fs: 14.6; --lh: 17.5; }
   .fin-stage .fin-bH { --x: 196; --y: 616.4; --fs: 42.1; --lh: 46; }
   .fin-stage .fin-bP { --x: 197; --y: 662.2; --fs: 21; --lh: 26; }
-  .fin-stage .fin-fBrand { --x: 182; --y: 991; --w: 150; }
-  .fin-stage .fin-fLines { --x: 182; --y: 1022.5; --fs: 13.7; --lh: 17; }
+  .fin-stage .fin-fBrand { --x: 216; --y: 1009; --w: 172; }
+  .fin-stage .fin-fLines { --x: 216; --y: 1046; --fs: 14.2; --lh: 18; }
   .fin-stage .fin-map { --x: 960; --y: 20; --w: 300; }
   .fin-stage .fin-q { --x: 706; --y: 318; --w: 694; --h: 44; --gap: 5; --fs: 19.2; --pl: 25; --r: 22; }
   .fin-stage .fin-name { --x: 197; --y: 704; --w: 297; --h: 37; }
@@ -1047,16 +1047,16 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-sel { --x: 197; --y: 791; --w: 612; --h: 37; }
   .fin-stage .fin-btn { --x: 197; --y: 840; --w: 612; --h: 50; --fs: 21.2; }
   .fin-stage .fin-status { --x: 197; --y: 896; --w: 612; --fs: 14.110000000000001; }
-  .fin-stage .fin-logo { --x: 112; --y: 986; --w: 60; }
-  .fin-stage .fin-nav a:nth-child(1) { --cx: 777; --y: 1009.9; --fs: 14.5; }
-  .fin-stage .fin-nav a:nth-child(2) { --cx: 882; --y: 1009.9; --fs: 14.5; }
-  .fin-stage .fin-nav a:nth-child(3) { --cx: 988; --y: 1009.9; --fs: 14.5; }
-  .fin-stage .fin-nav a:nth-child(4) { --cx: 1097; --y: 1009.9; --fs: 14.5; }
-  .fin-stage .fin-nav a:nth-child(5) { --cx: 1198; --y: 1009.9; --fs: 14.5; }
-  .fin-stage .fin-nav a.fin-nav-cta { --x: 1387; --y: 998; --w: 146; --h: 48; --fs: 15.5; }
+  .fin-stage .fin-logo { --x: 128; --y: 1004; --w: 74; }
+  .fin-stage .fin-nav a:nth-child(1) { --cx: 724; --y: 1031; --fs: 15; }
+  .fin-stage .fin-nav a:nth-child(2) { --cx: 834; --y: 1031; --fs: 15; }
+  .fin-stage .fin-nav a:nth-child(3) { --cx: 944; --y: 1031; --fs: 15; }
+  .fin-stage .fin-nav a:nth-child(4) { --cx: 1054; --y: 1031; --fs: 15; }
+  .fin-stage .fin-nav a:nth-child(5) { --cx: 1164; --y: 1031; --fs: 15; }
+  .fin-stage .fin-nav a.fin-nav-cta { --x: 1396; --y: 1016; --w: 148; --h: 48; --fs: 15.5; }
   .fin-stage .fin-rule1 { --y: 0; --x0: 0; --x1: 0; --on: 0; }
-  .fin-stage .fin-rule2 { --y: 1070; --x0: 128; --x1: 1533; --on: 1; }
-  .fin-stage .fin-legal { --y: 1080.9; --x0: 182; --x1: 1533; --fs: 13.5; }
+  .fin-stage .fin-rule2 { --y: 1100; --x0: 128; --x1: 1544; --on: 1; }
+  .fin-stage .fin-legal { --y: 1117; --x0: 128; --x1: 1544; --fs: 13.5; }
   .fin-bg.v-d, .fin-photo.v-d, .fin-blur.d { display: block; }
   .fin-t .fin-a-sm { display: none; }
   .fin-nav a.fin-nav-cta {
@@ -1067,7 +1067,7 @@ select.fin-field:valid { color: #0B2118; }
 }
 /* Tablet em pé */
 @media (orientation: portrait) and (min-width: 641px) {
-  .fin-stage { --cw: 1086; --ch: 1678; --fld-fs: 18.8; --fld-pl: 20; --fld-r: 18; }
+  .fin-stage { --cw: 1086; --ch: 1704; --fld-fs: 18.8; --fld-pl: 20; --fld-r: 18; }
   .fin-stage .fin-aEb { --x: 183; --y: 70.4; --fs: 18.1; --lh: 21.7; }
   .fin-stage .fin-aH { --x: 184; --y: 102.8; --fs: 56; --lh: 57; }
   .fin-stage .fin-aP { --x: 184; --y: 223; --fs: 24; --lh: 28.3; }
@@ -1076,8 +1076,8 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-bEb { --x: 56; --y: 855.7; --fs: 16.8; --lh: 20.2; }
   .fin-stage .fin-bH { --x: 55; --y: 881.9; --fs: 48.9; --lh: 52; }
   .fin-stage .fin-bP { --x: 57; --y: 937; --fs: 21.5; --lh: 26; }
-  .fin-stage .fin-fBrand { --x: 228; --y: 1424; --w: 190; }
-  .fin-stage .fin-fLines { --x: 228; --y: 1463.5; --fs: 17.4; --lh: 20.5; }
+  .fin-stage .fin-fBrand { --x: 256; --y: 1430; --w: 214; }
+  .fin-stage .fin-fLines { --x: 256; --y: 1474; --fs: 17.4; --lh: 21; }
   .fin-stage .fin-map { --x: 575; --y: 66; --w: 335; }
   .fin-stage .fin-q { --x: 509; --y: 481; --w: 461; --h: 49; --gap: 9.8; --fs: 20; --pl: 25; --r: 20; }
   .fin-stage .fin-name { --x: 56; --y: 989; --w: 267; --h: 45; }
@@ -1086,22 +1086,22 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-sel { --x: 56; --y: 1105; --w: 535; --h: 46; }
   .fin-stage .fin-btn { --x: 56; --y: 1170; --w: 537; --h: 64; --fs: 24.5; }
   .fin-stage .fin-status { --x: 56; --y: 1240; --w: 537; --fs: 15.98; }
-  .fin-stage .fin-logo { --x: 140; --y: 1418; --w: 74; }
-  .fin-stage .fin-nav a:nth-child(1) { --cx: 425; --y: 1539.5; --fs: 18; }
-  .fin-stage .fin-nav a:nth-child(2) { --cx: 540; --y: 1539.5; --fs: 18; }
-  .fin-stage .fin-nav a:nth-child(3) { --cx: 659; --y: 1539.5; --fs: 18; }
-  .fin-stage .fin-nav a:nth-child(4) { --cx: 425; --y: 1573.5; --fs: 18; }
-  .fin-stage .fin-nav a:nth-child(5) { --cx: 540; --y: 1573.5; --fs: 18; }
-  .fin-stage .fin-nav a:nth-child(6) { --cx: 659; --y: 1573.5; --fs: 18; }
-  .fin-stage .fin-rule1 { --y: 1524; --x0: 158; --x1: 928; --on: 1; }
-  .fin-stage .fin-rule2 { --y: 1608; --x0: 158; --x1: 928; --on: 1; }
-  .fin-stage .fin-legal { --y: 1624.6; --x0: 158; --x1: 928; --fs: 14.8; }
+  .fin-stage .fin-logo { --x: 158; --y: 1426; --w: 86; }
+  .fin-stage .fin-nav a:nth-child(1) { --cx: 413; --y: 1564; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(2) { --cx: 543; --y: 1564; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(3) { --cx: 673; --y: 1564; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(4) { --cx: 413; --y: 1604; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(5) { --cx: 543; --y: 1604; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(6) { --cx: 673; --y: 1604; --fs: 18; }
+  .fin-stage .fin-rule1 { --y: 1540; --x0: 158; --x1: 928; --on: 1; }
+  .fin-stage .fin-rule2 { --y: 1646; --x0: 158; --x1: 928; --on: 1; }
+  .fin-stage .fin-legal { --y: 1662; --x0: 158; --x1: 928; --fs: 14.8; }
   .fin-bg.v-t, .fin-photo.v-t, .fin-blur.t { display: block; }
   .fin-t .fin-a-lg { display: none; }
 }
 /* Celular em pé */
 @media (orientation: portrait) and (max-width: 640px) {
-  .fin-stage { --cw: 941; --ch: 3600; --fld-fs: 38; --fld-pl: 32; --fld-r: 26; }
+  .fin-stage { --cw: 941; --ch: 3720; --fld-fs: 38; --fld-pl: 32; --fld-r: 26; }
   .fin-stage .fin-aEb { --x: 60; --y: 82.8; --fs: 28; --lh: 33.6; }
   .fin-stage .fin-aH { --x: 58; --y: 128.4; --fs: 80; --lh: 84; }
   .fin-stage .fin-aP { --x: 60; --y: 310.9; --fs: 38; --lh: 54; }
@@ -1110,8 +1110,8 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-bEb { --x: 60; --y: 1752.8; --fs: 28; --lh: 33.6; }
   .fin-stage .fin-bH { --x: 58; --y: 1800.6; --fs: 66; --lh: 70; }
   .fin-stage .fin-bP { --x: 60; --y: 1894.9; --fs: 38; --lh: 52; }
-  .fin-stage .fin-fBrand { --x: 150; --y: 2958; --w: 340; }
-  .fin-stage .fin-fLines { --x: 150; --y: 3028; --fs: 32; --lh: 40; }
+  .fin-stage .fin-fBrand { --x: 265.5; --y: 3080; --w: 410; }
+  .fin-stage .fin-fLines { --x: 470.5; --y: 3170; --fs: 32; --lh: 42; }
   .fin-stage .fin-map { --x: 220; --y: 545; --w: 500; }
   .fin-stage .fin-q { --x: 60; --y: 1140; --w: 821; --h: 100; --gap: 20; --fs: 36; --pl: 38; --r: 30; }
   .fin-stage .fin-name { --x: 60; --y: 2040; --w: 400; --h: 104; }
@@ -1120,20 +1120,21 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-sel { --x: 60; --y: 2288; --w: 821; --h: 104; }
   .fin-stage .fin-btn { --x: 60; --y: 2412; --w: 821; --h: 112; --fs: 40; }
   .fin-stage .fin-status { --x: 60; --y: 2530; --w: 821; --fs: 32.3; }
-  .fin-stage .fin-logo { --x: 40; --y: 2944; --w: 100; }
-  .fin-stage .fin-nav a:nth-child(1) { --cx: 200; --y: 3215.1; --fs: 36; }
-  .fin-stage .fin-nav a:nth-child(2) { --cx: 470; --y: 3215.1; --fs: 36; }
-  .fin-stage .fin-nav a:nth-child(3) { --cx: 740; --y: 3215.1; --fs: 36; }
-  .fin-stage .fin-nav a:nth-child(4) { --cx: 200; --y: 3280.1; --fs: 36; }
-  .fin-stage .fin-nav a:nth-child(5) { --cx: 470; --y: 3280.1; --fs: 36; }
-  .fin-stage .fin-nav a:nth-child(6) { --cx: 740; --y: 3280.1; --fs: 36; }
-  .fin-stage .fin-rule1 { --y: 3170; --x0: 60; --x1: 881; --on: 1; }
-  .fin-stage .fin-rule2 { --y: 3365; --x0: 60; --x1: 881; --on: 1; }
-  .fin-stage .fin-legal { --y: 3400.9; --x0: 60; --x1: 881; --fs: 30; }
+  .fin-stage .fin-logo { --x: 405.5; --y: 2938; --w: 130; }
+  .fin-stage .fin-nav a:nth-child(1) { --cx: 200; --y: 3340; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(2) { --cx: 470.5; --y: 3340; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(3) { --cx: 741; --y: 3340; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(4) { --cx: 200; --y: 3412; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(5) { --cx: 470.5; --y: 3412; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(6) { --cx: 741; --y: 3412; --fs: 36; }
+  .fin-stage .fin-rule1 { --y: 3290; --x0: 60; --x1: 881; --on: 1; }
+  .fin-stage .fin-rule2 { --y: 3505; --x0: 60; --x1: 881; --on: 1; }
+  .fin-stage .fin-legal { --y: 3544; --x0: 60; --x1: 881; --fs: 30; }
   .fin-bg.v-m, .fin-photo.v-m, .fin-blur.m { display: block; }
   .fin-t .fin-m-only { display: block; }
   .fin-t .fin-m-hide { display: none; }
   .fin-legal { flex-direction: column; align-items: center; gap: calc(16 * var(--u)); }
+  .fin-fLines { translate: -50% 0; text-align: center; } /* --x é o centro */
   .fin-legal .fin-credit { order: 3; }
   .fin-t .fin-a-lg { display: none; }
 }
