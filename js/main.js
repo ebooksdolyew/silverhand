@@ -68,6 +68,13 @@
       if (id && !seen[id] && document.getElementById(id)) { seen[id] = 1; ids.push(id); }
     });
 
+    /* seções sem link próprio (as de cada serviço) acendem o link de
+       data-nav: { el, id } = elemento vigiado e link que ele acende */
+    var spots = ids.map(function (id) { return { el: document.getElementById(id), id: id }; });
+    [].slice.call(document.querySelectorAll('[data-nav]')).forEach(function (el) {
+      if (seen[el.dataset.nav]) spots.push({ el: el, id: el.dataset.nav });
+    });
+
     var current = null, placed = false;
     function place() {
       var a = current && nav.querySelector('a[href="#' + current + '"]');
@@ -93,9 +100,9 @@
     function pick() {
       if (locked) return;
       var line = window.innerHeight * .35, id = null, best = -Infinity;
-      ids.forEach(function (k) {
-        var top = document.getElementById(k).getBoundingClientRect().top;
-        if (top <= line && top > best) { best = top; id = k; }
+      spots.forEach(function (sp) {
+        var top = sp.el.getBoundingClientRect().top;
+        if (top <= line && top > best) { best = top; id = sp.id; }
       });
       set(id);
     }
@@ -231,6 +238,9 @@
     ['up',   '.svc-eyebrow, .svc-title'],
     ['up',   '.mow-eyebrow, .mow-title, .mow-body, .mow-cta'],
     ['left', '.mow-blob'],
+    ['up',   '.svx-eyebrow, .svx-title, .svx-body'],
+    ['left', '.svx-l .svx-art'],
+    ['right', '.svx-r .svx-art'],
     ['up',   '.sea-eyebrow, .sea-title'],
     ['up',   '.cmb-txt, .cmb-g-btn, .cmb-item, .cmb-step'],
     ['fade', '.cmb-carousel'],

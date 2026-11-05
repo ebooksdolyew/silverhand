@@ -7,11 +7,11 @@ The website is a single page in English. Each part of the page has its own ancho
 ## Services
 
 - [Lawn care & mowing](https://silverrhand.pages.dev/#lawn-care-mowing): Recurring mowing on a regular schedule, with the same crew every visit and a yard that looks great week after week.
-- [Landscaping](https://silverrhand.pages.dev/#services): Landscaping and landscape maintenance, recurring or seasonal.
+- [Landscaping](https://silverrhand.pages.dev/#landscaping): A yard that feels like home. Thoughtful planting, fresh mulch and tidy garden beds, season after season.
 - [Seasonal yard care](https://silverrhand.pages.dev/#seasonal-care): Spring cleanups, fresh mulch and new growth; summer mowing and landscape maintenance; fall leaf removal and property protection; winter care to keep the property clean and safe.
-- [Power washing](https://silverrhand.pages.dev/#services): Power washing for homes.
-- [Car washing](https://silverrhand.pages.dev/#services): Car washing at home.
-- [Home cleaning](https://silverrhand.pages.dev/#services): Home cleaning.
+- [Power washing](https://silverrhand.pages.dev/#power-washing): A fresh start for every surface. Washes away built-up dirt from patios, walkways and driveways.
+- [Car washing](https://silverrhand.pages.dev/#car-washing): A cleaner car, a brighter day. A thorough exterior wash with simple scheduling and attention to every detail.
+- [Home cleaning](https://silverrhand.pages.dev/#home-cleaning): Come home to a little more calm. Fresh rooms and clean surfaces, so you can enjoy your space.
 
 ## How it works
 

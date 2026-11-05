@@ -747,6 +747,81 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   }
 }
 
+/* ---------- Seções de cada serviço (Landscaping, Power Washing, Car Washing,
+   Home Cleaning) ----------
+   Pasta Silverhand-novas-secoes: referência de 724 px de largura, a mesma nas
+   três telas (só muda a escala). --ch = altura de cada uma (no HTML). A foto
+   já vem recortada no formato da mancha; atrás dela, a mancha verde. Foto,
+   mancha e cantos verdes encostam na borda da tela (.deco-l / .deco-r). */
+.svx {
+  container-type: inline-size;
+  position: relative;
+  overflow-x: clip;
+  background: var(--bg);
+}
+.svx-stage {
+  --cw: 724;
+  --u-svx: 99px;
+  --u: min(100cqw / var(--cw), var(--u-svx));
+  --ox: calc((100cqw - var(--cw) * var(--u)) / 2);
+  position: relative;
+  width: calc(var(--cw) * var(--u));
+  margin-inline: auto;
+  aspect-ratio: var(--cw) / var(--ch);
+  /* botão (.mow-cta): altura e letra da referência; posição e largura no HTML */
+  --c-h: 38; --c-fs: 14;
+}
+/* desktop: para de crescer na mesma largura dos outros palcos (1672 × .85 px) */
+@media (orientation: landscape) { .svx-stage { --u-svx: 1.963px; } }
+.svx-stage > * { position: absolute; margin: 0; }
+
+.svx-corner, .svx-art { top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+.svx-corner { fill: #59AE29; overflow: visible; }
+.svx-art > * { position: absolute; }
+.svx-frame { inset: 0; width: 100%; height: 100%; fill: #58A927; overflow: visible; }
+.svx-photo { display: block; height: auto; filter: drop-shadow(0 calc(10 * var(--u)) calc(18 * var(--u)) rgb(18 58 35 / .14)); }
+
+/* folha solta, presa à borda da tela do lado em que está */
+.svx-leaf {
+  top: calc(var(--y) * var(--u));
+  width: calc(var(--w) * var(--u));
+  pointer-events: none;
+  filter: drop-shadow(0 calc(6 * var(--u)) calc(8 * var(--u)) rgb(18 58 35 / .16));
+}
+.svx-leaf.at-l { left: calc(var(--x) * var(--u) - var(--ox)); }
+.svx-leaf.at-r { left: calc(var(--x) * var(--u) + var(--ox)); }
+
+.svx-eyebrow {
+  --w: 300;
+  font-size: calc(10.6 * var(--u));
+  line-height: calc(12 * var(--u));
+  margin-top: calc(-1.5 * var(--u));
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #0C3828;
+}
+.svx-title {
+  --w: 290;
+  font-size: calc(30.5 * var(--u));
+  line-height: calc(31 * var(--u));
+  margin-top: calc(-3 * var(--u));
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: #0C3828;
+  white-space: nowrap;
+}
+.svx-title em { font-size: 1.16em; color: #368C12; }
+.svx-body {
+  --w: 290;
+  font-size: calc(14 * var(--u));
+  line-height: calc(18 * var(--u));
+  margin-top: calc(-2.5 * var(--u));
+  font-weight: 400;
+  color: #294433;
+}
+.svx-title span, .svx-body span { display: block; white-space: nowrap; }
+
 /* ---------- Seasonal Care ----------
    Kit silverhand-estacoes-elementos. Mesmo esquema de palco; textura creme
    do kit fora (fundo verde do site), folhas com o .leaf da hero. */
@@ -1347,9 +1422,9 @@ select.fin-field:valid { color: #0B2118; }
 
 /* Animações em loop param quando a seção está fora da tela (js/main.js põe
    .is-off na <section>); voltam de onde estavam ao reaparecer. */
-.is-off :is(.leaf, .garden-ring, .cmb-track, .cmb-arrow path) { animation-play-state: paused; }
+.is-off :is(.leaf, .svx-leaf, .garden-ring, .cmb-track, .cmb-arrow path) { animation-play-state: paused; }
 @media (prefers-reduced-motion: no-preference) {
-  .js .leaf {
+  .js :is(.leaf, .svx-leaf) {
     will-change: translate;  /* folha desfocada vira camada: o blur não é refeito a cada quadro */
     animation: leaf-float var(--dur, 7s) ease-in-out var(--delay, 0s) infinite alternate;
   }
@@ -1383,10 +1458,12 @@ select.fin-field:valid { color: #0B2118; }
   .js .rv.is-in { animation: rv-up .8s cubic-bezier(.2,.7,.2,1) var(--rv-d, 0s) backwards; }
   .js .rv-zoom.is-in { animation-name: rv-zoom; animation-duration: 1s; }
   .js .rv-left.is-in { animation-name: rv-left; animation-duration: 1.1s; }
+  .js .rv-right.is-in { animation-name: rv-right; animation-duration: 1.1s; }
   .js .rv-fade.is-in { animation-name: rv-fade; }
   @keyframes rv-up   { from { opacity: 0; transform: translateY(calc(36 * var(--u, 1px))); } }
   @keyframes rv-zoom { from { opacity: 0; transform: scale(.94); } }
   @keyframes rv-left { from { opacity: 0; transform: translateX(-4%); } }
+  @keyframes rv-right { from { opacity: 0; transform: translateX(4%); } }
   @keyframes rv-fade { from { opacity: 0; } }
 
   /* cartões presos à rolagem (js/main.js define --sp de 0 a 1); usa translate/scale

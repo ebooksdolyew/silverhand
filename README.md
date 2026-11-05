@@ -13,6 +13,8 @@ Site estático (HTML, CSS e JS puros, sem build) publicado no **Cloudflare Pages
 | `css/legal.css` | Estilos das páginas de texto (privacy e 404) |
 | `js/main.js` | Menu, animações, galeria e validação do formulário |
 | `img/` | Imagens em WebP, separadas em `desktop/`, `tablet/` e `mobile/` |
+| `img/service-sections/` | Fotos (já recortadas no formato da mancha) e folhas das seções de cada serviço |
+| `Silverhand-novas-secoes/` | Material de origem das seções de cada serviço (referência, SVGs, medidas); não é usado pela página |
 | `img/icons/` | Favicon PNG e ícones do Android (`site.webmanifest`) |
 | `img/og-logo.jpg` | Imagem de compartilhamento (1200×630) |
 | `fonts/` | DM Sans e DM Serif Display, servidas pelo próprio site |
