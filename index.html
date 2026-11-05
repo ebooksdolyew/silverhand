@@ -163,7 +163,6 @@
     <nav class="topbar-links" aria-label="Main">
       <ul>
         <li><a href="#services">Services</a></li>
-        <li><a href="#lawn-care-mowing">Mowing</a></li>
         <li><a href="#seasonal-care">Seasons</a></li>
         <li><a href="#work">Our work</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -180,7 +179,6 @@
   <nav class="topbar-menu" id="topbar-menu" aria-label="Main menu" hidden>
     <ul>
         <li><a href="#services">Services</a></li>
-        <li><a href="#lawn-care-mowing">Mowing</a></li>
         <li><a href="#seasonal-care">Seasons</a></li>
         <li><a href="#work">Our work</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -453,16 +451,26 @@
 <section class="services" id="services" aria-labelledby="services-title">
   <div class="svc-stage">
 
-    <p class="svc-eyebrow px">Our services</p>
-    <h2 class="svc-title px" id="services-title"><span>Five services. <em>One crew</em></span><span>you can reach.</span></h2>
+    <!-- linhas finas onduladas entre os nomes (desenham-se ao entrar na tela) -->
+    <svg class="svc-waves v-dt" viewBox="0 0 1672 1010" preserveAspectRatio="none" aria-hidden="true">
+      <path pathLength="1" d="M 58 666 C 200 603, 348 574, 506 590 C 654 606, 738 641, 864 641 C 1012 641, 1160 617, 1265 537 C 1370 458, 1497 282, 1676 209"/>
+      <path pathLength="1" d="M 163 795 C 316 818, 401 831, 506 824 C 675 814, 801 762, 949 762 C 1096 762, 1244 817, 1370 817 C 1476 817, 1539 769, 1581 733"/>
+    </svg>
+    <svg class="svc-waves v-m" viewBox="0 0 941 1030" preserveAspectRatio="none" aria-hidden="true">
+      <path pathLength="1" d="M -10 500 C 160 450, 300 490, 470 488 C 640 486, 760 440, 951 405"/>
+      <path pathLength="1" d="M -10 772 C 180 800, 330 735, 520 748 C 700 760, 820 800, 951 752"/>
+    </svg>
 
-    <!-- Índice dos serviços: só texto, cada um leva à sua seção -->
-    <ul class="svc-list px" role="list">
-      <li><a class="svc-item" id="service-lawn-care-mowing" href="#lawn-care-mowing" data-service-id="lawn-care-mowing"><span class="svc-num">01</span><span class="svc-name">Lawn Care &amp; Mowing</span><svg class="svc-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-      <li><a class="svc-item" id="service-landscaping" href="#landscaping" data-service-id="landscaping"><span class="svc-num">02</span><span class="svc-name">Landscaping</span><svg class="svc-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-      <li><a class="svc-item" id="service-power-washing" href="#power-washing" data-service-id="power-washing"><span class="svc-num">03</span><span class="svc-name">Power Washing</span><svg class="svc-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-      <li><a class="svc-item" id="service-car-washing" href="#car-washing" data-service-id="car-washing"><span class="svc-num">04</span><span class="svc-name">Car Washing</span><svg class="svc-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-      <li><a class="svc-item" id="service-home-cleaning" href="#home-cleaning" data-service-id="home-cleaning"><span class="svc-num">05</span><span class="svc-name">Home Cleaning</span><svg class="svc-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+    <p class="svc-eyebrow px">Our services</p>
+    <h2 class="svc-title px" id="services-title"><span>Five services.</span> <span><em>One crew</em> you can reach.</span></h2>
+
+    <!-- Índice dos serviços: só texto, cada nome leva à seção do serviço -->
+    <ul class="svc-list" role="list">
+      <li id="service-lawn-care-mowing"><a class="svc-item" href="#lawn-care-mowing">Lawn Care &amp; <em>Mowing</em></a></li>
+      <li id="service-landscaping"><a class="svc-item" href="#landscaping"><em>Landscaping</em></a></li>
+      <li id="service-power-washing"><a class="svc-item" href="#power-washing">Power Washing</a></li>
+      <li id="service-car-washing"><a class="svc-item" href="#car-washing">Car Washing</a></li>
+      <li id="service-home-cleaning"><a class="svc-item" href="#home-cleaning">Home <em>Cleaning</em></a></li>
     </ul>
 
   </div>
@@ -480,7 +488,7 @@
   </defs>
 </svg>
 
-<section class="svx svx-l" id="lawn-care-mowing" aria-labelledby="mowing-title">
+<section class="svx svx-l" id="lawn-care-mowing" aria-labelledby="mowing-title" data-nav="services">
   <div class="svx-stage" style="--ch:337">
     <svg class="svx-corner deco-l" viewBox="0 0 724 337" preserveAspectRatio="none" aria-hidden="true"><path d="M0 1 C54 1 98 13 143 32 L0 44 Z"/></svg>
     <div class="svx-art deco-l">

@@ -236,6 +236,7 @@
     ['up',   '.hero-location, .hero-title, .hero-desc, #cta-book-visit, #cta-see-work'],
     ['zoom', '.garden-photo'],
     ['up',   '.svc-eyebrow, .svc-title'],
+    ['draw', '.svc-waves'],
     ['up',   '.mow-cta'],
     ['up',   '.svx-eyebrow, .svx-title, .svx-body'],
     ['left', '.svx-l .svx-art'],
