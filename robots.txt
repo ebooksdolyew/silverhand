@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# PENDENTE: quando o domínio estiver definido, trocar DOMINIO e tirar o "#".
-# Sitemap: https://DOMINIO/sitemap.xml
+Sitemap: https://silverhand.pages.dev/sitemap.xml

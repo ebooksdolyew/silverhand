@@ -29,17 +29,18 @@ python3 -m http.server 8000
 
 Depois abrir <http://localhost:8000>.
 
-## Quando o domínio estiver definido
+## Trocar de domínio
 
-Os arquivos usam o marcador `https://DOMINIO` onde é preciso o endereço completo:
-`index.html`, `privacy.html`, `robots.txt` e `sitemap.xml`. Para trocar tudo de uma vez:
+O site usa o endereço `https://silverhand.pages.dev` nas tags de compartilhamento
+(imagem do WhatsApp/Facebook), no link canônico, nos dados estruturados, no
+`robots.txt` e no `sitemap.xml`. Quando o domínio final estiver no ar, trocar tudo de uma vez:
 
 ```bash
-grep -rl 'https://DOMINIO' --include='*.html' --include='*.txt' --include='*.xml' . | xargs sed -i 's#https://DOMINIO#https://www.exemplo.com#g'
+grep -rl 'https://silverhand.pages.dev' --include='*.html' --include='*.txt' --include='*.xml' . | xargs sed -i 's#https://silverhand.pages.dev#https://www.exemplo.com#g'
 ```
 
-Depois disso:
+Depois, enviar o `sitemap.xml` no Google Search Console.
 
-1. Em `index.html` e `privacy.html`, tirar do comentário as tags `canonical`, `og:url` e `og:image`.
-2. Em `robots.txt`, tirar o `#` da linha `Sitemap:`.
-3. Enviar o `sitemap.xml` no Google Search Console.
+Para ver como fica o link compartilhado: <https://www.opengraph.xyz/> ou o
+depurador do Facebook (<https://developers.facebook.com/tools/debug/>), que
+também limpa o cache quando a imagem muda.
