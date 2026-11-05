@@ -497,7 +497,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 }
 /* tablet e celular: um respiro a mais entre a hero e os serviços */
 @media (orientation: portrait) and (min-width: 641px) { .services { margin-top: calc(80 * 100vw / 1086); } }
-@media (orientation: portrait) and (max-width: 640px) { .services { margin-top: calc(40 * 100vw / 941); } }
+@media (orientation: portrait) and (max-width: 640px) { .services { margin-top: calc(200 * 100vw / 941); } }
 .svc-stage {
   --u: min(100cqw / var(--cw), var(--u-max));
   --ox: calc((100cqw - var(--cw) * var(--u)) / 2);
@@ -1635,7 +1635,7 @@ select.fin-field:valid { color: #0B2118; }
    tem 1672/941 da largura de altura; se a tela visível (svh: com as barras
    do navegador abertas) for mais alta, o espaço que sobra vira margem. */
 @media (orientation: portrait) and (max-width: 640px) {
-  .services { margin-top: max(calc(40 * 100vw / 941), calc(100svh - 1672 * 100vw / 941 + 12px)); }
+  .services { margin-top: max(calc(200 * 100vw / 941), calc(100svh - 1672 * 100vw / 941 + 12px)); }
 }
 
 /* anéis atrás do símbolo (antes passavam por cima dele): o símbolo é z 4 */
