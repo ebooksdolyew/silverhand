@@ -1030,8 +1030,8 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-bEb { --x: 197; --y: 594.8; --fs: 14.6; --lh: 17.5; }
   .fin-stage .fin-bH { --x: 196; --y: 616.4; --fs: 42.1; --lh: 46; }
   .fin-stage .fin-bP { --x: 197; --y: 662.2; --fs: 21; --lh: 26; }
-  .fin-stage .fin-fBrand { --x: 182; --y: 991; --w: 195; }
-  .fin-stage .fin-fLines { --x: 182; --y: 1030.4; --fs: 13.7; --lh: 17; }
+  .fin-stage .fin-fBrand { --x: 182; --y: 991; --w: 150; }
+  .fin-stage .fin-fLines { --x: 182; --y: 1022.5; --fs: 13.7; --lh: 17; }
   .fin-stage .fin-map { --x: 960; --y: 20; --w: 300; }
   .fin-stage .fin-q { --x: 706; --y: 318; --w: 694; --h: 44; --gap: 5; --fs: 19.2; --pl: 25; --r: 22; }
   .fin-stage .fin-name { --x: 197; --y: 704; --w: 297; --h: 37; }
@@ -1069,8 +1069,8 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-bEb { --x: 56; --y: 855.7; --fs: 16.8; --lh: 20.2; }
   .fin-stage .fin-bH { --x: 55; --y: 881.9; --fs: 48.9; --lh: 52; }
   .fin-stage .fin-bP { --x: 57; --y: 937; --fs: 21.5; --lh: 26; }
-  .fin-stage .fin-fBrand { --x: 228; --y: 1424; --w: 243; }
-  .fin-stage .fin-fLines { --x: 228; --y: 1471.8; --fs: 17.4; --lh: 20.5; }
+  .fin-stage .fin-fBrand { --x: 228; --y: 1424; --w: 190; }
+  .fin-stage .fin-fLines { --x: 228; --y: 1463.5; --fs: 17.4; --lh: 20.5; }
   .fin-stage .fin-map { --x: 575; --y: 66; --w: 335; }
   .fin-stage .fin-q { --x: 509; --y: 481; --w: 461; --h: 49; --gap: 9.8; --fs: 20; --pl: 25; --r: 20; }
   .fin-stage .fin-name { --x: 56; --y: 989; --w: 267; --h: 45; }
@@ -1103,8 +1103,8 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-bEb { --x: 60; --y: 1752.8; --fs: 28; --lh: 33.6; }
   .fin-stage .fin-bH { --x: 58; --y: 1800.6; --fs: 66; --lh: 70; }
   .fin-stage .fin-bP { --x: 60; --y: 1894.9; --fs: 38; --lh: 52; }
-  .fin-stage .fin-fBrand { --x: 150; --y: 2958; --w: 443; }
-  .fin-stage .fin-fLines { --x: 150; --y: 3053.2; --fs: 32; --lh: 40; }
+  .fin-stage .fin-fBrand { --x: 150; --y: 2958; --w: 340; }
+  .fin-stage .fin-fLines { --x: 150; --y: 3028; --fs: 32; --lh: 40; }
   .fin-stage .fin-map { --x: 220; --y: 545; --w: 500; }
   .fin-stage .fin-q { --x: 60; --y: 1140; --w: 821; --h: 100; --gap: 20; --fs: 36; --pl: 38; --r: 30; }
   .fin-stage .fin-name { --x: 60; --y: 2040; --w: 400; --h: 104; }
