@@ -47,6 +47,18 @@
     update();
   })();
 
+/* Fundo atrás da página: verde-escuro do rodapé da metade para baixo, para o
+   "puxar além do fim" (iPhone, Mac) não mostrar uma barra verde-clara. */
+  (function () {
+    var root = document.documentElement;
+    function update() {
+      root.classList.toggle('at-end', window.scrollY + window.innerHeight / 2 > root.scrollHeight / 2);
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
 /* Seção final: ano do rodapé, formulário (validação local) e serviço
      pré-selecionado quando se chega por um link de serviço. */
   (function () {

@@ -79,6 +79,10 @@
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
 html {
+  /* Fundo "atrás" da página (o que aparece quando o iPhone/Mac puxa além do
+     fim ou do começo). No topo é o verde claro; perto do fim, js/main.js põe
+     .at-end e ele vira o verde-escuro do rodapé, sem barra clara embaixo. */
+  background: var(--bg);
   /* iPhone/Android não aumentam o texto sozinhos (ex.: celular deitado) */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -907,7 +911,10 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
    Kit silverhand-secao-final-elementos, montado como palco (mesmo esquema
    das outras seções) com as posições medidas em previews/*.webp. As faixas
    claras viram o verde do site; o rodapé é o verde-floresta do kit. */
-.final { container-type: inline-size; position: relative; overflow: clip; /* nada passa do rodapé: ele é o fim da página */ background: var(--bg); color: #0B2118; }
+html.at-end { background: #05301A; }
+.final { container-type: inline-size; position: relative; overflow: clip; /* nada passa do rodapé: ele é o fim da página */ color: #0B2118;
+  /* a última faixa já é a cor do rodapé: arredondamento de altura não deixa linha clara no fim */
+  background: linear-gradient(to top, #05301A 6px, var(--bg) 6px); }
 .fin-stage { --u: min(100cqw / var(--cw), var(--u-max)); --ox: calc((100cqw - var(--cw) * var(--u)) / 2); position: relative; width: calc(var(--cw) * var(--u)); margin-inline: auto; aspect-ratio: var(--cw) / var(--ch); }
 .fin-stage > * { position: absolute; margin: 0; }
 .fin-bg { inset: 0; width: 100%; height: 100%; display: none; pointer-events: none; }
@@ -1094,7 +1101,7 @@ select.fin-field:valid { color: #0B2118; }
 }
 /* Celular em pé */
 @media (orientation: portrait) and (max-width: 640px) {
-  .fin-stage { --cw: 941; --ch: 3540; --fld-fs: 38; --fld-pl: 32; --fld-r: 26; }
+  .fin-stage { --cw: 941; --ch: 3600; --fld-fs: 38; --fld-pl: 32; --fld-r: 26; }
   .fin-stage .fin-aEb { --x: 60; --y: 82.8; --fs: 28; --lh: 33.6; }
   .fin-stage .fin-aH { --x: 58; --y: 128.4; --fs: 80; --lh: 84; }
   .fin-stage .fin-aP { --x: 60; --y: 310.9; --fs: 38; --lh: 54; }
