@@ -17,7 +17,7 @@ Site estático (HTML, CSS e JS puros, sem build) publicado no **Cloudflare Pages
 | `img/og-logo.jpg` | Imagem de compartilhamento (1200×630) |
 | `fonts/` | DM Sans e DM Serif Display, servidas pelo próprio site |
 | `favicon.ico`, `apple-touch-icon.png` | Ícones da aba e do iPhone (ficam na raiz de propósito) |
-| `robots.txt`, `sitemap.xml` | SEO |
+| `robots.txt`, `sitemap.xml`, `llms.txt` | SEO (buscadores e ferramentas de IA) |
 | `site.webmanifest` | Nome, cores e ícones quando o site é salvo na tela inicial |
 | `_headers` | Cabeçalhos HTTP do Cloudflare Pages (segurança e cache) |
 
@@ -39,6 +39,7 @@ Depois abrir <http://localhost:8000>.
 | `404.html` | `noindex` (também no `_headers`) |
 | `robots.txt` | Libera tudo e aponta para o sitemap |
 | `sitemap.xml` | Home (com as imagens) e privacy; atualizar `<lastmod>` quando mudar |
+| `llms.txt` | Resumo do site em texto para ferramentas de IA (ChatGPT, Claude, Perplexity); atualizar quando serviços, área ou FAQ mudarem |
 
 As respostas do FAQ no JSON-LD precisam ser iguais às da página. Para testar:
 <https://search.google.com/test/rich-results> e <https://validator.schema.org/>.
