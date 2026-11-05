@@ -237,6 +237,7 @@
     ['zoom', '.garden-photo'],
     ['up',   '.svc-eyebrow, .svc-title'],
     ['draw', '.svc-waves'],
+    ['mask', '.svc-item'],
     ['up',   '.mow-cta'],
     ['up',   '.svx-eyebrow, .svx-title, .svx-body'],
     ['left', '.svx-l .svx-art'],
@@ -270,7 +271,7 @@
         return (ra.top - rb.top) || (ra.left - rb.left);
       });
     shown.forEach(function (el, i) {
-      el.style.setProperty('--rv-d', Math.min(i * 90, 600) + 'ms');
+      el.style.setProperty('--rv-d', (el.classList.contains('rv-mask') ? 200 + i * 160 : Math.min(i * 90, 600)) + 'ms');
       el.classList.add('is-in');
       io.unobserve(el);
     });
@@ -290,8 +291,7 @@
   var ease = function (q) { return q < .5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2; };
 
   /* Serviços (linhas do índice): --sp 0 (abaixo da tela) → 1; a coluna da direita começa um pouco depois. */
-  var svc = [].slice.call(document.querySelectorAll('.svc-list li'));
-  svc.forEach(function (el) { el.classList.add('scrub'); items.push({ el: el, target: 0, cur: 0, kind: 'svc' }); });
+  var svc = [];   /* os nomes de Our Services usam a revelação com máscara (rv-mask) */
 
   /* Estações: monte no centro do grupo (girados como cartas) que se desfaz em
      cascata. --dx/--dy = do lugar do cartão até o centro (offsetLeft/Top). */

@@ -1400,6 +1400,17 @@ select.fin-field:valid { color: #0B2118; }
   .js .rv-right.is-in { animation-name: rv-right; animation-duration: 1.1s; }
   .js .rv-fade.is-in { animation-name: rv-fade; }
   .js .rv-draw.is-in { animation-name: rv-fade; animation-duration: .4s; }
+  /* Our Services: cada nome sobe de trás de uma linha invisível (máscara),
+     um depois do outro; a palavra em itálico chega por último, deslizando */
+  .js .rv-mask:not(.is-in) em { opacity: 0; }
+  .js .rv-mask.is-in { animation: rv-mask 1.05s cubic-bezier(.16,1,.3,1) var(--rv-d, 0s) backwards; }
+  .js .rv-mask.is-in em { display: inline-block; animation: rv-mask-em .9s cubic-bezier(.16,1,.3,1) calc(var(--rv-d, 0s) + .35s) backwards; }
+  @keyframes rv-mask {
+    from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(65%); }
+    40%  { opacity: 1; }
+    to   { clip-path: inset(0 0 -20% 0); transform: none; }
+  }
+  @keyframes rv-mask-em { from { opacity: 0; transform: translateX(-.35em) skewX(-8deg); } }
   .js .rv-draw path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.4s cubic-bezier(.45,.05,.25,1) .2s; }
   .js .rv-draw path + path { transition-delay: .7s; }
   .js .rv-draw.is-in path { stroke-dashoffset: 0; }
