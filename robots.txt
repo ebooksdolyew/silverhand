@@ -1,3 +1,8 @@
+# Silver Hand Home & Landscaping
+# Todo o site pode ser rastreado. A página 404 já tem "noindex" e responde
+# com status 404, então não precisa ser bloqueada aqui (bloquear impediria
+# o Google de ler o noindex).
+
 User-agent: *
 Allow: /
 

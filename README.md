@@ -29,6 +29,20 @@ python3 -m http.server 8000
 
 Depois abrir <http://localhost:8000>.
 
+## SEO
+
+| Onde | O quê |
+|---|---|
+| `<head>` de cada página | `<title>` (até ~60 caracteres), `meta description` (até ~155), `robots`, canônico, Open Graph e Twitter |
+| `index.html`, JSON-LD | Site, página (cada seção com o link `#âncora` dela), empresa local, serviços e FAQ |
+| `privacy.html`, JSON-LD | Página e trilha (Home › Privacy Policy) |
+| `404.html` | `noindex` (também no `_headers`) |
+| `robots.txt` | Libera tudo e aponta para o sitemap |
+| `sitemap.xml` | Home (com as imagens) e privacy; atualizar `<lastmod>` quando mudar |
+
+As respostas do FAQ no JSON-LD precisam ser iguais às da página. Para testar:
+<https://search.google.com/test/rich-results> e <https://validator.schema.org/>.
+
 ## Trocar de domínio
 
 O site usa o endereço `https://silverrhand.pages.dev` nas tags de compartilhamento

@@ -1,13 +1,19 @@
 {
+  "id": "/",
   "name": "Silver Hand Home & Landscaping",
   "short_name": "Silver Hand",
-  "description": "Lawn care, landscaping, power washing, car washing and home cleaning in Silver Spring and Montgomery County, MD.",
+  "description": "Lawn mowing, landscaping, seasonal yard care, power washing and home cleaning in Silver Spring and Montgomery County, MD.",
   "lang": "en-US",
+  "dir": "ltr",
   "start_url": "/",
   "scope": "/",
   "display": "browser",
   "background_color": "#D5E8C0",
   "theme_color": "#D5E8C0",
+  "categories": [
+    "business",
+    "lifestyle"
+  ],
   "icons": [
     { "src": "/img/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/img/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
