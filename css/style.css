@@ -1653,3 +1653,102 @@ select.fin-field:valid { color: #0B2118; }
 /* anéis atrás do símbolo (antes passavam por cima dele): o símbolo é z 4 */
 #garden-rings { z-index: 3; }
 @media (orientation: portrait) and (min-width: 641px) { #garden-rings { --ring-max: 1.1; } } /* tablet: a onda não chega no texto */
+
+/* ---------- Botões: preenchimento que nasce do cursor ----------
+   Em vez de trocar de cor de uma vez, o hover "derrama" a cor nova a partir
+   do ponto onde o mouse entrou (js/main.js guarda esse ponto em --mx/--my) e
+   recolhe na direção em que ele saiu. No toque o preenchimento nasce do dedo;
+   no teclado, do centro. A seta sai pela direita e volta pela esquerda, e o
+   clique comprime o botão de leve. Continua chapado: sem sombra nem 3D. */
+:root {
+  --ease-fx: cubic-bezier(.22, 1, .36, 1);     /* saída longa e macia (cor, seta, clique) */
+  --ease-fill: cubic-bezier(.6, .04, .3, 1);   /* o preenchimento acelera e assenta: dá para ver ele se espalhar */
+  --fill-in: .65s;
+  --fill-out: .5s;
+}
+
+/* camada de preenchimento, por baixo do texto (as regras da camada usam
+   :where, peso zero, para qualquer estado de hover/foco ganhar delas) */
+:is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
+    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow) {
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+  /* o texto troca de cor quando o preenchimento chega no meio do botão */
+  transition: color .3s ease .14s, border-color .45s var(--ease-fx), scale .25s var(--ease-fx);
+}
+:is(.topbar .topbar-cta, .topbar-menu .menu-cta, .svc-arrow) { position: relative; }
+:where(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
+    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  clip-path: circle(0 at var(--mx, 50%) var(--my, 50%));
+  transition: clip-path var(--fill-out) var(--ease-fill);
+}
+/* verdes enchem de branco (com o contorno verde); claros enchem de verde */
+:where(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta)::before {
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--btn);
+}
+:where(#cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow)::before { background: var(--btn); }
+
+/* o fundo do botão fica como está; quem muda é a camada de cima.
+   (as listas repetem o #id das regras de inversão para ter o mesmo peso) */
+:is(#cta-book-visit, .topbar-menu .menu-cta, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta):is(:hover, :active, :focus-visible) {
+  background: var(--glass-sheen), var(--glass-green);
+  box-shadow: inset 0 0 0 1px var(--glass-edge-g);
+}
+:is(#cta-see-work, .cmb-g-btn):is(:hover, :active, :focus-visible) { background: var(--glass-sheen), var(--glass-white); }
+.topbar .topbar-cta:not(#_):is(:hover, :active, :focus-visible) { background: rgb(255 255 255 / .7); }
+.svc-card:is(:hover, :focus-visible) .svc-arrow,
+.sea-card:is(:hover, :focus-visible) .sea-arrow { background: var(--glass-sheen), var(--glass-white); scale: 1.06; }
+
+/* acender: mouse por cima, toque e foco de teclado */
+@media (hover: hover) {
+  :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
+      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):hover::before,
+  .svc-card:hover .svc-arrow::before, .sea-card:hover .sea-arrow::before {
+    clip-path: circle(150% at var(--mx, 50%) var(--my, 50%));
+    transition-duration: var(--fill-in);
+  }
+}
+:is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
+    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):is(:active, :focus-visible)::before,
+.svc-card:is(:active, :focus-visible) .svc-arrow::before, .sea-card:is(:active, :focus-visible) .sea-arrow::before {
+  clip-path: circle(150% at var(--mx, 50%) var(--my, 50%));
+  transition-duration: .3s;
+}
+
+/* clique/toque: comprime um pouco (scale é separado do transform das entradas) */
+:is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
+    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):active { scale: .97; }
+
+/* seta: sai pela direita e entra de volta pela esquerda */
+@keyframes btn-arrow {
+  0%   { transform: none; opacity: 1; }
+  38%  { transform: translateX(120%); opacity: 0; }
+  39%  { transform: translateX(-120%); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+.svc-arrow, .sea-arrow { overflow: hidden; }
+.sea-card:is(:hover, :focus-visible) .sea-arrow svg { translate: none; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  :is(#cta-book-visit, .mow-cta, .fin-btn, .cmb-g-btn):hover svg,
+  .svc-card:hover .svc-arrow svg, .sea-card:hover .sea-arrow svg {
+    transform: none;
+    animation: btn-arrow .7s var(--ease-fx);
+  }
+  :is(#cta-book-visit, .mow-cta, .fin-btn, .cmb-g-btn, #cta-see-work) svg { transition: color .3s ease .14s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
+      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow),
+  :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
+      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow)::before { transition: none !important; }
+  :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
+      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):active { scale: none; }
+}

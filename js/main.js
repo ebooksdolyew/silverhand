@@ -47,6 +47,22 @@
     update();
   })();
 
+/* Botões: o preenchimento do hover nasce onde o cursor (ou o dedo) entra e
+   recolhe para onde ele sai (style.css lê --mx/--my). */
+  (function () {
+    var sel = '#cta-book-visit, #cta-see-work, .mow-cta, .fin-btn, .fin-nav-cta, .cmb-g-btn, .topbar-cta, .menu-cta';
+    function origin(e) {
+      var el = e.currentTarget, r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', Math.round(e.clientX - r.left) + 'px');
+      el.style.setProperty('--my', Math.round(e.clientY - r.top) + 'px');
+    }
+    Array.prototype.forEach.call(document.querySelectorAll(sel), function (el) {
+      el.addEventListener('pointerenter', origin);
+      el.addEventListener('pointerleave', origin);
+      el.addEventListener('pointerdown', origin);
+    });
+  })();
+
 /* Fundo atrás da página: verde-escuro do rodapé da metade para baixo, para o
    "puxar além do fim" (iPhone, Mac) não mostrar uma barra verde-clara. */
   (function () {
