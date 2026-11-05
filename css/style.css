@@ -728,6 +728,9 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   .svx-stage {
     --s: 1.38;
     aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     padding: calc(var(--ch) * var(--s) * var(--u) + 26 * var(--u)) calc(46 * var(--u)) calc(70 * var(--u));
   }
   /* Home Cleaning: a arte termina antes do fim do palco; o texto sobe junto */
@@ -736,6 +739,8 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   .svx-art { height: calc(var(--ch) * var(--u)); scale: var(--s); }
   .svx-l .svx-art { transform-origin: left top; }
   .svx-r .svx-art { transform-origin: right top; }
+  /* texto e botão do mesmo lado da foto */
+  .svx-r .svx-stage { align-items: flex-end; text-align: right; }
   .svx-leaf { scale: 1.3; }
   .svx-stage > :is(.svx-eyebrow, .svx-title, .svx-body, .svx-cta) {
     position: relative;
