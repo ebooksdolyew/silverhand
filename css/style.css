@@ -807,9 +807,12 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 .sea-card picture { flex: none; overflow: hidden; width: calc(var(--pw) * var(--u)); height: calc(var(--ph) * var(--u)); }
 .sea-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: scale .5s var(--ease); }
 .sea-card-body {
-  position: relative;
   flex: 1;
-  padding: calc(var(--bp-t) * var(--u)) calc(var(--bp-r) * var(--u)) 0 calc(var(--bp-l) * var(--u));
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 calc(var(--bp-x) * var(--u)) var(--bp-b, 0);
 }
 .sea-card-title {
   display: block;
@@ -826,31 +829,14 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   color: #5A6462;
 }
 .sea-card-desc span { display: block; white-space: nowrap; }
-.sea-arrow {
-  position: absolute;
-  right: calc((var(--ar-r) - var(--ar)) * var(--u));
-  top: calc((var(--ar-t) - var(--ar)) * var(--u));
-  width: calc(var(--ar) * 2 * var(--u));
-  height: calc(var(--ar) * 2 * var(--u));
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  border: max(1.5px, calc(2.4 * var(--u))) solid #4D8E31;
-  background: #fff;
-  color: #082E20;
-  transition: background-color .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease), scale .3s var(--ease);
-}
-.sea-arrow svg { width: 50%; height: 50%; transition: translate .3s var(--ease); }
 .sea-card:hover, .sea-card:focus-visible {
   transform: translateY(calc(-4 * var(--u)));
   box-shadow: 0 calc(16 * var(--u)) calc(36 * var(--u)) rgb(8 46 32 / .13), 0 calc(2 * var(--u)) calc(5 * var(--u)) rgb(8 46 32 / .05);
 }
 .sea-card:hover img, .sea-card:focus-visible img { scale: 1.04; }
-.sea-card:hover .sea-arrow, .sea-card:focus-visible .sea-arrow { background: #4D9D28; border-color: #4D9D28; color: #fff; scale: 1.06; }
-.sea-card:hover .sea-arrow svg, .sea-card:focus-visible .sea-arrow svg { translate: 8% 0; }
 .sea-card:active { transform: scale(.985); }
 .sea-card:focus-visible { outline: 3px solid #082E20; outline-offset: 3px; }
-@media (prefers-reduced-motion: reduce) { .sea-card, .sea-card img, .sea-arrow, .sea-arrow svg { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .sea-card, .sea-card img { transition: none; } }
 
 /* Desktop — grade 2×2, foto à esquerda de cada cartão */
 .sea-stage {
@@ -858,16 +844,15 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   --tx-x: 118; --eb-y: 147; --eb-fs: 26.3;
   --h-y: 187; --h-fs: 73; --h-lh: 62;
   --c-w: 728; --c-h: 198; --rad: 18;
-  --pw: 324; --ph: 198;
-  --bp-t: 42; --bp-l: 32; --bp-r: 20;
+  --pw: 344; --ph: 198;
+  --bp-x: 36;
   --t-fs: 33; --gap: 9; --d-fs: 27.5; --d-lh: 38;
-  --ar: 25; --ar-r: 50; --ar-t: 68;
 }
 .sea-title span:not(:last-child) { display: inline; }
 #season-spring { --c-x: 94;  --c-y: 346; }
-#season-summer { --c-x: 847; --c-y: 346; --c-w: 733; --pw: 328; }
+#season-summer { --c-x: 847; --c-y: 346; --c-w: 733; --pw: 348; }
 #season-fall   { --c-x: 94;  --c-y: 569; }
-#season-winter { --c-x: 847; --c-y: 569; --c-w: 733; --pw: 328; }
+#season-winter { --c-x: 847; --c-y: 569; --c-w: 733; --pw: 348; }
 
 /* Tablet em pé — grade 2×2, foto em cima de cada cartão */
 @media (orientation: portrait) and (min-width: 641px) {
@@ -877,9 +862,8 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
     --h-y: 233; --h-fs: 89.9; --h-lh: 85;
     --c-w: 446; --c-h: 402; --rad: 18; --dir: column;
     --pw: 446; --ph: 234;
-    --bp-t: 21; --bp-l: 31; --bp-r: 20;
+    --bp-x: 31;
     --t-fs: 38; --gap: 4; --d-fs: 28.1; --d-lh: 38;
-    --ar: 27; --ar-r: 57; --ar-t: 55;
   }
   .sea-title span:not(:last-child) { display: block; }
   #season-spring { --c-x: 82;  --c-y: 531; }
@@ -895,16 +879,15 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
     --tx-x: 61; --eb-y: 188; --eb-fs: 32.6;
     --h-y: 235; --h-fs: 81.2; --h-lh: 74;
     --c-w: 870; --c-h: 240; --rad: 20;
-    --pw: 351; --ph: 240;
-    --bp-t: 50; --bp-l: 36; --bp-r: 20;
+    --pw: 391; --ph: 240;
+    --bp-x: 40;
     --t-fs: 43.4; --gap: 8; --d-fs: 34.3; --d-lh: 46;
-    --ar: 33; --ar-r: 57; --ar-t: 77;
   }
   .sea-title span:not(:last-child) { display: block; }
   #season-spring { --c-x: 38; --c-y: 501; }
-  #season-summer { --c-x: 38; --c-y: 767;  --c-w: 870; --pw: 351; }
+  #season-summer { --c-x: 38; --c-y: 767;  --c-w: 870; --pw: 391; }
   #season-fall   { --c-x: 38; --c-y: 1033; }
-  #season-winter { --c-x: 38; --c-y: 1298; --c-w: 870; --pw: 351; }
+  #season-winter { --c-x: 38; --c-y: 1298; --c-w: 870; --pw: 391; }
 }
 
 /* ---------- Final: área atendida · FAQ · agendamento · rodapé ----------
@@ -1464,13 +1447,12 @@ select.fin-field:valid { color: #0B2118; }
 #cta-see-work:hover, .cmb-g-btn:hover { background: var(--glass-sheen), var(--glass-white-h); }
 
 /* setas redondas dos cartões e discos dos ícones/passos */
-.svc-arrow, .sea-arrow, .cmb-disc {
+.svc-arrow, .cmb-disc {
   background: var(--glass-sheen), var(--glass-white);
   -webkit-backdrop-filter: var(--glass-blur);
           backdrop-filter: var(--glass-blur);
 }
-.svc-card:hover .svc-arrow, .svc-card:focus-visible .svc-arrow,
-.sea-card:hover .sea-arrow, .sea-card:focus-visible .sea-arrow { background: var(--glass-sheen), var(--glass-green-h); }
+.svc-card:hover .svc-arrow, .svc-card:focus-visible .svc-arrow { background: var(--glass-sheen), var(--glass-green-h); }
 .cmb-step:hover .cmb-disc { background: var(--glass-sheen), var(--glass-white-h); }
 
 /* cartões: serviços, estações, perguntas, campos e o menu aberto */
@@ -1679,7 +1661,7 @@ select.fin-field:valid { color: #0B2118; }
 /* camada de preenchimento, por baixo do texto (as regras da camada usam
    :where, peso zero, para qualquer estado de hover/foco ganhar delas) */
 :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow) {
+    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow) {
   isolation: isolate;
   -webkit-tap-highlight-color: transparent;
   /* o texto troca de cor quando o preenchimento chega no meio do botão */
@@ -1692,7 +1674,7 @@ select.fin-field:valid { color: #0B2118; }
    entrada: cobre o botão inteiro de qualquer ponto, no mesmo ritmo de antes. Cresce com scale (só a placa de vídeo
    trabalha; clip-path redesenhava o botão a cada quadro). */
 :where(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow)::before {
+    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow)::before {
   content: "";
   position: absolute;
   left: var(--mx, 50%);
@@ -1719,7 +1701,7 @@ select.fin-field:valid { color: #0B2118; }
   opacity: 0;
   transition: opacity .3s ease .1s;
 }
-:where(#cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow)::before { background: var(--btn); }
+:where(#cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow)::before { background: var(--btn); }
 
 /* o fundo do botão fica como está; quem muda é a camada de cima.
    (as listas repetem o #id das regras de inversão para ter o mesmo peso) */
@@ -1729,21 +1711,20 @@ select.fin-field:valid { color: #0B2118; }
 }
 :is(#cta-see-work, .cmb-g-btn):is(:hover, :active, :focus-visible) { background: var(--glass-sheen), var(--glass-white); }
 .topbar .topbar-cta:not(#_):is(:hover, :active, :focus-visible) { background: rgb(255 255 255 / .7); }
-.svc-card:is(:hover, :focus-visible) .svc-arrow,
-.sea-card:is(:hover, :focus-visible) .sea-arrow { background: var(--glass-sheen), var(--glass-white); scale: 1.06; }
+.svc-card:is(:hover, :focus-visible) .svc-arrow { background: var(--glass-sheen), var(--glass-white); scale: 1.06; }
 
 /* acender: mouse por cima, toque e foco de teclado */
 @media (hover: hover) {
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
       #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):hover::before,
-  .svc-card:hover .svc-arrow::before, .sea-card:hover .sea-arrow::before {
+  .svc-card:hover .svc-arrow::before {
     scale: 1;
     transition-duration: var(--fill-in);
   }
 }
 :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
     #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):is(:active, :focus-visible)::before,
-.svc-card:is(:active, :focus-visible) .svc-arrow::before, .sea-card:is(:active, :focus-visible) .sea-arrow::before {
+.svc-card:is(:active, :focus-visible) .svc-arrow::before {
   scale: 1;
   transition-duration: .3s;
 }
@@ -1764,11 +1745,10 @@ select.fin-field:valid { color: #0B2118; }
   39%  { transform: translateX(-120%); opacity: 0; }
   100% { transform: none; opacity: 1; }
 }
-.svc-arrow, .sea-arrow { overflow: hidden; }
-.sea-card:is(:hover, :focus-visible) .sea-arrow svg { translate: none; }
+.svc-arrow { overflow: hidden; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   :is(#cta-book-visit, .mow-cta, .fin-btn, .cmb-g-btn):hover svg,
-  .svc-card:hover .svc-arrow svg, .sea-card:hover .sea-arrow svg {
+  .svc-card:hover .svc-arrow svg {
     transform: none;
     animation: btn-arrow .7s var(--ease-fx);
   }
@@ -1777,9 +1757,9 @@ select.fin-field:valid { color: #0B2118; }
 
 @media (prefers-reduced-motion: reduce) {
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow),
+      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow),
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow, .sea-arrow)::before,
+      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta, .svc-arrow)::before,
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta)::after { transition: none !important; }
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
       #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):active { scale: none; }
