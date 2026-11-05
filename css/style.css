@@ -489,10 +489,11 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   overflow: hidden;
   background: var(--bg);
 }
-/* Desktop: a hero sobe só 10 px (de canvas) por cima da seção — antes eram
-   60; o cliente pediu os serviços um pouco mais para baixo. */
+/* Desktop: a mancha verde da hero desce ~285 px (de canvas) abaixo do fim da
+   hero, no canto direito. A seção começa depois da ponta dela (pedido do
+   cliente), e todas as seguintes descem junto. */
 @media (orientation: landscape) {
-  .services { margin-top: calc(-10 * min(100vw / 1672, var(--u-max))); }
+  .services { margin-top: calc(225 * min(100vw / 1672, var(--u-max))); }
 }
 /* tablet e celular: um respiro a mais entre a hero e os serviços */
 @media (orientation: portrait) and (min-width: 641px) { .services { margin-top: calc(80 * 100vw / 1086); } }
