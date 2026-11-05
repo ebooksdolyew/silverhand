@@ -47,6 +47,79 @@
     update();
   })();
 
+/* Navbar acompanha a rolagem: o link da seção na tela fica verde e a pílula
+   verde desliza até ele. Em "Book a visit" quem acende é o botão de agendar;
+   na hero nada acende. */
+  (function () {
+    var nav = document.querySelector('.topbar-links');
+    var cta = document.querySelector('.topbar .topbar-cta');
+    var links = [].slice.call(document.querySelectorAll('.topbar-links a, .topbar-menu a:not(.menu-cta)'));
+    if (!nav || !links.length) return;
+    var pill = document.createElement('span');
+    pill.className = 'nav-pill';
+    pill.setAttribute('aria-hidden', 'true');
+    nav.appendChild(pill);
+
+    /* seções vigiadas: as dos links da barra e o agendar (o #contact do
+       menu do celular fica de fora: o rodapé está atrás do FAQ no palco) */
+    var ids = [], seen = {};
+    [].slice.call(nav.querySelectorAll('a')).concat(cta ? [cta] : []).forEach(function (a) {
+      var id = (a.getAttribute('href') || '').slice(1);
+      if (id && !seen[id] && document.getElementById(id)) { seen[id] = 1; ids.push(id); }
+    });
+
+    var current = null, placed = false;
+    function place() {
+      var a = current && nav.querySelector('a[href="#' + current + '"]');
+      if (!a || !a.offsetWidth) { pill.classList.remove('is-on'); return; }
+      if (!placed) pill.style.transition = 'none';
+      pill.style.setProperty('--px', a.offsetLeft + 'px');
+      pill.style.setProperty('--pw', a.offsetWidth + 'px');
+      pill.classList.add('is-on');
+      if (!placed) { pill.offsetWidth; pill.style.transition = ''; placed = true; }
+    }
+    function set(id) {
+      if (id === current) return;
+      current = id;
+      links.concat(cta ? [cta] : []).forEach(function (a) {
+        var on = a.getAttribute('href') === '#' + id;
+        a.classList.toggle('is-active', on);
+        if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+      });
+      place();
+    }
+    /* acende a seção mais abaixo cujo topo já passou de 35% da tela */
+    var locked = null;
+    function pick() {
+      if (locked) return;
+      var line = window.innerHeight * .35, id = null, best = -Infinity;
+      ids.forEach(function (k) {
+        var top = document.getElementById(k).getBoundingClientRect().top;
+        if (top <= line && top > best) { best = top; id = k; }
+      });
+      set(id);
+    }
+    /* clique num link: ele acende na hora e fica até a pessoa rolar por conta
+       própria (no fim da página FAQ e agendar dividem a mesma tela) */
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      var id = a && a.getAttribute('href').slice(1);
+      if (id && seen[id]) { locked = id; set(id); }
+    });
+    function unlock() { if (locked) { locked = null; onScroll(); } }
+    ['wheel', 'touchstart', 'keydown'].forEach(function (t) { window.addEventListener(t, unlock, { passive: true }); });
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; pick(); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { placed = false; place(); pick(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { placed = false; place(); });
+    pick();
+  })();
+
 /* Botões: o preenchimento do hover nasce onde o cursor (ou o dedo) entra e
    recolhe para onde ele sai (style.css lê --mx/--my). */
   (function () {
