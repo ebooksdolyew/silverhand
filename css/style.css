@@ -77,6 +77,8 @@
    da tela (.deco-l / .deco-r / .deco-full, no fim do arquivo). */
 @media (orientation: landscape) { :root { --u-max: .85px; } }
 *, *::before, *::after { box-sizing: border-box; }
+/* botões e campos não herdam a fonte sozinhos (o ☰ caía na Arial) */
+button, input, select, textarea { font-family: inherit; }
 html, body { margin: 0; }
 html {
   /* Fundo "atrás" da página (o que aparece quando o iPhone/Mac puxa além do
@@ -524,7 +526,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   margin: 0;
   font-size: calc(var(--h2-fs) * var(--u));
   line-height: calc(var(--h2-lh) * var(--u));
-  font-weight: 800;
+  font-weight: 700; /* 800 só no h1 da hero */
   letter-spacing: -.025em;
   color: #103A23;
   white-space: nowrap;
@@ -712,10 +714,56 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   font-size: calc(14 * var(--u));
   line-height: calc(18 * var(--u));
   margin-top: calc(-2.5 * var(--u));
-  font-weight: 400;
+  font-weight: 300; /* texto corrido em light, como no resto do site */
   color: #294433;
 }
 .svx-title span, .svx-body span { display: block; white-space: nowrap; }
+
+/* Celular: foto um pouco menor (encolhe a partir da borda da tela, 78%) e
+   texto/botão maiores. O texto sai do posicionamento absoluto e entra no
+   fluxo, quebrando a linha sozinho na coluna ao lado da foto; a seção cresce
+   na altura quando o texto pede, e a foto fica centrada na vertical. */
+@media (orientation: portrait) and (max-width: 640px) {
+  .svx-stage {
+    --s: .78;
+    aspect-ratio: auto;
+    min-height: calc(var(--ch) * var(--u));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-block: calc(44 * var(--u));
+  }
+  .svx-l .svx-stage { padding-left: calc(340 * var(--u)); padding-right: calc(30 * var(--u)); }
+  .svx-r .svx-stage { padding-left: calc(32 * var(--u)); padding-right: calc(352 * var(--u)); }
+  .svx-corner { height: calc(var(--ch) * var(--u)); }
+  .svx-art {
+    top: 50%;
+    height: calc(var(--ch) * var(--u));
+    translate: 0 -50%;
+    scale: var(--s);
+  }
+  .svx-l .svx-art { transform-origin: left center; }
+  .svx-r .svx-art { transform-origin: right center; }
+  .svx-stage > :is(.svx-eyebrow, .svx-title, .svx-body, .svx-cta) {
+    position: relative;
+    left: auto; top: auto;
+    width: auto; max-width: 100%;
+  }
+  .svx-eyebrow { font-size: calc(18 * var(--u)); line-height: 1.25; margin: 0; letter-spacing: .14em; }
+  .svx-title { font-size: calc(39 * var(--u)); line-height: 1.08; margin: calc(10 * var(--u)) 0 0; white-space: normal; text-wrap: balance; }
+  .svx-title span, .svx-body span { display: inline; white-space: normal; }
+  .svx-body { font-size: calc(23.5 * var(--u)); line-height: 1.45; margin: calc(14 * var(--u)) 0 0; }
+  /* a folha do lado do texto (Landscaping) não tem canto livre: some no celular */
+  .svx-r .svx-leaf.at-l { display: none; }
+  .svx-stage > .svx-cta {
+    height: calc(68 * var(--u));
+    padding-inline: calc(34 * var(--u));
+    margin-top: calc(24 * var(--u));
+    font-size: calc(23.5 * var(--u));
+    white-space: nowrap;
+  }
+}
 
 /* ---------- Seasonal Care ----------
    Kit silverhand-estacoes-elementos. Mesmo esquema de palco; textura creme
