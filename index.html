@@ -4,8 +4,80 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#D5E8C0"> <!-- = --bg (fundo do site): barra do navegador no celular na cor do topo -->
-<title>Silver Hand — Home &amp; Landscaping</title>
-<meta name="description" content="Mowing, landscaping, power washing and home cleaning in Silver Spring and Montgomery County.">
+<title>Lawn Care &amp; Landscaping in Silver Spring, MD | Silver Hand</title>
+<meta name="description" content="Lawn mowing, landscaping, power washing, car washing and home cleaning in Silver Spring and Montgomery County, MD. Same crew every visit. Book a free visit.">
+
+<!-- Ícones: favicon na aba, ícone do iPhone e do Android (site.webmanifest) -->
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="img/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Compartilhamento (WhatsApp, Facebook, X, LinkedIn...) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Silver Hand Home &amp; Landscaping">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Lawn Care &amp; Landscaping in Silver Spring, MD | Silver Hand">
+<meta property="og:description" content="Mowing, landscaping, power washing, car washing and home cleaning in Silver Spring and Montgomery County. Book a free visit.">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Silver Hand Home &amp; Landscaping — Your yard, handled.">
+<meta name="twitter:card" content="summary_large_image">
+<!-- PENDENTE (precisa do domínio final): estas tags exigem endereço absoluto.
+     Trocar https://DOMINIO pelo domínio e tirar do comentário.
+<link rel="canonical" href="https://DOMINIO/">
+<meta property="og:url" content="https://DOMINIO/">
+<meta property="og:image" content="https://DOMINIO/img/og-image.jpg">
+-->
+
+<!-- Dados estruturados para o Google (empresa local + serviços + FAQ).
+     Quando houver telefone, e-mail e domínio, acrescentar "telephone",
+     "email", "url", "image"/"logo" (endereço absoluto) e "sameAs" (redes). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HomeAndConstructionBusiness",
+      "@id": "#business",
+      "name": "Silver Hand Home & Landscaping",
+      "alternateName": "Silver Hand",
+      "description": "Lawn care and mowing, landscaping, power washing, car washing and home cleaning in Silver Spring and Montgomery County, Maryland.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Silver Spring",
+        "addressRegion": "MD",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Silver Spring, MD" },
+        { "@type": "AdministrativeArea", "name": "Montgomery County, MD" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Home and landscaping services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lawn care & mowing", "description": "Recurring lawn mowing on a regular schedule, with the same crew every visit." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landscaping", "description": "Landscaping and landscape maintenance, including recurring and seasonal care." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Power washing", "description": "Power washing for homes in Silver Spring and Montgomery County." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Car washing", "description": "Car washing in Silver Spring and Montgomery County." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Home cleaning", "description": "Home cleaning in Silver Spring and Montgomery County." } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What areas do you serve?", "acceptedAnswer": { "@type": "Answer", "text": "Silver Spring and nearby areas in Montgomery County, Maryland." } },
+        { "@type": "Question", "name": "How do I get a quote?", "acceptedAnswer": { "@type": "Answer", "text": "Book a free visit with the form below. We come by, walk the property with you and agree on the price up front." } },
+        { "@type": "Question", "name": "Do you offer recurring service?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Mowing and landscape maintenance can run on a regular schedule, with the same crew at your property every visit." } },
+        { "@type": "Question", "name": "What if the weather is bad?", "acceptedAnswer": { "@type": "Answer", "text": "If rain or storms make it unsafe to work, we send you a text and move the visit to the next open day." } }
+      ]
+    }
+  ]
+}
+</script>
+
 <!-- fontes do Google Fonts (DM Sans + DM Serif Display) servidas pelo próprio site, em fonts/ -->
 <link rel="preload" as="font" type="font/woff2" href="fonts/dm-sans-variable.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/dm-serif-display-italic.woff2" crossorigin>
@@ -51,6 +123,8 @@
     </ul>
   </nav>
 </header>
+
+<main id="main">
 
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-stage">
@@ -263,7 +337,7 @@
     </div>
 
     <div class="garden-photo garden-logo px">
-      <img src="img/logo/silverhand-emblem.webp" width="1200" height="1030" alt="Silver Hand Home &amp; Landscaping logo: a silver hand holding a house, a tree and green grass">
+      <img src="img/logo/silverhand-emblem.webp" width="1200" height="1030" fetchpriority="high" alt="Silver Hand Home &amp; Landscaping logo: a silver hand holding a house, a tree and green grass">
     </div>
 
     <div id="garden-rings" aria-hidden="true">
@@ -522,9 +596,9 @@
 
     <a class="sea-card px" id="season-spring" href="#book" data-season="spring">
       <picture>
-        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-spring.webp">
-        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-spring.webp">
-        <img src="img/seasons/desktop/season-spring.webp" alt="" loading="lazy">
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-spring.webp" width="351" height="236">
+        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-spring.webp" width="443" height="234">
+        <img src="img/seasons/desktop/season-spring.webp" width="324" height="192" alt="" loading="lazy">
       </picture>
       <span class="sea-card-body">
         <span class="sea-card-title">Spring</span>
@@ -535,9 +609,9 @@
 
     <a class="sea-card px" id="season-summer" href="#book" data-season="summer">
       <picture>
-        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-summer.webp">
-        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-summer.webp">
-        <img src="img/seasons/desktop/season-summer.webp" alt="" loading="lazy">
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-summer.webp" width="351" height="236">
+        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-summer.webp" width="443" height="234">
+        <img src="img/seasons/desktop/season-summer.webp" width="328" height="192" alt="" loading="lazy">
       </picture>
       <span class="sea-card-body">
         <span class="sea-card-title">Summer</span>
@@ -548,9 +622,9 @@
 
     <a class="sea-card px" id="season-fall" href="#book" data-season="fall">
       <picture>
-        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-fall.webp">
-        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-fall.webp">
-        <img src="img/seasons/desktop/season-fall.webp" alt="" loading="lazy">
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-fall.webp" width="351" height="236">
+        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-fall.webp" width="443" height="234">
+        <img src="img/seasons/desktop/season-fall.webp" width="324" height="192" alt="" loading="lazy">
       </picture>
       <span class="sea-card-body">
         <span class="sea-card-title">Fall</span>
@@ -561,9 +635,9 @@
 
     <a class="sea-card px" id="season-winter" href="#book" data-season="winter">
       <picture>
-        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-winter.webp">
-        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-winter.webp">
-        <img src="img/seasons/desktop/season-winter.webp" alt="" loading="lazy">
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/seasons/mobile/season-winter.webp" width="351" height="236">
+        <source media="(orientation: portrait)" srcset="img/seasons/tablet/season-winter.webp" width="443" height="234">
+        <img src="img/seasons/desktop/season-winter.webp" width="328" height="192" alt="" loading="lazy">
       </picture>
       <span class="sea-card-body">
         <span class="sea-card-title">Winter</span>
@@ -761,9 +835,9 @@
     <p class="fin-t fin-p fin-aP"><span class="fin-a-lg">We proudly serve Silver Spring and nearby areas in</span><span class="fin-a-lg">Montgomery County with reliable, high-quality home</span><span class="fin-a-lg">and landscaping services.</span><span class="fin-a-sm">We proudly serve Silver Spring and</span><span class="fin-a-sm">nearby areas in Montgomery County</span><span class="fin-a-sm">with reliable, high-quality home</span><span class="fin-a-sm">and landscaping services.</span></p>
     <a class="fin-map" href="https://www.google.com/maps/search/?api=1&amp;query=Silver+Spring,+Maryland" target="_blank" rel="noopener" aria-label="Silver Spring, Maryland — open in Google Maps">
       <picture>
-        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/final/mobile/map-service-area-reference.webp">
-        <source media="(orientation: portrait)" srcset="img/final/tablet/map-service-area-reference.webp">
-        <img src="img/final/desktop/map-service-area-reference.webp" alt="Map of the Silver Spring, Maryland service area" loading="lazy">
+        <source media="(orientation: portrait) and (max-width: 640px)" srcset="img/final/mobile/map-service-area-reference.webp" width="305" height="243">
+        <source media="(orientation: portrait)" srcset="img/final/tablet/map-service-area-reference.webp" width="335" height="284">
+        <img src="img/final/desktop/map-service-area-reference.webp" width="300" height="215" alt="Map of the Silver Spring, Maryland service area" loading="lazy">
       </picture>
     </a>
 
@@ -848,6 +922,8 @@
 
   </div>
 </section>
+
+</main>
 
 <script src="js/main.js" defer></script>
 </body>

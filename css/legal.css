@@ -1,4 +1,4 @@
-/* Páginas legais (privacy.html): coluna de leitura no visual do site.
+/* Páginas legais (privacy.html) e 404.html: coluna de leitura no visual do site.
    Usa as fontes, cores e variáveis de style.css; nada de palco aqui. */
 body.legal { background: var(--bg); }
 html:has(body.legal) { scroll-padding-top: 110px; }
@@ -71,3 +71,20 @@ html:has(body.legal) { scroll-padding-top: 110px; }
 .legal-foot a:hover { color: #B7E36A; }
 .legal-foot .legal-credit { color: rgb(227 238 219 / .62); border-bottom: 1px solid transparent; transition: color .2s ease, border-color .2s ease; }
 .legal-foot .legal-credit:hover { color: #B7E36A; border-bottom-color: rgb(183 227 106 / .4); }
+
+/* 404.html: mesma coluna, com atalhos para as seções e o botão de agendar. */
+.legal-404 { min-height: calc(100vh - 220px); display: flex; flex-direction: column; justify-content: center; margin-top: 24px; }
+.legal-main .legal-404-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
+.legal-main .legal-404-links li { margin: 0; }
+.legal-404-links a {
+  display: inline-flex; align-items: center; height: 46px; padding: 0 20px; border-radius: 999px;
+  color: var(--btn); font-size: 16px; font-weight: 600; text-decoration: none;
+  background: rgb(255 255 255 / .7); box-shadow: inset 0 0 0 1.5px var(--btn);
+  transition: background-color .3s var(--ease), color .3s var(--ease);
+}
+.legal-404-links .legal-404-cta { background: var(--btn); color: #fff; box-shadow: none; }
+.legal-404-links a:focus-visible { outline: 3px solid #082E20; outline-offset: 3px; }
+@media (hover: hover) {
+  .legal-404-links a:hover { background: var(--btn); color: #fff; }
+  .legal-404-links .legal-404-cta:hover { background: var(--btn-hover); }
+}
