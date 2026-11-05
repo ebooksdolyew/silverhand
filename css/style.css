@@ -635,56 +635,9 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   .svc-title span + span::before { content: none; }
 }
 
-/* ---------- Lawn Care & Mowing ----------
-   Kit silverhand-mowing-components. Mesmo esquema de palco; a textura creme
-   e a camada de folhas do kit ficam de fora (fundo é o verde do site). */
-.mowing {
-  container-type: inline-size;
-  position: relative;
-  overflow-x: clip;
-  background: var(--bg);
-}
-.mow-stage {
-  --u: min(100cqw / var(--cw), var(--u-max));
-  --ox: calc((100cqw - var(--cw) * var(--u)) / 2);
-  position: relative;
-  width: calc(var(--cw) * var(--u));
-  margin-inline: auto;
-  aspect-ratio: var(--cw) / var(--ch);
-}
-.mow-stage > * { position: absolute; margin: 0; }
-
-
-.mow-eyebrow {
-  --x: var(--tx-x); --y: var(--eb-y); --w: var(--tx-w);
-  font-size: calc(var(--eb-fs) * var(--u));
-  font-weight: 600;
-  letter-spacing: .16em;
-  line-height: 1;
-  text-transform: uppercase;
-  color: #4E6B5E;
-}
-.mow-title {
-  --x: var(--tx-x); --y: var(--h-y); --w: var(--tx-w);
-  font-size: calc(var(--h-fs) * var(--u));
-  line-height: calc(var(--h-lh) * var(--u));
-  font-weight: 700;
-  letter-spacing: -.015em;
-  color: #082E20;
-}
-.mow-body {
-  --x: var(--tx-x); --y: var(--b-y); --w: var(--tx-w);
-  font-size: calc(var(--b-fs) * var(--u));
-  line-height: calc(var(--b-lh) * var(--u));
-  color: #4F5B57; /* o #737A7A do kit fica fraco sobre o verde */
-}
-.mow-title span, .mow-body span { display: block; }
-.mow-leaves { inset: 0; pointer-events: none; }
-.mow-blob { inset: 0; width: 100%; height: 100%; display: none; overflow: visible; } /* sem sombra: ela vazava para a seção seguinte e era cortada numa linha reta */
-@media (orientation: landscape) { .mow-blob.v-d { display: block; } }
-@media (orientation: portrait) and (min-width: 641px) { .mow-blob.v-t { display: block; } }
-@media (orientation: portrait) and (max-width: 640px) { .mow-blob.v-m { display: block; } }
-
+/* ---------- Botão verde das seções de serviço (.mow-cta) ----------
+   Nasceu na antiga seção Mowing; posição e tamanho vêm de --c-x/--c-y/--c-w/
+   --c-h/--c-fs (definidos no .svx-stage e no HTML). */
 .mow-cta {
   --x: var(--c-x); --y: var(--c-y); --w: var(--c-w);
   height: calc(var(--c-h) * var(--u));
@@ -705,47 +658,6 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 .mow-cta:hover svg { transform: translateX(calc(7 * var(--u))); }
 .mow-cta:focus-visible { outline: 3px solid #123E24; outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) { .mow-cta, .mow-cta svg { transition: none; } }
-
-/* Desktop — foto à esquerda, texto à direita */
-.mow-stage {
-  --cw: 1672; --ch: 941;
- 
-  --tx-x: 1004; --tx-w: 640;
-  --eb-y: 224; --eb-fs: 23.9;
-  --h-y: 266; --h-fs: 75.2; --h-lh: 69;
-  --b-y: 500; --b-fs: 35.3; --b-lh: 39.5;
-  --c-x: 1004; --c-y: 692; --c-w: 488; --c-h: 92; --c-fs: 32.6;
-}
-
-/* Tablet em pé — foto em cima, texto centralizado embaixo (o kit não trouxe a
-   referência desta versão: posições da foto e do botão vêm do JSON) */
-@media (orientation: portrait) and (min-width: 641px) {
-  .mow-stage {
-    --cw: 1086; --ch: 1448;
-   
-    --tx-x: 93; --tx-w: 900;
-    --eb-y: 912; --eb-fs: 26;
-    --h-y: 950; --h-fs: 76; --h-lh: 78;
-    --b-y: 1128; --b-fs: 35; --b-lh: 44;
-    --c-x: 263; --c-y: 1300; --c-w: 560; --c-h: 104; --c-fs: 33.6;
-  }
-  .mow-eyebrow, .mow-title, .mow-body { text-align: center; }
-  .mow-title span, .mow-body span { display: inline; }
-  .mow-title, .mow-body { text-wrap: balance; }
-}
-
-/* Celular em pé — texto e botão em cima, foto embaixo */
-@media (orientation: portrait) and (max-width: 640px) {
-  .mow-stage {
-    --cw: 941; --ch: 1672;
-   
-    --tx-x: 110; --tx-w: 780;
-    --eb-y: 120; --eb-fs: 30.4;
-    --h-y: 171; --h-fs: 96.2; --h-lh: 86;
-    --b-y: 447; --b-fs: 42; --b-lh: 47;
-    --c-x: 109; --c-y: 668; --c-w: 724; --c-h: 114; --c-fs: 42;
-  }
-}
 
 /* ---------- Seções de cada serviço (Landscaping, Power Washing, Car Washing,
    Home Cleaning) ----------
@@ -779,7 +691,10 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 .svx-corner { fill: #59AE29; overflow: visible; }
 .svx-art > * { position: absolute; }
 .svx-frame { inset: 0; width: 100%; height: 100%; fill: #58A927; overflow: visible; }
-.svx-photo { display: block; height: auto; } /* sem sombra: ela vazava para a seção seguinte e era cortada numa linha reta */
+.svx-photo { display: block; height: auto; }
+/* foto inteira (sem recorte prévio): preenche a caixa e o clip-path dá o formato */
+.svx-photo.svx-cover { height: calc(var(--h) * var(--u)); object-fit: cover; }
+.svx-defs { position: absolute; width: 0; height: 0; overflow: hidden; } /* sem sombra: ela vazava para a seção seguinte e era cortada numa linha reta */
 
 /* folha solta, presa à borda da tela do lado em que está */
 .svx-leaf {
