@@ -14,7 +14,7 @@ Site estático (HTML, CSS e JS puros, sem build) publicado no **Cloudflare Pages
 | `js/main.js` | Menu, animações, galeria e validação do formulário |
 | `img/` | Imagens em WebP, separadas em `desktop/`, `tablet/` e `mobile/` |
 | `img/icons/` | Favicon PNG e ícones do Android (`site.webmanifest`) |
-| `img/og-image.jpg` | Imagem de compartilhamento (1200×630) |
+| `img/og-logo.jpg` | Imagem de compartilhamento (1200×630) |
 | `fonts/` | DM Sans e DM Serif Display, servidas pelo próprio site |
 | `favicon.ico`, `apple-touch-icon.png` | Ícones da aba e do iPhone (ficam na raiz de propósito) |
 | `robots.txt`, `sitemap.xml` | SEO |
