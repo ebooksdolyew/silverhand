@@ -14,7 +14,7 @@ Site estático (HTML, CSS e JS puros, sem build) publicado no **Cloudflare Pages
 | `js/main.js` | Menu, animações, galeria e validação do formulário |
 | `img/hero/` | Folha flutuante da hero e das seções (um recorte repetido) |
 | `img/logo/` | Símbolo e logotipo (claro e escuro) |
-| `img/service-sections/` | Foto (recortada no formato da mancha) e folha de cada seção de serviço |
+| `img/service-sections/` | Foto (no formato da pétala, recortada pelo contorno em `index.html`) e folha de cada seção de serviço |
 | `img/seasons/`, `img/work/`, `img/final/` | Fotos das estações, da galeria e da seção final, em `desktop/`, `tablet/` e `mobile/` |
 | `img/icons/` | Favicon PNG e ícones do Android (`site.webmanifest`) |
 | `img/og-logo.jpg` | Imagem de compartilhamento (1200×630) |
