@@ -508,8 +508,13 @@
     if (m && m.tagName.toLowerCase() === 'mask' && g && g.classList.contains('green-in')) parts.push(m, g);
     var clone = svg.cloneNode(false);
     clone.setAttribute('viewBox', [vb.x + l / sx, vb.y + t / sy, (rr - l) / sx, (bb - t) / sy].join(' '));
+    /* posição e tamanho em % do palco (não em px): se a largura mudar durante
+       o efeito (a barra de rolagem aparecendo, o celular girando), a cópia
+       acompanha a mancha original e não há salto quando ela volta no fim */
+    var pct = function (v, of) { return (v / of * 100) + '%'; };
     clone.style.cssText += ';position:absolute;inset:auto;overflow:visible;pointer-events:none;' +
-      'left:' + (box.left - pb.left + l) + 'px;top:' + (box.top - pb.top + t) + 'px;width:' + (rr - l) + 'px;height:' + (bb - t) + 'px;' +
+      'left:' + pct(box.left - pb.left + l, pb.width) + ';top:' + pct(box.top - pb.top + t, pb.height) +
+      ';width:' + pct(rr - l, pb.width) + ';height:' + pct(bb - t, pb.height) + ';' +
       'z-index:' + getComputedStyle(svg).zIndex + ';will-change:opacity,transform';
     var defs = svg.querySelector('defs'); if (defs) clone.appendChild(defs.cloneNode(true));
     var host = clone;
