@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="724" height="351" viewBox="0 0 724 351" role="img" aria-labelledby="title">
-<title id="title">Landscaping — fundo</title>
-<desc>Textos, formas e botoes vetoriais. Fotografias e folhas sao imagens incorporadas.</desc>
-<defs><linearGradient id="03_landscaping_fundo" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d8edbe"/><stop offset="0.55" stop-color="#e3f2cf"/><stop offset="1" stop-color="#d7ecbb"/></linearGradient><linearGradient id="03_landscaping_verde"><stop stop-color="#4ba922"/><stop offset="1" stop-color="#5ab329"/></linearGradient></defs>
-<g transform="translate(0,-802)"><g id="fundo"><rect x="0" y="802" width="724" height="351" fill="url(#03_landscaping_fundo)"/><path fill="#59ae29" d="M724 802 C667 801 616 809 579 827 L724 836 Z"/></g></g>
-</svg>

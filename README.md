@@ -12,12 +12,13 @@ Site estático (HTML, CSS e JS puros, sem build) publicado no **Cloudflare Pages
 | `css/style.css` | Estilos do site |
 | `css/legal.css` | Estilos das páginas de texto (privacy e 404) |
 | `js/main.js` | Menu, animações, galeria e validação do formulário |
-| `img/` | Imagens em WebP, separadas em `desktop/`, `tablet/` e `mobile/` |
-| `img/service-sections/` | Fotos (já recortadas no formato da mancha) e folhas das seções de cada serviço |
-| `Silverhand-novas-secoes/` | Material de origem das seções de cada serviço (referência, SVGs, medidas); não é usado pela página |
+| `img/hero/` | Folha flutuante da hero e das seções (um recorte repetido) |
+| `img/logo/` | Símbolo e logotipo (claro e escuro) |
+| `img/service-sections/` | Foto (recortada no formato da mancha) e folha de cada seção de serviço |
+| `img/seasons/`, `img/work/`, `img/final/` | Fotos das estações, da galeria e da seção final, em `desktop/`, `tablet/` e `mobile/` |
 | `img/icons/` | Favicon PNG e ícones do Android (`site.webmanifest`) |
 | `img/og-logo.jpg` | Imagem de compartilhamento (1200×630) |
-| `fonts/` | DM Sans e DM Serif Display, servidas pelo próprio site |
+| `fonts/` | DM Sans e DM Serif Display, servidas pelo próprio site (os `OFL-*.txt` são as licenças, obrigatórias junto das fontes) |
 | `favicon.ico`, `apple-touch-icon.png` | Ícones da aba e do iPhone (ficam na raiz de propósito) |
 | `robots.txt`, `sitemap.xml`, `llms.txt` | SEO (buscadores e ferramentas de IA) |
 | `site.webmanifest` | Nome, cores e ícones quando o site é salvo na tela inicial |
