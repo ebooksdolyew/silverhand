@@ -590,24 +590,29 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 
 /* Desktop e tablet — mesma composição da referência (1586 px → canvas 1672) */
 .svc-stage {
-  --cw: 1672; --ch: 1010;
+  --cw: 1672; --ch: 900;
   --copy-x: 110; --eb-y: 106; --eb-fs: 25;
-  --h2-x: 104; --h2-y: 158; --h2-fs: 107; --h2-lh: 108;
-  --n-fs: 67;
+  --h2-x: 104; --h2-y: 150; --h2-fs: 64; --h2-lh: 68;   /* 54 px: abaixo do H1 da hero (61 px) */
+  --n-fs: 45;                                           /* 38 px: abaixo dos títulos de seção (50 px) */
 }
-#service-lawn-care-mowing { --cx: 754;  --ty: 466; }
-#service-landscaping      { --cx: 435;  --ty: 646; }
-#service-power-washing    { --cx: 1189; --ty: 646; }
-#service-car-washing      { --cx: 416;  --ty: 846; }
-#service-home-cleaning    { --cx: 1158; --ty: 846; }
+#service-lawn-care-mowing { --cx: 754;  --ty: 380; }
+#service-landscaping      { --cx: 435;  --ty: 548; }
+#service-power-washing    { --cx: 1189; --ty: 548; }
+#service-car-washing      { --cx: 416;  --ty: 728; }
+#service-home-cleaning    { --cx: 1158; --ty: 728; }
+
+/* Tablet em pé: mesma composição, título e nomes maiores (o palco é estreito) */
+@media (orientation: portrait) and (min-width: 641px) {
+  .svc-stage { --eb-fs: 34; --h2-fs: 90; --h2-lh: 94; --n-fs: 60; }
+}
 
 /* Celular em pé — um nome por linha, centrados */
 @media (orientation: portrait) and (max-width: 640px) {
   .svc-stage {
     --cw: 941; --ch: 1030;
     --copy-x: 68; --eb-y: 76; --eb-fs: 26;
-    --h2-x: 64; --h2-y: 116; --h2-fs: 64; --h2-lh: 66;
-    --n-fs: 60;
+    --h2-x: 64; --h2-y: 116; --h2-fs: 72; --h2-lh: 74;   /* 30 px */
+    --n-fs: 48;                                           /* 20 px */
   }
   #services .svc-list li { --cx: 470.5; } /* vence o --cx por id do desktop */
   #service-lawn-care-mowing { --ty: 340; }
@@ -719,6 +724,46 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 }
 .svx-title span, .svx-body span { display: block; white-space: nowrap; }
 
+/* Texto das seções de serviço no fluxo (todas as telas): rótulo, título,
+   texto e botão empilham sozinhos, centrados na altura ao lado da foto, e a
+   seção cresce se o texto pedir. Título a 50 px no desktop, abaixo do H1. */
+.svx-stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(var(--ch) * var(--u));
+}
+.svx-l .svx-stage { padding: calc(24 * var(--u)) calc(24 * var(--u)) calc(24 * var(--u)) calc(434 * var(--u)); }
+.svx-r .svx-stage { padding: calc(24 * var(--u)) calc(414 * var(--u)) calc(24 * var(--u)) calc(49 * var(--u)); }
+.svx-corner, .svx-art { height: calc(var(--ch) * var(--u)); }
+.svx-stage > :is(.svx-eyebrow, .svx-title, .svx-body, .svx-cta) {
+  position: relative;
+  left: auto; top: auto;
+  width: auto; max-width: 100%;
+}
+.svx-stage > .svx-eyebrow { line-height: 1.2; margin: 0; }
+.svx-stage > .svx-title { font-size: calc(25.5 * var(--u)); line-height: 1.07; margin: calc(7 * var(--u)) 0 0; }
+.svx-stage > .svx-body { line-height: 1.32; margin: calc(11 * var(--u)) 0 0; }
+.svx-stage > .svx-cta { display: inline-flex; padding-inline: calc(18 * var(--u)); margin-top: calc(18 * var(--u)); white-space: nowrap; }
+
+/* Tablet em pé: foto um pouco menor (88%, a partir da borda) e texto em
+   tamanho de leitura (título 42 px, texto 19 px); as linhas quebram sozinhas */
+@media (orientation: portrait) and (min-width: 641px) {
+  .svx-stage { --s: .88; }
+  .svx-art { scale: var(--s); }
+  .svx-l .svx-art { transform-origin: left top; }
+  .svx-r .svx-art { transform-origin: right top; }
+  .svx-l .svx-stage { padding-left: calc(388 * var(--u)); }
+  .svx-r .svx-stage { padding-right: calc(402 * var(--u)); padding-left: calc(40 * var(--u)); }
+  .svx-eyebrow { font-size: calc(12 * var(--u)); }
+  .svx-stage > .svx-title { font-size: calc(36.5 * var(--u)); white-space: normal; text-wrap: balance; }
+  .svx-title span { display: block; white-space: normal; } /* quebras do título como no desenho */
+  .svx-body span { display: inline; white-space: normal; }
+  .svx-stage > .svx-body { font-size: calc(16.5 * var(--u)); line-height: 1.45; }
+  .svx-stage > .svx-cta { height: calc(40 * var(--u)); font-size: calc(14.5 * var(--u)); padding-inline: calc(20 * var(--u)); }
+}
+
 /* Celular: empilhado. A foto (com a mancha verde e o canto) sai da borda
    da tela, grande, alternando o lado a cada seção, como um zigue-zague que
    segue o fluxo da página; o texto vem embaixo, na largura toda e num
@@ -728,10 +773,9 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   .svx-stage {
     --s: 1.38;
     aspect-ratio: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: calc(var(--ch) * var(--s) * var(--u) + 26 * var(--u)) calc(46 * var(--u)) calc(70 * var(--u));
+    min-height: 0;
+    justify-content: flex-start;
+    padding: calc(var(--ch) * var(--s) * var(--u) + 26 * var(--u)) calc(46 * var(--u)) calc(70 * var(--u)) !important;
   }
   /* Home Cleaning: a arte termina antes do fim do palco; o texto sobe junto */
   #home-cleaning .svx-stage { padding-top: calc(336 * var(--s) * var(--u) + 26 * var(--u)); }
@@ -747,10 +791,10 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
     left: auto; top: auto;
     width: auto; max-width: 100%;
   }
-  .svx-eyebrow { font-size: calc(21 * var(--u)); line-height: 1.25; margin: 0; letter-spacing: .15em; }
-  .svx-title { font-size: calc(50 * var(--u)); line-height: 1.06; margin: calc(12 * var(--u)) 0 0; white-space: normal; text-wrap: balance; }
+  .svx-stage > .svx-eyebrow { font-size: calc(21 * var(--u)); line-height: 1.25; margin: 0; letter-spacing: .15em; }
+  .svx-stage > .svx-title { font-size: calc(50 * var(--u)); line-height: 1.06; margin: calc(12 * var(--u)) 0 0; white-space: normal; text-wrap: balance; }
   .svx-title span, .svx-body span { display: inline; white-space: normal; }
-  .svx-body { font-size: calc(29 * var(--u)); line-height: 1.5; margin: calc(18 * var(--u)) 0 0; max-width: calc(600 * var(--u)); }
+  .svx-stage > .svx-body { font-size: calc(29 * var(--u)); line-height: 1.5; margin: calc(18 * var(--u)) 0 0; max-width: calc(600 * var(--u)); }
   .svx-stage > .svx-cta {
     display: inline-flex;
     height: calc(84 * var(--u));
@@ -840,7 +884,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   margin-top: calc(var(--gap) * var(--u));
   font-size: calc(var(--d-fs) * var(--u));
   line-height: calc(var(--d-lh) * var(--u));
-  color: #5A6462;
+  color: #3D4845; /* 5:1 também sobre os cartões em cima da mancha verde */
 }
 .sea-card-desc span { display: block; white-space: nowrap; }
 .sea-card:hover, .sea-card:focus-visible {
@@ -856,7 +900,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 .sea-stage {
   --cw: 1672; --ch: 941;
   --tx-x: 118; --eb-y: 147; --eb-fs: 26.3;
-  --h-y: 187; --h-fs: 73; --h-lh: 62;
+  --h-y: 195; --h-fs: 59; --h-lh: 54;
   --c-w: 728; --c-h: 198; --rad: 18;
   --pw: 344; --ph: 198;
   --bp-x: 36;
@@ -873,7 +917,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   .sea-stage {
     --cw: 1086; --ch: 1448;
     --tx-x: 97; --eb-y: 189; --eb-fs: 29.8;
-    --h-y: 233; --h-fs: 89.9; --h-lh: 85;
+    --h-y: 250; --h-fs: 65; --h-lh: 66;
     --c-w: 446; --c-h: 402; --rad: 18; --dir: column;
     --pw: 446; --ph: 234;
     --bp-x: 31;
@@ -1026,18 +1070,18 @@ select.fin-field:valid { color: #0B2118; }
 /* Desktop */
 @media (orientation: landscape) {
   .fin-stage { --cw: 1672; --ch: 1160; --fld-fs: 16.6; --fld-pl: 21; --fld-r: 18; }
-  .fin-stage .fin-aEb { --x: 279; --y: 47.4; --fs: 16.1; --lh: 19.3; }
-  .fin-stage .fin-aH { --x: 278; --y: 69; --fs: 51.3; --lh: 50; }
-  .fin-stage .fin-aP { --x: 281; --y: 128.3; --fs: 24.2; --lh: 29.5; }
-  .fin-stage .fin-qEb { --x: 279; --y: 351.9; --fs: 16.6; --lh: 19.9; }
-  .fin-stage .fin-qH { --x: 278; --y: 373.8; --fs: 49.1; --lh: 50; }
-  .fin-stage .fin-bEb { --x: 197; --y: 594.8; --fs: 14.6; --lh: 17.5; }
-  .fin-stage .fin-bH { --x: 196; --y: 616.4; --fs: 42.1; --lh: 46; }
+  .fin-stage .fin-aEb { --x: 279; --y: 36; --fs: 19; --lh: 22; }
+  .fin-stage .fin-aH { --x: 278; --y: 62; --fs: 59; --lh: 60; }
+  .fin-stage .fin-aP { --x: 281; --y: 132; --fs: 24.2; --lh: 29.5; }
+  .fin-stage .fin-qEb { --x: 279; --y: 343; --fs: 19; --lh: 22; }
+  .fin-stage .fin-qH { --x: 278; --y: 369; --fs: 59; --lh: 60; }
+  .fin-stage .fin-bEb { --x: 197; --y: 572; --fs: 19; --lh: 22; }
+  .fin-stage .fin-bH { --x: 196; --y: 598; --fs: 54; --lh: 58; }
   .fin-stage .fin-bP { --x: 197; --y: 662.2; --fs: 21; --lh: 26; }
   .fin-stage .fin-fBrand { --x: 216; --y: 1009; --w: 172; }
   .fin-stage .fin-fLines { --x: 216; --y: 1046; --fs: 14.2; --lh: 18; }
   .fin-stage .fin-map { --x: 960; --y: 20; --w: 300; }
-  .fin-stage .fin-q { --x: 706; --y: 318; --w: 694; --h: 44; --gap: 5; --fs: 19.2; --pl: 25; --r: 22; }
+  .fin-stage .fin-q { --x: 706; --y: 318; --w: 694; --h: 48; --gap: 6; --fs: 21; --pl: 25; --r: 22; }
   .fin-stage .fin-name { --x: 197; --y: 704; --w: 297; --h: 37; }
   .fin-stage .fin-phone { --x: 502; --y: 704; --w: 307; --h: 37; }
   .fin-stage .fin-addr { --x: 197; --y: 747; --w: 612; --h: 37; }
@@ -1045,11 +1089,10 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-btn { --x: 197; --y: 840; --w: 612; --h: 50; --fs: 21.2; }
   .fin-stage .fin-status { --x: 197; --y: 896; --w: 612; --fs: 14.110000000000001; }
   .fin-stage .fin-logo { --x: 128; --y: 1004; --w: 74; }
-  .fin-stage .fin-nav a:nth-child(1) { --cx: 724; --y: 1031; --fs: 15; }
-  .fin-stage .fin-nav a:nth-child(2) { --cx: 834; --y: 1031; --fs: 15; }
-  .fin-stage .fin-nav a:nth-child(3) { --cx: 944; --y: 1031; --fs: 15; }
-  .fin-stage .fin-nav a:nth-child(4) { --cx: 1054; --y: 1031; --fs: 15; }
-  .fin-stage .fin-nav a:nth-child(5) { --cx: 1164; --y: 1031; --fs: 15; }
+  .fin-stage .fin-nav a:nth-child(1) { --cx: 760; --y: 1031; --fs: 15; }
+  .fin-stage .fin-nav a:nth-child(2) { --cx: 890; --y: 1031; --fs: 15; }
+  .fin-stage .fin-nav a:nth-child(3) { --cx: 1020; --y: 1031; --fs: 15; }
+  .fin-stage .fin-nav a:nth-child(4) { --cx: 1150; --y: 1031; --fs: 15; }
   .fin-stage .fin-nav a.fin-nav-cta { --x: 1396; --y: 1016; --w: 148; --h: 48; --fs: 15.5; }
   .fin-stage .fin-rule1 { --y: 0; --x0: 0; --x1: 0; --on: 0; }
   .fin-stage .fin-rule2 { --y: 1100; --x0: 128; --x1: 1544; --on: 1; }
@@ -1087,9 +1130,8 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-nav a:nth-child(1) { --cx: 413; --y: 1564; --fs: 18; }
   .fin-stage .fin-nav a:nth-child(2) { --cx: 543; --y: 1564; --fs: 18; }
   .fin-stage .fin-nav a:nth-child(3) { --cx: 673; --y: 1564; --fs: 18; }
-  .fin-stage .fin-nav a:nth-child(4) { --cx: 413; --y: 1604; --fs: 18; }
-  .fin-stage .fin-nav a:nth-child(5) { --cx: 543; --y: 1604; --fs: 18; }
-  .fin-stage .fin-nav a:nth-child(6) { --cx: 673; --y: 1604; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(4) { --cx: 478; --y: 1604; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(5) { --cx: 608; --y: 1604; --fs: 18; }
   .fin-stage .fin-rule1 { --y: 1540; --x0: 158; --x1: 928; --on: 1; }
   .fin-stage .fin-rule2 { --y: 1646; --x0: 158; --x1: 928; --on: 1; }
   .fin-stage .fin-legal { --y: 1662; --x0: 158; --x1: 928; --fs: 14.8; }
@@ -1121,9 +1163,8 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-nav a:nth-child(1) { --cx: 200; --y: 3340; --fs: 36; }
   .fin-stage .fin-nav a:nth-child(2) { --cx: 470.5; --y: 3340; --fs: 36; }
   .fin-stage .fin-nav a:nth-child(3) { --cx: 741; --y: 3340; --fs: 36; }
-  .fin-stage .fin-nav a:nth-child(4) { --cx: 200; --y: 3412; --fs: 36; }
-  .fin-stage .fin-nav a:nth-child(5) { --cx: 470.5; --y: 3412; --fs: 36; }
-  .fin-stage .fin-nav a:nth-child(6) { --cx: 741; --y: 3412; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(4) { --cx: 335; --y: 3412; --fs: 36; }
+  .fin-stage .fin-nav a:nth-child(5) { --cx: 606; --y: 3412; --fs: 36; }
   .fin-stage .fin-rule1 { --y: 3290; --x0: 60; --x1: 881; --on: 1; }
   .fin-stage .fin-rule2 { --y: 3505; --x0: 60; --x1: 881; --on: 1; }
   .fin-stage .fin-legal { --y: 3544; --x0: 60; --x1: 881; --fs: 30; }
@@ -1172,6 +1213,10 @@ select.fin-field:valid { color: #0B2118; }
 .cmb-hd.cmb-b-h { white-space: nowrap; }
 .cmb-b-body { line-height: calc(var(--lh) * var(--u)); color: #4F5B57; }
 .cmb-b-eb, .cmb-b-h, .cmb-b-body { left: calc(var(--cw) / 2 * var(--u)); translate: -50% 0; text-align: center; }
+/* How it works centralizado como o Why choose (desktop e tablet) */
+@media (orientation: landscape), (orientation: portrait) and (min-width: 641px) {
+  .cmb-p-eb, .cmb-p-h { left: calc(var(--cw) / 2 * var(--u)); translate: -50% 0; text-align: center; }
+}
 
 .cmb-box { left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); width: calc(var(--w) * var(--u)); height: calc(var(--h) * var(--u)); }
 /* Galeria giratória: a janela vai de borda a borda da tela (sai do palco
@@ -1274,13 +1319,13 @@ select.fin-field:valid { color: #0B2118; }
 @media (prefers-reduced-motion: reduce) { .cmb-photo img, .cmb-g-btn, .cmb-g-btn svg, .cmb-disc { transition: none; } }
 
 /* Desktop */
-  .cmb-stage { --cw: 1672; --ch: 1150; --ph-r: 16; --ir: 46; --sr: 45; --aw: 42; }
+  .cmb-stage { --cw: 1672; --ch: 1176; --ph-r: 16; --ir: 46; --sr: 45; --aw: 42; }
   .cmb-stage .cmb-g-eb { --x: 132; --y: 17; --fs: 21.6; }
-  .cmb-stage .cmb-g-h { --x: 132; --y: 43; --fs: 54.6; --lh: 58; }
+  .cmb-stage .cmb-g-h { --x: 132; --y: 40; --fs: 59; --lh: 62; }
   .cmb-stage .cmb-b-eb { --y: 492; --fs: 19.9; }
-  .cmb-stage .cmb-p-eb { --x: 133; --y: 944; --fs: 17.3; }
-  .cmb-stage .cmb-p-h { --x: 133; --y: 970; --fs: 41.8; --lh: 46; }
-  .cmb-stage .cmb-b-h { --y: 531; --w: 1000; --fs: 55.6; --lh: 60; }
+  .cmb-stage .cmb-p-eb { --x: 133; --y: 956; --fs: 17.3; }
+  .cmb-stage .cmb-p-h { --x: 133; --y: 980; --fs: 59; --lh: 62; }
+  .cmb-stage .cmb-b-h { --y: 527; --w: 1000; --fs: 59; --lh: 64; }
   .cmb-stage .cmb-b-body { --y: 667; --w: 760; --fs: 26; --lh: 34; }
   .cmb-stage .cmb-g-btn { --x: 1267; --y: 29; --w: 277; --h: 67; --fs: 22; }
   .cmb-stage .cmb-carousel { --x0: 132; --y: 112; --pw: 460; --pg: 17; --h: 266; --dur: 36s; }
@@ -1289,11 +1334,11 @@ select.fin-field:valid { color: #0B2118; }
   .cmb-stage .cmb-item:nth-of-type(1) { --cx: 425; --cy: 820; --lx: 490; --ly: 791; --lw: 250; --lfs: 23; --llh: 29; --ta: left; }
   .cmb-stage .cmb-item:nth-of-type(2) { --cx: 737; --cy: 820; --lx: 802; --ly: 791; --lw: 250; --lfs: 23; --llh: 29; --ta: left; }
   .cmb-stage .cmb-item:nth-of-type(3) { --cx: 1049; --cy: 820; --lx: 1114; --ly: 791; --lw: 250; --lfs: 23; --llh: 29; --ta: left; }
-  .cmb-stage .cmb-step:nth-of-type(1) { --cx: 177; --cy: 1098; --tx: 248; --ty: 1053; --tw: 330; --tfs: 23; --tlh: 28; --dfs: 23; --dlh: 26; --ta: left; --nfs: 46; }
-  .cmb-stage .cmb-step:nth-of-type(2) { --cx: 700; --cy: 1096; --tx: 772; --ty: 1049; --tw: 330; --tfs: 23; --tlh: 28; --dfs: 23; --dlh: 26; --ta: left; --nfs: 46; }
-  .cmb-stage .cmb-step:nth-of-type(3) { --cx: 1199; --cy: 1096; --tx: 1270; --ty: 1049; --tw: 330; --tfs: 23; --tlh: 28; --dfs: 23; --dlh: 26; --ta: left; --nfs: 46; }
-  .cmb-stage .cmb-arrow-1 { --ax: 590; --ay: 1095; --arot: 0deg; }
-  .cmb-stage .cmb-arrow-2 { --ax: 1090; --ay: 1095; --arot: 0deg; }
+  .cmb-stage .cmb-step:nth-of-type(1) { --cx: 177; --cy: 1124; --tx: 248; --ty: 1079; --tw: 330; --tfs: 23; --tlh: 28; --dfs: 23; --dlh: 26; --ta: left; --nfs: 46; }
+  .cmb-stage .cmb-step:nth-of-type(2) { --cx: 700; --cy: 1122; --tx: 772; --ty: 1075; --tw: 330; --tfs: 23; --tlh: 28; --dfs: 23; --dlh: 26; --ta: left; --nfs: 46; }
+  .cmb-stage .cmb-step:nth-of-type(3) { --cx: 1199; --cy: 1122; --tx: 1270; --ty: 1075; --tw: 330; --tfs: 23; --tlh: 28; --dfs: 23; --dlh: 26; --ta: left; --nfs: 46; }
+  .cmb-stage .cmb-arrow-1 { --ax: 590; --ay: 1121; --arot: 0deg; }
+  .cmb-stage .cmb-arrow-2 { --ax: 1090; --ay: 1121; --arot: 0deg; }
 /* Tablet em pé */
 @media (orientation: portrait) and (min-width: 641px) {
   .cmb-stage { --cw: 1086; --ch: 1448; --ph-r: 18; --ir: 51; --sr: 46; --aw: 42; }
@@ -1319,26 +1364,26 @@ select.fin-field:valid { color: #0B2118; }
 }
 /* Celular em pé (o kit não trouxe a referência: posições do JSON) */
 @media (orientation: portrait) and (max-width: 640px) {
-  .cmb-stage { --cw: 941; --ch: 1910; --ph-r: 18; --ir: 56; --sr: 52; --aw: 40; }
+  .cmb-stage { --cw: 941; --ch: 2000; --ph-r: 18; --ir: 56; --sr: 52; --aw: 40; }
   .cmb-stage .cmb-g-eb { --x: 56; --y: 50; --fs: 28; }
   .cmb-stage .cmb-g-h { --x: 56; --y: 90; --fs: 60; --lh: 66; }
   .cmb-stage .cmb-b-eb { --x: 60; --y: 630; --fs: 26; }
-  .cmb-stage .cmb-p-eb { --x: 60; --y: 1305; --fs: 28; }
-  .cmb-stage .cmb-p-h { --x: 60; --y: 1345; --fs: 60; --lh: 66; }
-  .cmb-stage .cmb-b-h { --x: 60; --y: 672; --w: 820; --fs: 54; --lh: 60; }
-  .cmb-stage .cmb-b-body { --x: 60; --y: 812; --w: 820; --fs: 37; --lh: 50; }
+  .cmb-stage .cmb-p-eb { --x: 60; --y: 1395; --fs: 28; }
+  .cmb-stage .cmb-p-h { --x: 60; --y: 1435; --fs: 60; --lh: 66; }
+  .cmb-stage .cmb-b-h { --x: 60; --y: 672; --w: 820; --fs: 63; --lh: 70; }
+  .cmb-stage .cmb-b-body { --x: 60; --y: 902; --w: 820; --fs: 37; --lh: 50; }
   .cmb-stage .cmb-g-btn { --x: 625; --y: 100; --w: 280; --h: 72; --fs: 28; }
   .cmb-stage .cmb-carousel { --x0: 38; --y: 255; --pw: 280; --pg: 13; --h: 265; --dur: 26s; }
   .cmb-stage .cmb-div1 { --y: 570; --x0: 24; --x1: 917; --cx: 470; }
-  .cmb-stage .cmb-div2 { --y: 1255; --x0: 24; --x1: 917; --cx: 470; }
-  .cmb-stage .cmb-item:nth-of-type(1) { --cx: 170; --cy: 1035; --lx: 25; --ly: 1107; --lw: 290; --lfs: 34; --llh: 42; --ta: center; }
-  .cmb-stage .cmb-item:nth-of-type(2) { --cx: 471; --cy: 1035; --lx: 326; --ly: 1107; --lw: 290; --lfs: 34; --llh: 42; --ta: center; }
-  .cmb-stage .cmb-item:nth-of-type(3) { --cx: 772; --cy: 1035; --lx: 627; --ly: 1107; --lw: 290; --lfs: 34; --llh: 42; --ta: center; }
-  .cmb-stage .cmb-step:nth-of-type(1) { --cx: 118; --cy: 1495; --tx: 200; --ty: 1445; --tw: 700; --tfs: 40; --tlh: 48; --dfs: 35; --dlh: 44; --ta: left; --nfs: 52; }
-  .cmb-stage .cmb-step:nth-of-type(2) { --cx: 118; --cy: 1650; --tx: 200; --ty: 1600; --tw: 700; --tfs: 40; --tlh: 48; --dfs: 35; --dlh: 44; --ta: left; --nfs: 52; }
-  .cmb-stage .cmb-step:nth-of-type(3) { --cx: 118; --cy: 1805; --tx: 200; --ty: 1755; --tw: 700; --tfs: 40; --tlh: 48; --dfs: 35; --dlh: 44; --ta: left; --nfs: 52; }
-  .cmb-stage .cmb-arrow-1 { --ax: 118; --ay: 1572; --arot: 90deg; }
-  .cmb-stage .cmb-arrow-2 { --ax: 118; --ay: 1727; --arot: 90deg; }
+  .cmb-stage .cmb-div2 { --y: 1345; --x0: 24; --x1: 917; --cx: 470; }
+  .cmb-stage .cmb-item:nth-of-type(1) { --cx: 170; --cy: 1125; --lx: 25; --ly: 1197; --lw: 290; --lfs: 34; --llh: 42; --ta: center; }
+  .cmb-stage .cmb-item:nth-of-type(2) { --cx: 471; --cy: 1125; --lx: 326; --ly: 1197; --lw: 290; --lfs: 34; --llh: 42; --ta: center; }
+  .cmb-stage .cmb-item:nth-of-type(3) { --cx: 772; --cy: 1125; --lx: 627; --ly: 1197; --lw: 290; --lfs: 34; --llh: 42; --ta: center; }
+  .cmb-stage .cmb-step:nth-of-type(1) { --cx: 118; --cy: 1585; --tx: 200; --ty: 1535; --tw: 700; --tfs: 40; --tlh: 48; --dfs: 35; --dlh: 44; --ta: left; --nfs: 52; }
+  .cmb-stage .cmb-step:nth-of-type(2) { --cx: 118; --cy: 1740; --tx: 200; --ty: 1690; --tw: 700; --tfs: 40; --tlh: 48; --dfs: 35; --dlh: 44; --ta: left; --nfs: 52; }
+  .cmb-stage .cmb-step:nth-of-type(3) { --cx: 118; --cy: 1895; --tx: 200; --ty: 1845; --tw: 700; --tfs: 40; --tlh: 48; --dfs: 35; --dlh: 44; --ta: left; --nfs: 52; }
+  .cmb-stage .cmb-arrow-1 { --ax: 118; --ay: 1662; --arot: 90deg; }
+  .cmb-stage .cmb-arrow-2 { --ax: 118; --ay: 1817; --arot: 90deg; }
   .cmb-g-h span { display: block; }
   .cmb-b-h span { display: inline; }
   .cmb-hd.cmb-b-h { white-space: normal; }
@@ -1811,3 +1856,20 @@ select.fin-field:valid { color: #0B2118; }
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
       #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):active { scale: none; }
 }
+
+/* ---------- Hierarquia dos botões ----------
+   Principais (verdes cheios): o da hero e o do formulário. Os das seções de
+   serviço são secundários: vidro claro com contorno verde, enchendo de verde
+   no hover (mesmo efeito do "See the work"). */
+.svx .svx-cta.mow-cta:not(#_) {
+  background: var(--glass-sheen), var(--glass-white);
+  color: var(--btn);
+  box-shadow: inset 0 0 0 max(1.5px, calc(1.6 * var(--u))) var(--btn);
+}
+.svx .svx-cta.mow-cta:not(#_):is(:hover, :active, :focus-visible) {
+  background: var(--glass-sheen), var(--glass-white);
+  color: #fff;
+  box-shadow: inset 0 0 0 max(1.5px, calc(1.6 * var(--u))) var(--btn);
+}
+.svx .svx-cta.mow-cta::before { background: var(--btn); }
+.svx .svx-cta.mow-cta::after { display: none; }
