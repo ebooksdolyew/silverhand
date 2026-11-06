@@ -674,8 +674,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 @media (orientation: landscape) { .svx-stage { --u-svx: 1.963px; } }
 .svx-stage > * { position: absolute; margin: 0; }
 
-.svx-corner, .svx-art { top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
-.svx-corner { fill: #59AE29; overflow: visible; }
+.svx-art { top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
 .svx-art > * { position: absolute; }
 .svx-frame { inset: 0; width: 100%; height: 100%; fill: #58A927; overflow: visible; }
 .svx-photo { display: block; height: auto; }
@@ -736,7 +735,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 }
 .svx-l .svx-stage { padding: calc(24 * var(--u)) calc(24 * var(--u)) calc(24 * var(--u)) calc(434 * var(--u)); }
 .svx-r .svx-stage { padding: calc(24 * var(--u)) calc(414 * var(--u)) calc(24 * var(--u)) calc(49 * var(--u)); }
-.svx-corner, .svx-art { height: calc(var(--ch) * var(--u)); }
+.svx-art { height: calc(var(--ch) * var(--u)); }
 .svx-stage > :is(.svx-eyebrow, .svx-title, .svx-body, .svx-cta) {
   position: relative;
   left: auto; top: auto;
@@ -779,7 +778,6 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   }
   /* Home Cleaning: a arte termina antes do fim do palco; o texto sobe junto */
   #home-cleaning .svx-stage { padding-top: calc(336 * var(--s) * var(--u) + 26 * var(--u)); }
-  .svx-corner { height: calc(var(--ch) * var(--u)); }
   .svx-art { height: calc(var(--ch) * var(--u)); scale: var(--s); }
   .svx-l .svx-art { transform-origin: left top; }
   .svx-r .svx-art { transform-origin: right top; }
