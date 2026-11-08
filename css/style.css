@@ -649,11 +649,10 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
    Home Cleaning) ----------
    Desenho de referência com 724 px de largura, o mesmo nas
    três telas (só muda a escala). --ch = altura de cada uma (no HTML). A foto
-   é recortada numa folha gorda que ocupa o mesmo espaço da mancha original:
-   a base fica fora da lateral da tela e a folha já sai dela larga, as bordas
-   são arcos lisos (nada reto) e a ponta é curta, virada para cima numa seção e para baixo na
-   seguinte; atrás, a mesma folha em verde, um pouco maior (a borda)
-   (.deco-l / .deco-r). */
+   é recortada numa mancha fluida que ocupa o mesmo espaço da original: o topo
+   e a base ondulam de leve e o lado de fora é arredondado sem "cair"; atrás,
+   a mesma mancha em verde, um pouco maior (a borda). Foto e mancha encostam
+   na borda da tela (.deco-l / .deco-r). */
 .svx {
   container-type: inline-size;
   position: relative;
