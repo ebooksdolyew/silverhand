@@ -806,6 +806,22 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   }
 }
 
+/* Desktop: a foto e a mancha crescem com a tela. O palco para de crescer em
+   ~1420 px e fica centralizado, mas a arte é presa à borda da tela; então ela
+   ganha uma parte da sobra lateral (--ox) em vez de ficar pequena em telas
+   largas. --ua é a unidade da arte (a --u dela): 2% maior que a do palco +
+   90% da sobra lateral espalhada pela largura da mancha (~410 un.). */
+@media (orientation: landscape) {
+  .svx-stage {
+    --ua: calc(var(--u) * 1.02 + var(--ox) * .9 / 410);
+    min-height: calc(var(--ch) * var(--ua));
+  }
+  .svx-art { --u: var(--ua); width: calc(724 * var(--ua)); height: calc(var(--ch) * var(--ua)); }
+  .svx-r .svx-art { left: auto; right: calc(-1 * var(--ox)); }
+  .svx-l .svx-stage { padding-left: calc(446 * var(--u)); }
+  .svx-r .svx-stage { padding-right: calc(432 * var(--u)); }
+}
+
 /* ---------- Seasonal Care ----------
    Kit silverhand-estacoes-elementos. Mesmo esquema de palco; textura creme
    do kit fora (fundo verde do site), folhas com o .leaf da hero. */
