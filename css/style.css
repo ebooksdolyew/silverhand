@@ -91,7 +91,7 @@ html {
 }
 
 /* Títulos: DM Sans bold + uma palavra-chave em DM Serif Display
-   itálico, no verde das folhas. */
+   itálico, no verde das folhas (--leaf-dark), o mesmo em todos os títulos. */
 :is(h1, h2) em {
   font-family: var(--font-serif);
   font-style: italic;
@@ -533,7 +533,6 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   z-index: 2;
 }
 .svc-title span { display: block; }
-.svc-title em { color: #4C9A22; }
 
 /* Índice dos serviços (referência "Our services"): só os nomes, soltos e
    centrados em --cx, com uma palavra em serifada itálica verde; duas linhas
@@ -713,7 +712,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   color: #0C3828;
   white-space: nowrap;
 }
-.svx-title em { font-size: 1.16em; color: #368C12; }
+.svx-title em { font-size: 1.16em; }
 .svx-body {
   --w: 290;
   font-size: calc(14 * var(--u));
