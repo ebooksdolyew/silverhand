@@ -650,8 +650,8 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
    Desenho de referência com 724 px de largura, o mesmo nas
    três telas (só muda a escala). --ch = altura de cada uma (no HTML). A foto
    é recortada numa folha gorda que ocupa o mesmo espaço da mancha original:
-   a base fica fora da lateral da tela, as bordas são arcos com ondas leves
-   (nada reto) e a ponta é curta, virada para cima numa seção e para baixo na
+   a base fica fora da lateral da tela e a folha já sai dela larga, as bordas
+   são arcos lisos (nada reto) e a ponta é curta, virada para cima numa seção e para baixo na
    seguinte; atrás, a mesma folha em verde, um pouco maior (a borda)
    (.deco-l / .deco-r). */
 .svx {
