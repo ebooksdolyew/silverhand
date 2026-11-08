@@ -649,9 +649,10 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
    Home Cleaning) ----------
    Desenho de referência com 724 px de largura, o mesmo nas
    três telas (só muda a escala). --ch = altura de cada uma (no HTML). A foto
-   é recortada em pétala de folha gorda; atrás dela, a mesma pétala em verde,
-   um pouco maior (a borda). A pétala nasce fora da tela: foto e mancha saem
-   cortadas da borda (.deco-l / .deco-r). */
+   é recortada numa folha gorda de 3 pontas, inclinada e um pouco diferente
+   em cada seção; atrás dela, a mesma folha em verde, um pouco maior (a borda).
+   A base da folha é arredondada e só encosta na borda da tela (.deco-l /
+   .deco-r). */
 .svx {
   container-type: inline-size;
   position: relative;
@@ -763,7 +764,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   .svx-stage > .svx-cta { height: calc(40 * var(--u)); font-size: calc(14.5 * var(--u)); padding-inline: calc(20 * var(--u)); }
 }
 
-/* Celular: empilhado. A foto (com a pétala verde) sai da borda
+/* Celular: empilhado. A foto (com a folha verde) sai da borda
    da tela, grande, alternando o lado a cada seção, como um zigue-zague que
    segue o fluxo da página; o texto vem embaixo, na largura toda e num
    tamanho de leitura. A arte é a mesma do desktop, ampliada a partir da
