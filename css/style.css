@@ -749,15 +749,15 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 .svx-stage > .svx-body { line-height: 1.32; margin: calc(11 * var(--u)) 0 0; }
 .svx-stage > .svx-cta { display: inline-flex; padding-inline: calc(18 * var(--u)); margin-top: calc(18 * var(--u)); white-space: nowrap; }
 
-/* Tablet em pé: foto um pouco menor (88%, a partir da borda) e texto em
+/* Tablet em pé: foto quase no tamanho do desktop (96%, a partir da borda) e texto em
    tamanho de leitura (título 42 px, texto 19 px); as linhas quebram sozinhas */
 @media (orientation: portrait) and (min-width: 641px) {
-  .svx-stage { --s: .88; }
+  .svx-stage { --s: .96; }
   .svx-art { scale: var(--s); }
   .svx-l .svx-art { transform-origin: left top; }
   .svx-r .svx-art { transform-origin: right top; }
-  .svx-l .svx-stage { padding-left: calc(388 * var(--u)); }
-  .svx-r .svx-stage { padding-right: calc(402 * var(--u)); padding-left: calc(40 * var(--u)); }
+  .svx-l .svx-stage { padding-left: calc(414 * var(--u)); }
+  .svx-r .svx-stage { padding-right: calc(436 * var(--u)); padding-left: calc(40 * var(--u)); }
   .svx-eyebrow { font-size: calc(12 * var(--u)); }
   .svx-stage > .svx-title { font-size: calc(36.5 * var(--u)); white-space: normal; text-wrap: balance; }
   .svx-title span { display: block; white-space: normal; } /* quebras do título como no desenho */
@@ -766,21 +766,21 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   .svx-stage > .svx-cta { height: calc(40 * var(--u)); font-size: calc(14.5 * var(--u)); padding-inline: calc(20 * var(--u)); }
 }
 
-/* Celular: empilhado. A foto (com a folha verde) sai da borda
+/* Celular: empilhado. A foto (com a mancha verde) sai da borda
    da tela, grande, alternando o lado a cada seção, como um zigue-zague que
    segue o fluxo da página; o texto vem embaixo, na largura toda e num
    tamanho de leitura. A arte é a mesma do desktop, ampliada a partir da
    borda (--s); o texto sai do posicionamento absoluto e entra no fluxo. */
 @media (orientation: portrait) and (max-width: 640px) {
   .svx-stage {
-    --s: 1.38;
+    --s: 1.55;
     aspect-ratio: auto;
     min-height: 0;
     justify-content: flex-start;
     padding: calc(var(--ch) * var(--s) * var(--u) + 26 * var(--u)) calc(46 * var(--u)) calc(70 * var(--u)) !important;
   }
   /* Home Cleaning: a arte termina antes do fim do palco; o texto sobe junto */
-  #home-cleaning .svx-stage { padding-top: calc(336 * var(--s) * var(--u) + 26 * var(--u)); }
+  #home-cleaning .svx-stage { padding-top: calc(328 * var(--s) * var(--u) + 26 * var(--u)); }
   .svx-art { height: calc(var(--ch) * var(--u)); scale: var(--s); }
   .svx-l .svx-art { transform-origin: left top; }
   .svx-r .svx-art { transform-origin: right top; }
