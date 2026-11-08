@@ -649,10 +649,10 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
    Home Cleaning) ----------
    Desenho de referência com 724 px de largura, o mesmo nas
    três telas (só muda a escala). --ch = altura de cada uma (no HTML). A foto
-   é recortada numa folha gorda de 3 pontas, inclinada e um pouco diferente
-   em cada seção; atrás dela, a mesma folha em verde, um pouco maior (a borda).
-   A base da folha é arredondada e só encosta na borda da tela (.deco-l /
-   .deco-r). */
+   é recortada numa folha gorda, inclinada na diagonal (para cima numa seção,
+   para baixo na seguinte), com metade dela para fora da lateral da tela; atrás,
+   a mesma folha em verde, um pouco maior (a borda). Lados sempre curvos, sem
+   base reta deitada (.deco-l / .deco-r). */
 .svx {
   container-type: inline-size;
   position: relative;
