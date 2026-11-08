@@ -651,8 +651,9 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
    três telas (só muda a escala). --ch = altura de cada uma (no HTML). A foto
    é recortada numa folha gorda, inclinada na diagonal (para cima numa seção,
    para baixo na seguinte), com metade dela para fora da lateral da tela; atrás,
-   a mesma folha em verde, um pouco maior (a borda). Lados sempre curvos, sem
-   base reta deitada (.deco-l / .deco-r). */
+   a mesma folha em verde, um pouco maior (a borda). Contorno com barriga
+   cheia, curva em S perto da ponta e ondas leves; nada de base reta deitada
+   (.deco-l / .deco-r). */
 .svx {
   container-type: inline-size;
   position: relative;
