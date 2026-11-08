@@ -651,8 +651,9 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
    três telas (só muda a escala). --ch = altura de cada uma (no HTML). A foto
    é recortada numa mancha fluida que ocupa o mesmo espaço da original: o topo
    e a base fazem ondas redondas (sem rampas retas) e o lado de fora é um arco
-   largo e cheio; um pouco diferente em cada seção. Atrás, a mesma mancha em
-   verde, um pouco maior (a borda). Foto e mancha encostam na borda da tela
+   largo e cheio; um pouco diferente em cada seção. Atrás, a mancha verde
+   (a borda) não acompanha a foto em paralelo: engrossa e afina em ondas
+   largas ao redor dela. Foto e mancha encostam na borda da tela
    (.deco-l / .deco-r). */
 .svx {
   container-type: inline-size;
