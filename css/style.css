@@ -220,7 +220,7 @@ body {
    a borda da tela; sobra uma faixa do verde claro no contorno visível. */
 .green-in path { fill: #24650F; fill-opacity: .42; } /* escuro de dentro; a borda clara (largura uniforme) vem da máscara */
 
-/* Folhas: um só recorte (img/hero/leaf.webp, tirado de floating-leaves.webp)
+/* Folhas: um só desenho vetorial (img/hero/leaf.svg, nítido em qualquer tela)
    repetido nas posições da referência. --lx/--ly = centro, --lw = largura,
    --rot = giro, --blur = desfoque de profundidade, tudo em px de canvas. */
 .leaves { inset: 0; z-index: 5; pointer-events: none; }

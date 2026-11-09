@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 45" width="43" height="45">
+  <defs>
+    <linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="12.78" x2="0" y2="-12.78">
+      <stop offset="0" stop-color="#8fcd2a"/>
+      <stop offset=".5" stop-color="#61ac0e"/>
+      <stop offset="1" stop-color="#378200"/>
+    </linearGradient>
+    <radialGradient id="h" gradientUnits="userSpaceOnUse" cx="23.34" cy="4.86" r="23.34" gradientTransform="translate(23.34 4.86) scale(1 .45) translate(-23.34 -4.86)">
+      <stop offset="0" stop-color="#fff" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="t" gradientUnits="userSpaceOnUse" x1="7.22" y1="0" x2="55.56" y2="0">
+      <stop offset="0" stop-color="#378200" stop-opacity=".28"/>
+      <stop offset=".35" stop-color="#378200" stop-opacity="0"/>
+      <stop offset=".85" stop-color="#d8f08a" stop-opacity="0"/>
+      <stop offset="1" stop-color="#d8f08a" stop-opacity=".35"/>
+    </linearGradient>
+    <clipPath id="c"><path d="M7.22 0 C16.11 15.08, 33.34 14.31, 55.56 0.26 C36.67 -13.03, 18.34 -14.31, 7.22 0 Z"/></clipPath>
+    <radialGradient id="m">
+      <stop offset="0" stop-color="#d9ff8a" stop-opacity=".26"/>
+      <stop offset="1" stop-color="#eaffb0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g transform="translate(41 42) rotate(-134.29)">
+    <path d="M0 -0.67 L8.33 -1.11 L8.33 1.11 L0 0.67 Z" fill="#7dbb1f"/>
+    <path d="M7.22 0 C16.11 15.08, 33.34 14.31, 55.56 0.26 C36.67 -13.03, 18.34 -14.31, 7.22 0 Z" fill="url(#g)"/>
+    <path d="M7.22 0 C16.11 15.08, 33.34 14.31, 55.56 0.26 C36.67 -13.03, 18.34 -14.31, 7.22 0 Z" fill="url(#t)"/>
+    <path d="M7.22 0 C16.11 15.08, 33.34 14.31, 55.56 0.26 C36.67 -13.03, 18.34 -14.31, 7.22 0 Z" fill="url(#h)"/>
+    <g clip-path="url(#c)">
+      <ellipse cx="21.72" cy="5.75" rx="6.11" ry="4.22" fill="url(#m)"/><ellipse cx="29.94" cy="-5.75" rx="5.2" ry="3.59" fill="url(#m)"/><ellipse cx="35.26" cy="5.75" rx="5.5" ry="3.8" fill="url(#m)"/><ellipse cx="42.99" cy="-5.75" rx="4.28" ry="2.96" fill="url(#m)"/><ellipse cx="47.34" cy="5.75" rx="3.67" ry="2.53" fill="url(#m)"/><ellipse cx="25.59" cy="-5.75" rx="3.67" ry="2.53" fill="url(#m)"/>
+      <path d="M19.16 0.97 Q21.39 -4.89 27.61 -8.89 M19.16 0.97 Q21.62 5.4 28.49 9.82 M25.59 1.15 Q28.03 -5.36 34.86 -9.75 M25.59 1.15 Q28.28 5.92 35.82 10.77 M32.02 1.23 Q34.4 -5.23 41.05 -9.51 M32.02 1.23 Q34.65 5.77 41.99 10.5 M38.45 1.05 Q40.61 -4.76 46.67 -8.65 M38.45 1.05 Q40.84 5.25 47.52 9.55 M44.42 0.88 Q46.38 -4.32 51.88 -7.85 M44.42 0.88 Q46.59 4.77 52.66 8.67" fill="none" stroke="#d4f08a" stroke-opacity=".22" stroke-width="0.44" stroke-linecap="round"/>
+    </g>
+    <path d="M7.22 -0.61 Q30.56 0.94 53.89 0.26 Q30.56 1.61 7.22 0.61 Z" fill="#c9ea70" fill-opacity=".85"/>
+    <path d="M7.22 0 C16.11 15.08, 33.34 14.31, 55.56 0.26 C36.67 -13.03, 18.34 -14.31, 7.22 0 Z" fill="none" stroke="#378200" stroke-opacity=".35" stroke-width="0.33"/>
+  </g>
+</svg>
