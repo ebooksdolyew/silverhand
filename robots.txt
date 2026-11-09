@@ -6,4 +6,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://silverrhand.pages.dev/sitemap.xml
+Sitemap: https://silverhandlandscaping.com/sitemap.xml

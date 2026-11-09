@@ -47,14 +47,25 @@ Depois abrir <http://localhost:8000>.
 As respostas do FAQ no JSON-LD precisam ser iguais às da página. Para testar:
 <https://search.google.com/test/rich-results> e <https://validator.schema.org/>.
 
-## Trocar de domínio
+## Domínio
 
-O site usa o endereço `https://silverrhand.pages.dev` nas tags de compartilhamento
-(imagem do WhatsApp/Facebook), no link canônico, nos dados estruturados, no
-`robots.txt` e no `sitemap.xml`. Quando o domínio final estiver no ar, trocar tudo de uma vez:
+Domínio final: **`silverhandlandscaping.com`** (registrado na Cloudflare Registrar,
+DNS na Cloudflare). O endereço `https://silverhandlandscaping.com` (sem `www`) é
+usado nas tags de compartilhamento (imagem do WhatsApp/Facebook), no link
+canônico, nos dados estruturados, no `llms.txt`, no `robots.txt` e no `sitemap.xml`.
+
+Ao ligar o domínio no projeto da Cloudflare:
+
+- adicionar `silverhandlandscaping.com` como domínio personalizado (custom domain);
+- adicionar também `www.silverhandlandscaping.com` e redirecionar (301) para o
+  endereço sem `www`, para o Google não ver duas cópias do site;
+- se continuar acessível, o endereço `*.pages.dev`/`*.workers.dev` pode ser
+  redirecionado para o domínio final também (o link canônico já aponta para ele).
+
+Se um dia o domínio mudar de novo, trocar tudo de uma vez:
 
 ```bash
-grep -rl 'https://silverrhand.pages.dev' --include='*.html' --include='*.txt' --include='*.xml' . | xargs sed -i 's#https://silverrhand.pages.dev#https://www.exemplo.com#g'
+grep -rl 'https://silverhandlandscaping.com' --include='*.html' --include='*.txt' --include='*.xml' . | xargs sed -i 's#https://silverhandlandscaping.com#https://www.exemplo.com#g'
 ```
 
 Depois, enviar o `sitemap.xml` no Google Search Console.
