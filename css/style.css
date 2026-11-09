@@ -696,9 +696,6 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 .svx-leaf.at-r { left: calc(var(--x) * var(--u) + var(--ox)); }
 /* presa ao pé da seção (no celular a altura depende do texto) */
 .svx-leaf.from-b { top: auto; bottom: calc(var(--yb) * var(--u)); }
-/* folhas extras só no celular e no tablet em pé, do lado do texto */
-.svx-leaf.pt-only { display: none; }
-@media (orientation: portrait) { .svx-leaf.pt-only { display: block; } }
 
 .svx-eyebrow {
   --w: 300;
