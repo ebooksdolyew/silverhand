@@ -694,6 +694,11 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 }
 .svx-leaf.at-l { left: calc(var(--x) * var(--u) - var(--ox)); }
 .svx-leaf.at-r { left: calc(var(--x) * var(--u) + var(--ox)); }
+/* presa ao pé da seção (no celular a altura depende do texto) */
+.svx-leaf.from-b { top: auto; bottom: calc(var(--yb) * var(--u)); }
+/* folhas extras só no celular e no tablet em pé, do lado do texto */
+.svx-leaf.pt-only { display: none; }
+@media (orientation: portrait) { .svx-leaf.pt-only { display: block; } }
 
 .svx-eyebrow {
   --w: 300;
@@ -752,7 +757,11 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 /* Tablet em pé: foto quase no tamanho do desktop (96%, a partir da borda) e texto em
    tamanho de leitura (título 42 px, texto 19 px); as linhas quebram sozinhas */
 @media (orientation: portrait) and (min-width: 641px) {
-  .svx-stage { --s: .96; }
+  /* a seção cresce se o texto pedir (título em 3 linhas não achata o botão) */
+  .svx-stage { --s: .96; aspect-ratio: auto; }
+  /* folhas do alto, do lado do texto: sobem para o vão entre as seções e não
+     encostam no título */
+  .svx-leaf.at-r:not(.from-b) { top: calc(-8 * var(--u)); }
   .svx-art { scale: var(--s); }
   .svx-l .svx-art { transform-origin: left top; }
   .svx-r .svx-art { transform-origin: right top; }
