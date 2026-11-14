@@ -600,6 +600,77 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 #service-car-washing      { --cx: 416;  --ty: 728; }
 #service-home-cleaning    { --cx: 1158; --ty: 728; }
 
+/* Número, descrição, seta e frase de apoio: só no índice do desktop */
+.svc-num, .svc-desc, .svc-arrow, .svc-lead, .svc-stage .svc-cta { display: none; }
+
+/* Desktop (e qualquer tela deitada): índice editorial em duas colunas. À
+   esquerda o título e uma frase de apoio; à direita uma lista numerada, uma
+   linha por serviço, separadas por fios finos; a linha inteira é o link. */
+@media (orientation: landscape) {
+  .svc-stage { --ch: 820; --eb-y: 128; --h2-y: 170; --h2-fs: 64; --h2-lh: 70; }
+  .svc-waves.v-dt { display: none; }
+  .svc-lead {
+    display: block;
+    --x: 110; --y: 340; --w: 560;
+    margin: 0;
+    font-size: calc(24 * var(--u));
+    line-height: calc(36 * var(--u));
+    font-weight: 300;
+    color: var(--body);
+    z-index: 2;
+  }
+  .svc-stage .svc-cta { display: flex; --c-x: 110; --c-y: 470; --c-w: 330; --c-h: 72; --c-fs: 26; z-index: 2; }
+  .svc-list {
+    inset: auto;
+    left: calc(880 * var(--u)); top: calc(110 * var(--u)); width: calc(692 * var(--u));
+    pointer-events: auto;
+  }
+  .svc-list li { position: static; transform: none; white-space: normal; border-top: max(1px, calc(1.4 * var(--u))) solid rgb(74 153 29 / .28); }
+  .svc-list li:last-child { border-bottom: max(1px, calc(1.4 * var(--u))) solid rgb(74 153 29 / .28); }
+  .svc-item {
+    display: grid;
+    grid-template-columns: calc(78 * var(--u)) 1fr calc(58 * var(--u));
+    grid-template-rows: auto auto;
+    align-items: center;
+    padding: calc(24 * var(--u)) calc(14 * var(--u));
+    border-radius: calc(18 * var(--u));
+    font-size: calc(40 * var(--u));
+    transition: background-color .35s var(--ease), color .3s var(--ease);
+  }
+  .svc-num {
+    display: block; grid-row: 1 / 3; align-self: start;
+    padding-top: calc(10 * var(--u));
+    font-family: var(--font-serif); font-style: italic;
+    font-size: calc(24 * var(--u)); line-height: 1;
+    color: #4C9A22;
+  }
+  .svc-name { grid-column: 2; line-height: 1.1; transition: translate .4s var(--ease); }
+  .svc-desc {
+    display: block; grid-column: 2;
+    margin-top: calc(8 * var(--u));
+    font-size: calc(19 * var(--u)); line-height: 1.3; font-weight: 400; letter-spacing: 0;
+    color: var(--body);
+    transition: translate .4s var(--ease) .04s;
+  }
+  .svc-arrow {
+    display: grid; place-items: center; grid-column: 3; grid-row: 1 / 3;
+    width: calc(54 * var(--u)); height: calc(54 * var(--u));
+    border-radius: 50%;
+    border: max(1.5px, calc(2 * var(--u))) solid #8CC45E;
+    color: #3F8B1F;
+    transition: background-color .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease);
+  }
+  .svc-arrow svg { width: 46%; height: 46%; transition: translate .4s var(--ease); }
+  @media (hover: hover) {
+    .svc-item:hover { translate: none; color: #123A23; background: rgb(255 255 255 / .45); }
+    .svc-item:hover :is(.svc-name, .svc-desc) { translate: calc(10 * var(--u)) 0; }
+    .svc-item:hover .svc-arrow { background: var(--btn); border-color: var(--btn); color: #fff; }
+    .svc-item:hover .svc-arrow svg { translate: calc(3 * var(--u)) 0; }
+  }
+  .svc-item:focus-visible { outline-offset: calc(-2 * var(--u)); border-radius: calc(18 * var(--u)); }
+  @media (prefers-reduced-motion: reduce) { .svc-name, .svc-desc, .svc-arrow, .svc-arrow svg { transition: none; } }
+}
+
 /* Tablet em pé: mesma composição, título e nomes maiores (o palco é estreito) */
 @media (orientation: portrait) and (min-width: 641px) {
   .svc-stage { --eb-fs: 34; --h2-fs: 90; --h2-lh: 94; --n-fs: 60; }

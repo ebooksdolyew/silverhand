@@ -215,7 +215,7 @@
   var groups = [
     ['up',   '.hero-location, .hero-title, .hero-desc, #cta-book-visit, #cta-see-work'],
     ['zoom', '.garden-photo'],
-    ['up',   '.svc-eyebrow, .svc-title'],
+    ['up',   '.svc-eyebrow, .svc-title, .svc-lead'],
     ['draw', '.svc-waves'],
     ['mask', '.svc-item'],
     ['up',   '.mow-cta'],
