@@ -113,29 +113,38 @@ body {
 }
 
 /* ---------- Fundo da página ----------
-   Em vez de um verde chapado, manchas bem suaves do mesmo tom (um pouco mais
-   claras e um pouco mais fundas) que se dissolvem umas nas outras ao longo da
+   Em vez de um verde chapado, manchas suaves em quatro tons da mesma família
+   (mais claro, limão quente, mais fundo e verde-folha), em dois tamanhos, que se dissolvem umas nas outras ao longo da
    página inteira. Ficam no <main>, atrás de todas as seções (que são
    transparentes), então atravessam as divisas sem emenda. Posições em % da
    altura da página; tamanho em vw com mínimo em px (no celular as manchas
    não ficam miúdas). Nas bordas de cada mancha a cor volta exatamente para
    --bg. */
 main {
-  --tone-l: rgb(241 249 232 / .95);  /* mais claro */
-  --tone-d: rgb(176 210 140 / .8);   /* mais fundo */
-  --s: max(68vw, 560px) max(42vw, 460px);
+  --tone-l: rgb(246 252 238 / 1);    /* quase branco-verde */
+  --tone-d: rgb(166 204 128 / .9);   /* verde mais fundo */
+  --tone-w: rgb(230 240 178 / .85);  /* verde-limão quente (luz de sol) */
+  --tone-f: rgb(146 192 120 / .7);   /* verde-folha frio, o mais escuro */
+  --s: max(68vw, 560px) max(42vw, 460px);   /* mancha grande */
+  --m: max(46vw, 420px) max(30vw, 340px);   /* mancha média */
   background-color: var(--bg);
   background-image:
     radial-gradient(var(--s) at 12% 2%,  var(--tone-l), transparent 70%),
-    radial-gradient(var(--s) at 92% 11%, var(--tone-d), transparent 70%),
-    radial-gradient(var(--s) at 6% 19%,  var(--tone-d), transparent 70%),
-    radial-gradient(var(--s) at 88% 27%, var(--tone-l), transparent 70%),
-    radial-gradient(var(--s) at 10% 36%, var(--tone-l), transparent 70%),
-    radial-gradient(var(--s) at 94% 45%, var(--tone-d), transparent 70%),
-    radial-gradient(var(--s) at 4% 54%,  var(--tone-d), transparent 70%),
-    radial-gradient(var(--s) at 90% 63%, var(--tone-l), transparent 70%),
-    radial-gradient(var(--s) at 14% 72%, var(--tone-l), transparent 70%),
-    radial-gradient(var(--s) at 86% 81%, var(--tone-d), transparent 70%);
+    radial-gradient(var(--m) at 70% 6%,  var(--tone-w), transparent 70%),
+    radial-gradient(var(--s) at 94% 11%, var(--tone-d), transparent 70%),
+    radial-gradient(var(--s) at 6% 19%,  var(--tone-f), transparent 70%),
+    radial-gradient(var(--m) at 48% 23%, var(--tone-l), transparent 70%),
+    radial-gradient(var(--s) at 90% 28%, var(--tone-w), transparent 70%),
+    radial-gradient(var(--s) at 8% 36%,  var(--tone-l), transparent 70%),
+    radial-gradient(var(--m) at 60% 41%, var(--tone-d), transparent 70%),
+    radial-gradient(var(--s) at 96% 46%, var(--tone-f), transparent 70%),
+    radial-gradient(var(--s) at 4% 54%,  var(--tone-w), transparent 70%),
+    radial-gradient(var(--m) at 42% 59%, var(--tone-l), transparent 70%),
+    radial-gradient(var(--s) at 90% 64%, var(--tone-l), transparent 70%),
+    radial-gradient(var(--s) at 12% 72%, var(--tone-d), transparent 70%),
+    radial-gradient(var(--m) at 64% 77%, var(--tone-w), transparent 70%),
+    radial-gradient(var(--s) at 88% 83%, var(--tone-f), transparent 70%),
+    radial-gradient(var(--m) at 20% 88%, var(--tone-l), transparent 70%);
   background-repeat: no-repeat;
 }
 
