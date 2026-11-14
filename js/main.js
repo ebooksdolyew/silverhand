@@ -226,6 +226,7 @@
     ['up',   '.cmb-txt, .cmb-item, .cmb-step'],
     ['fade', '.cmb-carousel'],
     ['fade', '.cmb-div, .cmb-arrow'],
+    ['fade', '.svc-twig'],
     ['up',   '.fin-t, .fin-q, .fin-form > .fin-box, .fin-sel-ico'],
     ['zoom', '.fin-map'],
     ['fade', '.fin-photo']
