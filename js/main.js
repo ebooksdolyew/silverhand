@@ -130,7 +130,7 @@
 /* Botões: o preenchimento do hover nasce onde o cursor (ou o dedo) entra e
    recolhe para onde ele sai (style.css lê --mx/--my). */
   (function () {
-    var sel = '#cta-book-visit, #cta-see-work, .mow-cta, .fin-btn, .fin-nav-cta, .cmb-g-btn, .topbar-cta, .menu-cta';
+    var sel = '#cta-book-visit, #cta-see-work, .mow-cta, .fin-btn, .fin-nav-cta, .topbar-cta, .menu-cta';
     function origin(e) {
       var el = e.currentTarget, r = el.getBoundingClientRect();
       el.style.setProperty('--mx', Math.round(e.clientX - r.left) + 'px');
@@ -151,26 +151,6 @@
       entries.forEach(function (e) { e.target.classList.toggle('is-off', !e.isIntersecting); });
     }, { rootMargin: '100px 0px' });
     Array.prototype.forEach.call(document.querySelectorAll('main > section'), function (sec) { io.observe(sec); });
-  })();
-
-/* Fotos dentro de <svg> (Mowing e a do formulário) existem em três versões
-   (desktop, tablet, celular), mas só uma aparece. Um <image> com href é
-   baixado mesmo escondido, então o endereço fica em data-href e só a versão
-   visível recebe o href (de novo ao girar o aparelho ou mudar a janela). */
-  (function () {
-    var imgs = [].slice.call(document.querySelectorAll('image[data-href]'));
-    function load() {
-      imgs = imgs.filter(function (im) {
-        var svg = im.ownerSVGElement;
-        if (!svg || getComputedStyle(svg).display === 'none') return true;
-        im.setAttribute('href', im.getAttribute('data-href'));
-        im.removeAttribute('data-href');
-        return false;
-      });
-      if (!imgs.length) window.removeEventListener('resize', load);
-    }
-    load();
-    if (imgs.length) window.addEventListener('resize', load);
   })();
 
 /* Fundo atrás da página: verde-escuro do rodapé da metade para baixo, para o
@@ -243,7 +223,7 @@
     ['left', '.svx-l .svx-art'],
     ['right', '.svx-r .svx-art'],
     ['up',   '.sea-eyebrow, .sea-title'],
-    ['up',   '.cmb-txt, .cmb-g-btn, .cmb-item, .cmb-step'],
+    ['up',   '.cmb-txt, .cmb-item, .cmb-step'],
     ['fade', '.cmb-carousel'],
     ['fade', '.cmb-div, .cmb-arrow'],
     ['up',   '.fin-t, .fin-q, .fin-form > .fin-box, .fin-sel-ico'],

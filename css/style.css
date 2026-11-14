@@ -1068,6 +1068,10 @@ select.fin-field:valid { color: #0B2118; }
 .fin-status.err { color: #B3412E; }
 
 .fin-photo { display: none; overflow: visible; pointer-events: none; z-index: 2; }
+/* símbolo ao lado do formulário, no mesmo padrão da hero: anéis que pulsam por
+   trás e o símbolo com sombra curta (anéis verdes: o fundo aqui é claro) */
+.fin-ring { fill: none; stroke: #5DAA2E; stroke-width: 2; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; opacity: var(--o); }
+.fin-ring.ring-1 { --o: .82; } .fin-ring.ring-2 { --o: .68; } .fin-ring.ring-3 { --o: .45; }
 
 .fin-foot { inset: 0; pointer-events: none; color: #E3EEDB; z-index: 1; }
 .fin-foot > * { position: absolute; margin: 0; pointer-events: auto; }
@@ -1095,7 +1099,7 @@ select.fin-field:valid { color: #0B2118; }
 
 /* Desktop */
 @media (orientation: landscape) {
-  .fin-stage { --cw: 1672; --ch: 1160; --fld-fs: 16.6; --fld-pl: 21; --fld-r: 18; }
+  .fin-stage { --cw: 1672; --ch: 1160; --fld-fs: 18; --fld-pl: 22; --fld-r: 22; }
   .fin-stage .fin-aEb { --x: 279; --y: 36; --fs: 19; --lh: 22; }
   .fin-stage .fin-aH { --x: 278; --y: 62; --fs: 59; --lh: 60; }
   .fin-stage .fin-aP { --x: 281; --y: 132; --fs: 24.2; --lh: 29.5; }
@@ -1105,24 +1109,24 @@ select.fin-field:valid { color: #0B2118; }
   .fin-stage .fin-bH { --x: 196; --y: 598; --fs: 54; --lh: 58; }
   .fin-stage .fin-bP { --x: 197; --y: 662.2; --fs: 21; --lh: 26; }
   .fin-stage .fin-fBrand { --x: 216; --y: 1009; --w: 172; }
-  .fin-stage .fin-fLines { --x: 216; --y: 1046; --fs: 14.2; --lh: 18; }
+  .fin-stage .fin-fLines { --x: 216; --y: 1044; --fs: 16.5; --lh: 21; }
   .fin-stage .fin-map { --x: 960; --y: 20; --w: 300; }
   .fin-stage .fin-q { --x: 706; --y: 318; --w: 694; --h: 48; --gap: 6; --fs: 21; --pl: 25; --r: 22; }
-  .fin-stage .fin-name { --x: 197; --y: 704; --w: 297; --h: 37; }
-  .fin-stage .fin-phone { --x: 502; --y: 704; --w: 307; --h: 37; }
-  .fin-stage .fin-addr { --x: 197; --y: 747; --w: 612; --h: 37; }
-  .fin-stage .fin-sel { --x: 197; --y: 791; --w: 612; --h: 37; }
-  .fin-stage .fin-btn { --x: 197; --y: 840; --w: 612; --h: 50; --fs: 21.2; }
-  .fin-stage .fin-status { --x: 197; --y: 896; --w: 612; --fs: 14.110000000000001; }
+  .fin-stage .fin-name { --x: 197; --y: 702; --w: 302; --h: 44; }
+  .fin-stage .fin-phone { --x: 507; --y: 702; --w: 302; --h: 44; }
+  .fin-stage .fin-addr { --x: 197; --y: 754; --w: 612; --h: 44; }
+  .fin-stage .fin-sel { --x: 197; --y: 806; --w: 612; --h: 44; }
+  .fin-stage .fin-btn { --x: 197; --y: 862; --w: 612; --h: 56; --fs: 21.2; }
+  .fin-stage .fin-status { --x: 197; --y: 926; --w: 612; --fs: 15; }
   .fin-stage .fin-logo { --x: 128; --y: 1004; --w: 74; }
-  .fin-stage .fin-nav a:nth-child(1) { --cx: 760; --y: 1031; --fs: 15; }
-  .fin-stage .fin-nav a:nth-child(2) { --cx: 890; --y: 1031; --fs: 15; }
-  .fin-stage .fin-nav a:nth-child(3) { --cx: 1020; --y: 1031; --fs: 15; }
-  .fin-stage .fin-nav a:nth-child(4) { --cx: 1150; --y: 1031; --fs: 15; }
-  .fin-stage .fin-nav a.fin-nav-cta { --x: 1396; --y: 1016; --w: 148; --h: 48; --fs: 15.5; }
+  .fin-stage .fin-nav a:nth-child(1) { --cx: 775; --y: 1029; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(2) { --cx: 895; --y: 1029; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(3) { --cx: 1015; --y: 1029; --fs: 18; }
+  .fin-stage .fin-nav a:nth-child(4) { --cx: 1135; --y: 1029; --fs: 18; }
+  .fin-stage .fin-nav a.fin-nav-cta { --x: 1352; --y: 1014; --w: 192; --h: 52; --fs: 17.5; }
   .fin-stage .fin-rule1 { --y: 0; --x0: 0; --x1: 0; --on: 0; }
   .fin-stage .fin-rule2 { --y: 1100; --x0: 128; --x1: 1544; --on: 1; }
-  .fin-stage .fin-legal { --y: 1117; --x0: 128; --x1: 1544; --fs: 13.5; }
+  .fin-stage .fin-legal { --y: 1116; --x0: 128; --x1: 1544; --fs: 15.5; }
   .fin-bg.v-d, .fin-photo.v-d, .fin-blur.d { display: block; }
   .fin-t .fin-a-sm { display: none; }
   .fin-nav a.fin-nav-cta {
@@ -1200,6 +1204,7 @@ select.fin-field:valid { color: #0B2118; }
   .fin-legal { flex-direction: column; align-items: center; gap: calc(16 * var(--u)); }
   .fin-fLines { translate: -50% 0; text-align: center; } /* --x é o centro */
   .fin-legal .fin-credit { order: 3; }
+  .fin-logo-link { display: none; } /* o símbolo grande na faixa verde logo acima já faz esse papel */
   .fin-t .fin-a-lg { display: none; }
 }
 
@@ -1239,6 +1244,8 @@ select.fin-field:valid { color: #0B2118; }
 .cmb-hd.cmb-b-h { white-space: nowrap; }
 .cmb-b-body { line-height: calc(var(--lh) * var(--u)); color: #4F5B57; }
 .cmb-b-eb, .cmb-b-h, .cmb-b-body { left: calc(var(--cw) / 2 * var(--u)); translate: -50% 0; text-align: center; }
+/* Our work: título centralizado sobre a galeria, como Why choose logo abaixo */
+.cmb-g-eb, .cmb-g-h { left: calc(var(--cw) / 2 * var(--u)); translate: -50% 0; text-align: center; }
 /* How it works centralizado como o Why choose (desktop e tablet) */
 @media (orientation: landscape), (orientation: portrait) and (min-width: 641px) {
   .cmb-p-eb, .cmb-p-h { left: calc(var(--cw) / 2 * var(--u)); translate: -50% 0; text-align: center; }
@@ -1276,22 +1283,6 @@ select.fin-field:valid { color: #0B2118; }
 .cmb-photo img { scale: 1.04; transition: scale .5s var(--ease); }
 .cmb-photo:hover img { scale: 1.09; }
 
-.cmb-g-btn {
-  display: flex; align-items: center; justify-content: center;
-  gap: calc(var(--fs) * .6 * var(--u));
-  border-radius: 999px;
-  border: max(1.5px, calc(2 * var(--u))) solid #8CC45E;
-  background: #fff;
-  color: #2C5A27;
-  font-size: calc(var(--fs) * var(--u));
-  font-weight: 500;
-  text-decoration: none;
-  transition: background-color .3s var(--ease);
-}
-.cmb-g-btn svg { width: 1.05em; height: 1.05em; color: #4A9A26; transition: transform .3s var(--ease); }
-.cmb-g-btn:hover { background: #F1F8E6; }
-.cmb-g-btn:hover svg { transform: translateX(calc(5 * var(--u))); }
-.cmb-g-btn:focus-visible { outline: 3px solid #0A3A25; outline-offset: 3px; }
 
 .cmb-div { left: calc(var(--x0) * var(--u)); top: calc(var(--y) * var(--u)); width: calc((var(--x1) - var(--x0)) * var(--u)); height: 0; border-top: 1px solid rgb(74 154 38 / .28); }
 .cmb-div svg {
@@ -1342,7 +1333,7 @@ select.fin-field:valid { color: #0B2118; }
   .cmb-arrow path { stroke-dasharray: 40; animation: cmb-flow 2.8s ease-in-out infinite; }
   @keyframes cmb-flow { 0%, 100% { stroke-dashoffset: 40; } 50% { stroke-dashoffset: 0; } }
 }
-@media (prefers-reduced-motion: reduce) { .cmb-photo img, .cmb-g-btn, .cmb-g-btn svg, .cmb-disc { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .cmb-photo img, .cmb-disc { transition: none; } }
 
 /* Desktop */
   .cmb-stage { --cw: 1672; --ch: 1176; --ph-r: 16; --ir: 46; --sr: 45; --aw: 42; }
@@ -1353,7 +1344,6 @@ select.fin-field:valid { color: #0B2118; }
   .cmb-stage .cmb-p-h { --x: 133; --y: 980; --fs: 59; --lh: 62; }
   .cmb-stage .cmb-b-h { --y: 527; --w: 1000; --fs: 59; --lh: 64; }
   .cmb-stage .cmb-b-body { --y: 667; --w: 760; --fs: 26; --lh: 34; }
-  .cmb-stage .cmb-g-btn { --x: 1267; --y: 29; --w: 277; --h: 67; --fs: 22; }
   .cmb-stage .cmb-carousel { --x0: 132; --y: 112; --pw: 460; --pg: 17; --h: 266; --dur: 36s; }
   .cmb-stage .cmb-div1 { --y: 435; --x0: 0; --x1: 1672; --cx: 836; }
   .cmb-stage .cmb-div2 { --y: 931; --x0: 0; --x1: 1672; --cx: 836; }
@@ -1375,7 +1365,6 @@ select.fin-field:valid { color: #0B2118; }
   .cmb-stage .cmb-p-h { --x: 101; --y: 1164; --fs: 53.3; --lh: 56; }
   .cmb-stage .cmb-b-h { --y: 644; --w: 960; --fs: 46; --lh: 54; }
   .cmb-stage .cmb-b-body { --y: 768; --w: 780; --fs: 26; --lh: 34; }
-  .cmb-stage .cmb-g-btn { --x: 814; --y: 112; --w: 237; --h: 65; --fs: 21; }
   .cmb-stage .cmb-carousel { --x0: 39; --y: 209; --pw: 325; --pg: 18; --h: 294; --dur: 30s; }
   .cmb-stage .cmb-div1 { --y: 548; --x0: 24; --x1: 1062; --cx: 543; }
   .cmb-stage .cmb-div2 { --y: 1072; --x0: 24; --x1: 1062; --cx: 543; }
@@ -1398,7 +1387,6 @@ select.fin-field:valid { color: #0B2118; }
   .cmb-stage .cmb-p-h { --x: 60; --y: 1435; --fs: 60; --lh: 66; }
   .cmb-stage .cmb-b-h { --x: 60; --y: 672; --w: 820; --fs: 63; --lh: 70; }
   .cmb-stage .cmb-b-body { --x: 60; --y: 902; --w: 820; --fs: 37; --lh: 50; }
-  .cmb-stage .cmb-g-btn { --x: 625; --y: 100; --w: 280; --h: 72; --fs: 28; }
   .cmb-stage .cmb-carousel { --x0: 38; --y: 255; --pw: 280; --pg: 13; --h: 265; --dur: 26s; }
   .cmb-stage .cmb-div1 { --y: 570; --x0: 24; --x1: 917; --cx: 470; }
   .cmb-stage .cmb-div2 { --y: 1345; --x0: 24; --x1: 917; --cx: 470; }
@@ -1432,7 +1420,7 @@ select.fin-field:valid { color: #0B2118; }
 
 /* Animações em loop param quando a seção está fora da tela (js/main.js põe
    .is-off na <section>); voltam de onde estavam ao reaparecer. */
-.is-off :is(.leaf, .svx-leaf, .garden-ring, .cmb-track, .cmb-arrow path) { animation-play-state: paused; }
+.is-off :is(.leaf, .svx-leaf, .garden-ring, .fin-ring, .cmb-track, .cmb-arrow path) { animation-play-state: paused; }
 @media (prefers-reduced-motion: no-preference) {
   .js :is(.leaf, .svx-leaf) {
     will-change: translate;  /* folha desfocada vira camada: o blur não é refeito a cada quadro */
@@ -1444,11 +1432,12 @@ select.fin-field:valid { color: #0B2118; }
   }
   /* anéis: ondas que nascem por trás do símbolo (z abaixo dele), crescem para
      fora e somem; três defasadas, em loop contínuo */
-  .js .garden-ring {
+  .js :is(.garden-ring, .fin-ring) {
     will-change: scale, opacity;
     opacity: 0;
     animation: ring-wave 4.2s cubic-bezier(.25,.6,.3,1) infinite;
   }
+  .js .fin-ring { --ring-max: 1.25; }
   .js .ring-1 { animation-delay: .3s; }
   .js .ring-2 { animation-delay: 1.7s; }
   .js .ring-3 { animation-delay: 3.1s; }
@@ -1541,12 +1530,12 @@ select.fin-field:valid { color: #0B2118; }
 }
 
 /* botões claros (mantêm a borda verde para não sumirem no fundo pastel) */
-#cta-see-work, .cmb-g-btn {
+#cta-see-work {
   background: var(--glass-sheen), var(--glass-white);
   -webkit-backdrop-filter: var(--glass-blur);
           backdrop-filter: var(--glass-blur);
 }
-#cta-see-work:hover, .cmb-g-btn:hover { background: var(--glass-sheen), var(--glass-white-h); }
+#cta-see-work:hover { background: var(--glass-sheen), var(--glass-white-h); }
 
 /* setas redondas dos cartões e discos dos ícones/passos */
 .cmb-disc {
@@ -1593,15 +1582,15 @@ select.fin-field:valid { color: #0B2118; }
   }
 }
 /* claros -> verdes */
-:is(#cta-see-work, .cmb-g-btn, .topbar-cta, .topbar-links a, .topbar-menu a:not(.menu-cta)):is(:active, :focus-visible) {
+:is(#cta-see-work, .topbar-cta, .topbar-links a, .topbar-menu a:not(.menu-cta)):is(:active, :focus-visible) {
   background: var(--btn); color: #fff; border-color: var(--btn);
 }
 @media (hover: hover) {
-  :is(#cta-see-work, .cmb-g-btn, .topbar-cta, .topbar-links a, .topbar-menu a:not(.menu-cta)):hover {
+  :is(#cta-see-work, .topbar-cta, .topbar-links a, .topbar-menu a:not(.menu-cta)):hover {
     background: var(--btn); color: #fff; border-color: var(--btn);
   }
 }
-:is(#cta-see-work, .cmb-g-btn, .topbar-cta):is(:hover, :active, :focus-visible) svg { color: #fff; }
+:is(#cta-see-work, .topbar-cta):is(:hover, :active, :focus-visible) svg { color: #fff; }
 .topbar-toggle[aria-expanded="true"] { background: #fff; color: var(--btn); box-shadow: var(--inv-ring); }
 
 /* FAQ: a pergunta também é botão; aberta fica verde */
@@ -1784,7 +1773,7 @@ select.fin-field:valid { color: #0B2118; }
 /* camada de preenchimento, por baixo do texto (as regras da camada usam
    :where, peso zero, para qualquer estado de hover/foco ganhar delas) */
 :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta) {
+    #cta-see-work, .topbar .topbar-cta) {
   isolation: isolate;
   -webkit-tap-highlight-color: transparent;
   /* o texto troca de cor quando o preenchimento chega no meio do botão */
@@ -1792,12 +1781,12 @@ select.fin-field:valid { color: #0B2118; }
 }
 :is(.topbar .topbar-cta, .topbar-menu .menu-cta) { position: relative; }
 :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta) { overflow: hidden; }
+    #cta-see-work, .topbar .topbar-cta) { overflow: hidden; }
 /* um círculo com 2,2× a largura do botão (raio 1,1×), centrado no ponto de
    entrada: cobre o botão inteiro de qualquer ponto, no mesmo ritmo de antes. Cresce com scale (só a placa de vídeo
    trabalha; clip-path redesenhava o botão a cada quadro). */
 :where(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta)::before {
+    #cta-see-work, .topbar .topbar-cta)::before {
   content: "";
   position: absolute;
   left: var(--mx, 50%);
@@ -1824,7 +1813,7 @@ select.fin-field:valid { color: #0B2118; }
   opacity: 0;
   transition: opacity .3s ease .1s;
 }
-:where(#cta-see-work, .cmb-g-btn, .topbar .topbar-cta)::before { background: var(--btn); }
+:where(#cta-see-work, .topbar .topbar-cta)::before { background: var(--btn); }
 
 /* o fundo do botão fica como está; quem muda é a camada de cima.
    (as listas repetem o #id das regras de inversão para ter o mesmo peso) */
@@ -1832,19 +1821,19 @@ select.fin-field:valid { color: #0B2118; }
   background: var(--glass-sheen), var(--glass-green);
   box-shadow: inset 0 0 0 1px var(--glass-edge-g);
 }
-:is(#cta-see-work, .cmb-g-btn):is(:hover, :active, :focus-visible) { background: var(--glass-sheen), var(--glass-white); }
+#cta-see-work:is(:hover, :active, :focus-visible) { background: var(--glass-sheen), var(--glass-white); }
 .topbar .topbar-cta:not(#_):is(:hover, :active, :focus-visible) { background: rgb(255 255 255 / .7); }
 
 /* acender: mouse por cima, toque e foco de teclado */
 @media (hover: hover) {
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):hover::before {
+      #cta-see-work, .topbar .topbar-cta):hover::before {
     scale: 1;
     transition-duration: var(--fill-in);
   }
 }
 :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):is(:active, :focus-visible)::before {
+    #cta-see-work, .topbar .topbar-cta):is(:active, :focus-visible)::before {
   scale: 1;
   transition-duration: .3s;
 }
@@ -1856,7 +1845,7 @@ select.fin-field:valid { color: #0B2118; }
 
 /* clique/toque: comprime um pouco (scale é separado do transform das entradas) */
 :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-    #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):active { scale: .97; }
+    #cta-see-work, .topbar .topbar-cta):active { scale: .97; }
 
 /* seta: sai pela direita e entra de volta pela esquerda */
 @keyframes btn-arrow {
@@ -1866,21 +1855,21 @@ select.fin-field:valid { color: #0B2118; }
   100% { transform: none; opacity: 1; }
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  :is(#cta-book-visit, .mow-cta, .fin-btn, .cmb-g-btn):hover svg {
+  :is(#cta-book-visit, .mow-cta, .fin-btn):hover svg {
     transform: none;
     animation: btn-arrow .7s var(--ease-fx);
   }
-  :is(#cta-book-visit, .mow-cta, .fin-btn, .cmb-g-btn, #cta-see-work) svg { transition: color .3s ease .14s; }
+  :is(#cta-book-visit, .mow-cta, .fin-btn, #cta-see-work) svg { transition: color .3s ease .14s; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta),
+      #cta-see-work, .topbar .topbar-cta),
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta)::before,
+      #cta-see-work, .topbar .topbar-cta)::before,
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta)::after { transition: none !important; }
   :is(#cta-book-visit, .mow-cta, .fin-btn, .fin-nav a.fin-nav-cta, .topbar-menu .menu-cta,
-      #cta-see-work, .cmb-g-btn, .topbar .topbar-cta):active { scale: none; }
+      #cta-see-work, .topbar .topbar-cta):active { scale: none; }
 }
 
 /* ---------- Hierarquia dos botões ----------
