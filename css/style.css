@@ -627,6 +627,8 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
    balança no hover. --mid = meio da linha do nome, onde fica o cabo da folha.
    As linhas onduladas antigas (.v-dt, .v-m sem .svc-vine) não aparecem mais. */
 .svc-waves:not(.svc-vine) { display: none !important; }
+/* título da seção centralizado sobre a haste */
+.svc-eyebrow, .svc-title { left: calc(var(--cw) / 2 * var(--u)); translate: -50% 0; text-align: center; }
 .svc-vine { display: none; stroke-width: 1.8px; opacity: .9; }
 @media (orientation: landscape) { .svc-vine.v-d { display: block; } }
 @media (orientation: portrait) and (min-width: 641px) { .svc-vine.v-t { display: block; } }
@@ -655,7 +657,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 
 /* Desktop e qualquer tela deitada */
 @media (orientation: landscape) {
-  .svc-stage { --vx: 836; --gap: 170; --tw: 128; }
+  .svc-stage { --vx: 836; --gap: 192; --tw: 142; }
   #service-lawn-care-mowing { --ty: 330; }
   #service-landscaping      { --ty: 428; }
   #service-power-washing    { --ty: 526; }
@@ -664,16 +666,16 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 }
 /* Tablet em pé: título e nomes maiores, palco mais alto */
 @media (orientation: portrait) and (min-width: 641px) {
-  .svc-stage { --ch: 1010; --vx: 836; --gap: 180; --tw: 136; }
-  #service-lawn-care-mowing { --ty: 384; }
-  #service-landscaping      { --ty: 504; }
-  #service-power-washing    { --ty: 624; }
-  #service-car-washing      { --ty: 744; }
-  #service-home-cleaning    { --ty: 864; }
+  .svc-stage { --ch: 1046; --vx: 836; --gap: 202; --tw: 150; }
+  #service-lawn-care-mowing { --ty: 420; }
+  #service-landscaping      { --ty: 540; }
+  #service-power-washing    { --ty: 660; }
+  #service-car-washing      { --ty: 780; }
+  #service-home-cleaning    { --ty: 900; }
 }
 /* Celular em pé: "Lawn Care &" e "Mowing" em duas linhas para caber ao lado da haste */
 @media (orientation: portrait) and (max-width: 640px) {
-  .svc-stage { --ch: 880; --n-fs: 44; --vx: 470; --gap: 118; --tw: 94; }
+  .svc-stage { --ch: 880; --n-fs: 44; --vx: 470; --gap: 125; --tw: 100; }
   .svc-br { display: inline; }
   #service-lawn-care-mowing { --ty: 310; --mid: 57; }
   #service-landscaping      { --ty: 439; }
