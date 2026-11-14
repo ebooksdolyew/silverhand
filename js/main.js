@@ -525,7 +525,8 @@
   });
 })();
 
-/* Our Services: a haste se desenha junto com o scroll; quando a ponta passa
+/* Our Services: a seção fica presa na tela e a haste se desenha junto com o
+   scroll (detalhes do "preso" no style.css, .svc-pinned); quando a ponta passa
    pela altura de um nome, a folha dele brota do galho e o nome sobe logo
    depois. Volta ao rolar para cima. O valor mostrado desliza até o alvo (a
    rodinha do mouse pula de ~100 px em ~100 px), como nos cartões das
@@ -545,12 +546,24 @@
     path = svg && svg.querySelector('path');
     len = path ? path.getTotalLength() : 0;
   }
+  var stage = sec.querySelector('.svc-stage'), pin = sec.querySelector('.svc-pin');
+  function mode() {   /* prende o palco só se ele couber inteiro na tela */
+    sec.classList.toggle('svc-pinned', !!pin && stage.offsetHeight + 24 <= window.innerHeight);
+  }
   function measure() {
     if (!path) return;
-    var vh = window.innerHeight, r = path.getBoundingClientRect();
-    /* começa quando o topo da haste chega a 80% da tela e termina quando a
-       ponta de baixo chega a 60% */
-    var p = (vh * .8 - r.top) / (r.height + vh * .2);
+    var vh = window.innerHeight, p;
+    if (sec.classList.contains('svc-pinned')) {
+      /* preso: a haste começa um pouco antes de o palco parar (lead) e
+         termina exatamente quando ele se solta (fim do .svc-pin) */
+      var top = parseFloat(getComputedStyle(stage).top) || 0, lead = vh * .15;
+      p = (top + lead - sec.getBoundingClientRect().top) / (pin.offsetHeight + lead);
+    } else {
+      /* sem prender: começa quando o topo da haste chega a 80% da tela e
+         termina quando a ponta de baixo chega a 60% */
+      var r = path.getBoundingClientRect();
+      p = (vh * .8 - r.top) / (r.height + vh * .2);
+    }
     target = p < 0 ? 0 : p > 1 ? 1 : p;
   }
   function draw() {
@@ -576,7 +589,7 @@
     measure();
     if (!running) { running = true; requestAnimationFrame(frame); }
   }
-  pick(); measure(); cur = target; if (path) draw();
+  mode(); pick(); measure(); cur = target; if (path) draw();
   window.addEventListener('scroll', kick, { passive: true });
-  window.addEventListener('resize', function () { pick(); measure(); cur = target; if (path) draw(); });
+  window.addEventListener('resize', function () { mode(); pick(); measure(); cur = target; if (path) draw(); });
 })();

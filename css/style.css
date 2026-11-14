@@ -657,6 +657,17 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 /* Crescer com o scroll (js/main.js põe .svc-grow na seção e .is-grown em cada
    nome alcançado pela haste): a folha brota do cabo e o nome sobe de trás de
    uma linha invisível logo depois; tudo volta ao rolar para cima. */
+/* Palco preso: enquanto a haste cresce a seção fica parada no meio da tela e
+   a rolagem só desenha (o espaço de rolagem vem do .svc-pin, logo abaixo do
+   palco); ao aparecer o último nome a seção se solta. Só quando o palco cabe
+   inteiro na tela (js/main.js põe .svc-pinned); senão a haste cresce
+   conforme a seção passa, sem prender. overflow: clip não quebra o sticky. */
+.svc-pin { display: none; }
+.services.svc-pinned { overflow: clip; }
+.svc-pinned .svc-stage { position: sticky; top: max(0px, calc((100svh - var(--ch) * var(--u)) / 2 + 24px)); }
+.svc-pinned .svc-pin { display: block; height: 95svh; }
+@media (orientation: portrait) and (max-width: 640px) { .svc-pinned .svc-pin { height: 85svh; } }
+
 /* espessura em unidades do desenho (não "non-scaling"): assim o tracejado que
    desenha a haste é medido no próprio caminho e a ponta bate com as folhas */
 .svc-vine path { vector-effect: none; stroke-width: 2.1; }
