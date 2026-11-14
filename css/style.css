@@ -112,6 +112,33 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ---------- Fundo da página ----------
+   Em vez de um verde chapado, manchas bem suaves do mesmo tom (um pouco mais
+   claras e um pouco mais fundas) que se dissolvem umas nas outras ao longo da
+   página inteira. Ficam no <main>, atrás de todas as seções (que são
+   transparentes), então atravessam as divisas sem emenda. Posições em % da
+   altura da página; tamanho em vw com mínimo em px (no celular as manchas
+   não ficam miúdas). Nas bordas de cada mancha a cor volta exatamente para
+   --bg. */
+main {
+  --tone-l: rgb(236 246 224 / .7);   /* mais claro */
+  --tone-d: rgb(190 219 160 / .55);  /* mais fundo */
+  --s: max(68vw, 560px) max(42vw, 460px);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(var(--s) at 12% 2%,  var(--tone-l), transparent 70%),
+    radial-gradient(var(--s) at 92% 11%, var(--tone-d), transparent 70%),
+    radial-gradient(var(--s) at 6% 19%,  var(--tone-d), transparent 70%),
+    radial-gradient(var(--s) at 88% 27%, var(--tone-l), transparent 70%),
+    radial-gradient(var(--s) at 10% 36%, var(--tone-l), transparent 70%),
+    radial-gradient(var(--s) at 94% 45%, var(--tone-d), transparent 70%),
+    radial-gradient(var(--s) at 4% 54%,  var(--tone-d), transparent 70%),
+    radial-gradient(var(--s) at 90% 63%, var(--tone-l), transparent 70%),
+    radial-gradient(var(--s) at 14% 72%, var(--tone-l), transparent 70%),
+    radial-gradient(var(--s) at 86% 81%, var(--tone-d), transparent 70%);
+  background-repeat: no-repeat;
+}
+
 /* ---------- Hero ----------
    A hero é um "palco" com a proporção da tela de origem de cada versão
    (desktop 1672×941, tablet 1086×1448, mobile 941×1672). Todas as medidas
@@ -123,7 +150,7 @@ body {
   z-index: 1;
   /* corta só nas laterais: as folhas de baixo atravessam a emenda com os serviços */
   overflow-x: clip;
-  background: var(--bg);
+  background: transparent;
 }
 .hero-stage {
   --u: min(100cqw / var(--cw), var(--u-max));
@@ -141,7 +168,7 @@ body {
 }
 
 .hero-green { inset: 0; width: 100%; height: 100%; display: none; }
-.hero-green-base { fill: var(--bg); }
+.hero-green-base { fill: none; } /* o fundo vem do <main> (tons em degradê) */
 /* faixa verde atrás da foto (tablet/celular) desce junto com ela */
 .hero-band { transform: translateY(calc(var(--hdy) * 1px)); }
 @media (orientation: landscape) { .hero-green.v-d { display: block; } }
@@ -489,7 +516,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   container-type: inline-size;
   position: relative;
   overflow: hidden;
-  background: var(--bg);
+  background: transparent;
 }
 /* Desktop: a mancha verde da hero desce ~285 px (de canvas) abaixo do fim da
    hero, no canto direito. A seção começa depois da ponta dela (pedido do
@@ -753,7 +780,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   container-type: inline-size;
   position: relative;
   overflow-x: clip;
-  background: var(--bg);
+  background: transparent;
 }
 .svx-stage {
   --cw: 724;
@@ -932,7 +959,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   container-type: inline-size;
   position: relative;
   overflow-x: clip;
-  background: var(--bg);
+  background: transparent;
 }
 .sea-stage {
   --u: min(100cqw / var(--cw), var(--u-max));
@@ -1075,7 +1102,7 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 html.at-end { background: #05301A; }
 .final { container-type: inline-size; position: relative; overflow: clip; /* nada passa do rodapé: ele é o fim da página */ color: #0B2118;
   /* a última faixa já é a cor do rodapé: arredondamento de altura não deixa linha clara no fim */
-  background: linear-gradient(to top, #05301A 6px, var(--bg) 6px); }
+  background: linear-gradient(to top, #05301A 6px, transparent 6px); }
 .fin-stage { --u: min(100cqw / var(--cw), var(--u-max)); --ox: calc((100cqw - var(--cw) * var(--u)) / 2); position: relative; width: calc(var(--cw) * var(--u)); margin-inline: auto; aspect-ratio: var(--cw) / var(--ch); }
 .fin-stage > * { position: absolute; margin: 0; }
 .fin-bg { inset: 0; width: 100%; height: 100%; display: none; pointer-events: none; }
@@ -1310,7 +1337,7 @@ select.fin-field:valid { color: #0B2118; }
   container-type: inline-size;
   position: relative;
   overflow-x: clip;
-  background: var(--bg);
+  background: transparent;
 }
 /* respiro entre os passos e a seção final (mesmo fundo) */
 .work { padding-bottom: clamp(32px, 5vw, 90px); }
@@ -1378,13 +1405,16 @@ select.fin-field:valid { color: #0B2118; }
 .cmb-photo:hover img { scale: 1.09; }
 
 
-.cmb-div { left: calc(var(--x0) * var(--u)); top: calc(var(--y) * var(--u)); width: calc((var(--x1) - var(--x0)) * var(--u)); height: 0; border-top: 1px solid rgb(74 154 38 / .28); }
+.cmb-div { left: calc(var(--x0) * var(--u)); top: calc(var(--y) * var(--u)); width: calc((var(--x1) - var(--x0)) * var(--u)); height: 1px;
+  /* o fio tem um vão no meio para a folhinha (o fundo é em degradê, então não dá para cobrir o fio com um retalho da cor do fundo) */
+  --c: rgb(74 154 38 / .28);
+  background: linear-gradient(90deg, var(--c) calc((var(--cx) - var(--x0) - 30) * var(--u)), transparent 0 calc((var(--cx) - var(--x0) + 30) * var(--u)), var(--c) 0); }
 .cmb-div svg {
   position: absolute;
   left: calc((var(--cx) - var(--x0) - 28) * var(--u)); top: calc(-13 * var(--u));
   width: calc(44 * var(--u)); height: calc(26 * var(--u));
   padding: 0 calc(6 * var(--u));
-  background: var(--bg);
+  background: none;
   box-sizing: content-box;
 }
 
