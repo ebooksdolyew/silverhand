@@ -600,39 +600,6 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
 #service-car-washing      { --cx: 416;  --ty: 728; }
 #service-home-cleaning    { --cx: 1158; --ty: 728; }
 
-/* Desktop (e qualquer tela deitada): os nomes saem de uma haste ondulada no
-   centro, como galhos, alternando os lados (o mesmo zigue-zague das seções de
-   serviço abaixo). Cada um tem uma folha presa na haste que balança no hover. */
-.svc-vine, .svc-twig { display: none; }
-@media (orientation: landscape) {
-  .svc-waves.v-dt { display: none; }
-  .svc-vine { display: block; stroke-width: 1.8px; opacity: .9; }
-  #services .svc-list li { --gap: 112; translate: none; }
-  #services .svc-list li.is-l { left: auto; right: calc((1672 - 836 + var(--gap)) * var(--u)); transform: none; text-align: right; }
-  #services .svc-list li.is-r { left: calc((836 + var(--gap)) * var(--u)); transform: none; }
-  #service-lawn-care-mowing { --ty: 334; }
-  #service-landscaping      { --ty: 429; }
-  #service-power-washing    { --ty: 524; }
-  #service-car-washing      { --ty: 619; }
-  #service-home-cleaning    { --ty: 714; }
-  .svc-twig {
-    display: block; position: absolute;
-    top: calc((36 - 47) * var(--u));     /* base do cabo da folha no meio do nome */
-    width: calc(84 * var(--u)); height: auto;
-    pointer-events: none;
-    transition: rotate .6s cubic-bezier(.34,1.56,.64,1);
-  }
-  .is-r .svc-twig { left: calc(-1 * (var(--gap) + 2.6) * var(--u)); transform-origin: 3% 89%; rotate: 12deg; }
-  .is-l .svc-twig { left: calc(100% + (var(--gap) - 2.6) * var(--u)); transform-origin: 3% 89%; scale: -1 1; rotate: -12deg; } /* espelhada sobre a base do cabo, que fica na haste */
-  @media (hover: hover) {
-    .is-r:hover .svc-twig { rotate: -4deg; }
-    .is-l:hover .svc-twig { rotate: 4deg; }
-  }
-  .is-r:has(.svc-item:focus-visible) .svc-twig { rotate: -4deg; }
-  .is-l:has(.svc-item:focus-visible) .svc-twig { rotate: 4deg; }
-  @media (prefers-reduced-motion: reduce) { .svc-twig { transition: none; } }
-}
-
 /* Tablet em pé: mesma composição, título e nomes maiores (o palco é estreito) */
 @media (orientation: portrait) and (min-width: 641px) {
   .svc-stage { --eb-fs: 34; --h2-fs: 90; --h2-lh: 94; --n-fs: 60; }
@@ -652,6 +619,67 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   #service-power-washing    { --ty: 645; }
   #service-car-washing      { --ty: 820; }
   #service-home-cleaning    { --ty: 920; }
+}
+
+/* Índice: os nomes saem de uma haste ondulada no centro (--vx), como galhos,
+   alternando os lados (o mesmo zigue-zague das seções de serviço abaixo). Cada
+   um se prende à haste por uma folha (--tw de largura, a --gap do centro) que
+   balança no hover. --mid = meio da linha do nome, onde fica o cabo da folha.
+   As linhas onduladas antigas (.v-dt, .v-m sem .svc-vine) não aparecem mais. */
+.svc-waves:not(.svc-vine) { display: none !important; }
+.svc-vine { display: none; stroke-width: 1.8px; opacity: .9; }
+@media (orientation: landscape) { .svc-vine.v-d { display: block; } }
+@media (orientation: portrait) and (min-width: 641px) { .svc-vine.v-t { display: block; } }
+@media (orientation: portrait) and (max-width: 640px) { .svc-vine.v-m { display: block; } }
+.svc-br { display: none; }
+#services .svc-list li { --mid: calc(var(--n-fs) * .575 + 6); transform: none; }
+#services .svc-list li.is-l { left: auto; right: calc((var(--cw) - var(--vx) + var(--gap)) * var(--u)); text-align: right; }
+#services .svc-list li.is-r { left: calc((var(--vx) + var(--gap)) * var(--u)); }
+.svc-twig {
+  position: absolute;
+  top: calc((var(--mid) - var(--tw) * .557) * var(--u));   /* cabo da folha (89% da altura) no meio do nome */
+  width: calc(var(--tw) * var(--u)); height: auto;
+  transform-origin: 3% 89%;
+  pointer-events: none;
+  transition: rotate .6s cubic-bezier(.34,1.56,.64,1);
+}
+.is-r .svc-twig { left: calc(-1 * (var(--gap) + var(--tw) * .03) * var(--u)); rotate: 12deg; }
+.is-l .svc-twig { left: calc(100% + (var(--gap) - var(--tw) * .03) * var(--u)); scale: -1 1; rotate: -12deg; } /* espelhada sobre a base do cabo, que fica na haste */
+@media (hover: hover) {
+  .is-r:hover .svc-twig { rotate: -4deg; }
+  .is-l:hover .svc-twig { rotate: 4deg; }
+}
+.is-r:has(.svc-item:focus-visible) .svc-twig { rotate: -4deg; }
+.is-l:has(.svc-item:focus-visible) .svc-twig { rotate: 4deg; }
+@media (prefers-reduced-motion: reduce) { .svc-twig { transition: none; } }
+
+/* Desktop e qualquer tela deitada */
+@media (orientation: landscape) {
+  .svc-stage { --vx: 836; --gap: 170; --tw: 128; }
+  #service-lawn-care-mowing { --ty: 330; }
+  #service-landscaping      { --ty: 428; }
+  #service-power-washing    { --ty: 526; }
+  #service-car-washing      { --ty: 624; }
+  #service-home-cleaning    { --ty: 722; }
+}
+/* Tablet em pé: título e nomes maiores, palco mais alto */
+@media (orientation: portrait) and (min-width: 641px) {
+  .svc-stage { --ch: 1010; --vx: 836; --gap: 180; --tw: 136; }
+  #service-lawn-care-mowing { --ty: 384; }
+  #service-landscaping      { --ty: 504; }
+  #service-power-washing    { --ty: 624; }
+  #service-car-washing      { --ty: 744; }
+  #service-home-cleaning    { --ty: 864; }
+}
+/* Celular em pé: "Lawn Care &" e "Mowing" em duas linhas para caber ao lado da haste */
+@media (orientation: portrait) and (max-width: 640px) {
+  .svc-stage { --ch: 880; --n-fs: 44; --vx: 470; --gap: 118; --tw: 94; }
+  .svc-br { display: inline; }
+  #service-lawn-care-mowing { --ty: 310; --mid: 57; }
+  #service-landscaping      { --ty: 439; }
+  #service-power-washing    { --ty: 542; }
+  #service-car-washing      { --ty: 645; }
+  #service-home-cleaning    { --ty: 748; }
 }
 
 /* ---------- Botão verde das seções de serviço (.mow-cta) ----------
