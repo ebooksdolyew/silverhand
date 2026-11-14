@@ -24,6 +24,20 @@ Site estático (HTML, CSS e JS puros, sem build) publicado no **Cloudflare Pages
 | `site.webmanifest` | Nome, cores e ícones quando o site é salvo na tela inicial |
 | `_headers` | Cabeçalhos HTTP do Cloudflare Pages (segurança e cache) |
 
+## Ao mudar CSS ou JS: trocar a versão
+
+O navegador guarda `css/style.css`, `css/legal.css` e `js/main.js` por 1 dia
+(`_headers`). Para quem já visitou o site receber a versão nova na hora, esses
+arquivos são chamados com `?v=` e a data, nas três páginas. A cada mudança
+neles, trocar a versão de uma vez:
+
+```bash
+sed -i -E 's/\?v=[0-9]+/?v=AAAAMMDD/g' index.html privacy.html 404.html
+```
+
+(com a data do dia no lugar de `AAAAMMDD`; se mudar duas vezes no mesmo dia,
+acrescentar um número, ex. `2026111402`).
+
 ## Para testar localmente
 
 ```bash
