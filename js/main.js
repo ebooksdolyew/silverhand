@@ -216,8 +216,6 @@
     ['up',   '.hero-location, .hero-title, .hero-desc, #cta-book-visit, #cta-see-work'],
     ['zoom', '.garden-photo'],
     ['up',   '.svc-eyebrow, .svc-title'],
-    ['draw', '.svc-waves'],
-    ['mask', '.svc-item'],
     ['up',   '.mow-cta'],
     ['up',   '.svx-eyebrow, .svx-title, .svx-body'],
     ['left', '.svx-l .svx-art'],
@@ -226,7 +224,6 @@
     ['up',   '.cmb-txt, .cmb-item, .cmb-step'],
     ['fade', '.cmb-carousel'],
     ['fade', '.cmb-div, .cmb-arrow'],
-    ['fade', '.svc-twig'],
     ['up',   '.fin-t, .fin-q, .fin-form > .fin-box, .fin-sel-ico'],
     ['zoom', '.fin-map'],
     ['fade', '.fin-photo']
@@ -526,4 +523,60 @@
       clone.remove();
     };
   });
+})();
+
+/* Our Services: a haste se desenha junto com o scroll; quando a ponta passa
+   pela altura de um nome, a folha dele brota do galho e o nome sobe logo
+   depois. Volta ao rolar para cima. O valor mostrado desliza até o alvo (a
+   rodinha do mouse pula de ~100 px em ~100 px), como nos cartões das
+   estações. Sem JS ou com movimento reduzido fica tudo visível. */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sec = document.querySelector('.services');
+  if (!sec) return;
+  var vines = [].slice.call(sec.querySelectorAll('.svc-vine'));
+  var rows = [].slice.call(sec.querySelectorAll('.svc-list li'));
+  if (!vines.length || !rows.length) return;
+  sec.classList.add('svc-grow');
+
+  var path = null, svg = null, len = 0, cur = 0, target = 0, running = false, last = 0;
+  function pick() {   /* a haste visível muda com a orientação/largura */
+    svg = vines.filter(function (v) { return getComputedStyle(v).display !== 'none'; })[0] || null;
+    path = svg && svg.querySelector('path');
+    len = path ? path.getTotalLength() : 0;
+  }
+  function measure() {
+    if (!path) return;
+    var vh = window.innerHeight, r = path.getBoundingClientRect();
+    /* começa quando o topo da haste chega a 80% da tela e termina quando a
+       ponta de baixo chega a 60% */
+    var p = (vh * .8 - r.top) / (r.height + vh * .2);
+    target = p < 0 ? 0 : p > 1 ? 1 : p;
+  }
+  function draw() {
+    path.style.strokeDashoffset = (1 - cur).toFixed(4);
+    var sr = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal;
+    var tipY = sr.top + path.getPointAtLength(cur * len).y * sr.height / vb.height;
+    rows.forEach(function (li) {
+      var lr = li.getBoundingClientRect();
+      li.classList.toggle('is-grown', cur > .001 && tipY >= lr.top + lr.height / 2 - 2);
+    });
+  }
+  function frame(now) {
+    var dt = Math.min(64, now - (last || now)); last = now;
+    var d = target - cur;
+    if (Math.abs(d) < .0008) { cur = target; draw(); running = false; last = 0; return; }
+    cur += d * (1 - Math.exp(-dt / 120));
+    draw();
+    requestAnimationFrame(frame);
+  }
+  function kick() {
+    var r = sec.getBoundingClientRect();
+    if (r.bottom < -200 || r.top > window.innerHeight + 200) return;   /* longe: nada a fazer */
+    measure();
+    if (!running) { running = true; requestAnimationFrame(frame); }
+  }
+  pick(); measure(); cur = target; if (path) draw();
+  window.addEventListener('scroll', kick, { passive: true });
+  window.addEventListener('resize', function () { pick(); measure(); cur = target; if (path) draw(); });
 })();
