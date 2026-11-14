@@ -121,8 +121,8 @@ body {
    não ficam miúdas). Nas bordas de cada mancha a cor volta exatamente para
    --bg. */
 main {
-  --tone-l: rgb(236 246 224 / .7);   /* mais claro */
-  --tone-d: rgb(190 219 160 / .55);  /* mais fundo */
+  --tone-l: rgb(241 249 232 / .95);  /* mais claro */
+  --tone-d: rgb(176 210 140 / .8);   /* mais fundo */
   --s: max(68vw, 560px) max(42vw, 460px);
   background-color: var(--bg);
   background-image:
