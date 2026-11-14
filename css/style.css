@@ -1938,7 +1938,7 @@ select.fin-field:valid { color: #0B2118; }
 /* ---------- Hierarquia dos botões ----------
    Principais (verdes cheios): o da hero e o do formulário. Os das seções de
    serviço são secundários: vidro claro com contorno verde, enchendo de verde
-   no hover (mesmo efeito do "See the work"). */
+   no hover (mesmo efeito do "See our work"). */
 .svx .svx-cta.mow-cta:not(#_) {
   background: var(--glass-sheen), var(--glass-white);
   color: var(--btn);
