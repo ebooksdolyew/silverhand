@@ -742,6 +742,39 @@ html { scroll-padding-top: 96px; } /* âncoras param abaixo da navbar flutuante 
   #service-home-cleaning    { --ty: 748; }
 }
 
+/* Seções de serviço presas na tela, conduzidas pela rolagem (js/main.js põe
+   .svx-grow, .svx-pinned e --p de 0 a 1 em cada seção). Cada peça tem a sua
+   janela dentro de --p: balão 0–.42, rótulo .34–.52, título .42–.62, texto
+   .52–.72, botão .62–.82, folhas soltas .7–.9; o resto do caminho é pausa
+   com tudo à vista antes de soltar. */
+.svx-pin { display: none; }
+.svx-pinned .svx-stage { position: sticky; }   /* top em px vem do js (altura do palco varia) */
+.svx-pinned .svx-pin { display: block; height: 75svh; }
+@media (orientation: portrait) and (max-width: 640px) { .svx-pinned .svx-pin { height: 65svh; } }
+.svx-grow {
+  --p: 1;
+  --sxA: clamp(0, var(--p) / .42, 1);
+  --sxE: clamp(0, (var(--p) - .34) / .18, 1);
+  --sxT: clamp(0, (var(--p) - .42) / .2, 1);
+  --sxO: clamp(0, (var(--p) - .52) / .2, 1);
+  --sxC: clamp(0, (var(--p) - .62) / .2, 1);
+  --sxL: clamp(0, (var(--p) - .7) / .2, 1);
+}
+/* o balão infla da borda da tela para dentro: cresce de 82% e a revelação
+   corre do lado de fora para o lado do texto */
+.svx-grow .svx-art { opacity: clamp(0, var(--sxA) * 2.5, 1); transform: scale(calc(.82 + .18 * var(--sxA))); }
+.svx-grow.svx-l .svx-art { clip-path: inset(-60% calc(100% - var(--sxA) * 160%) -60% -100vw); }
+.svx-grow.svx-r .svx-art { clip-path: inset(-60% -100vw -60% calc(100% - var(--sxA) * 160%)); }
+@media (orientation: landscape) {
+  .svx-grow.svx-l .svx-art { transform-origin: left center; }
+  .svx-grow.svx-r .svx-art { transform-origin: right center; }
+}
+.svx-grow .svx-stage > .svx-eyebrow { opacity: var(--sxE); transform: translateY(calc((1 - var(--sxE)) * 60%)); }
+.svx-grow .svx-stage > .svx-title   { opacity: var(--sxT); transform: translateY(calc((1 - var(--sxT)) * 22%)); }
+.svx-grow .svx-stage > .svx-body    { opacity: var(--sxO); transform: translateY(calc((1 - var(--sxO)) * 22%)); }
+.svx-grow .svx-stage > .svx-cta     { opacity: var(--sxC); transform: translateY(calc((1 - var(--sxC)) * 50%)); }
+.svx-grow .svx-stage > .svx-leaf    { opacity: var(--sxL); }
+
 /* ---------- Botão verde das seções de serviço (.mow-cta) ----------
    Nasceu na antiga seção Mowing; posição e tamanho vêm de --c-x/--c-y/--c-w/
    --c-h/--c-fs (definidos no .svx-stage e no HTML). */

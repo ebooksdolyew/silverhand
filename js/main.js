@@ -216,10 +216,7 @@
     ['up',   '.hero-location, .hero-title, .hero-desc, #cta-book-visit, #cta-see-work'],
     ['zoom', '.garden-photo'],
     ['up',   '.svc-eyebrow, .svc-title'],
-    ['up',   '.mow-cta'],
-    ['up',   '.svx-eyebrow, .svx-title, .svx-body'],
-    ['left', '.svx-l .svx-art'],
-    ['right', '.svx-r .svx-art'],
+    ['up',   '.mow-cta:not(.svx-cta)'],
     ['up',   '.sea-eyebrow, .sea-title'],
     ['up',   '.cmb-txt, .cmb-item, .cmb-step'],
     ['fade', '.cmb-carousel'],
@@ -592,4 +589,69 @@
   mode(); pick(); measure(); cur = target; if (path) draw();
   window.addEventListener('scroll', kick, { passive: true });
   window.addEventListener('resize', function () { mode(); pick(); measure(); cur = target; if (path) draw(); });
+})();
+
+/* Seções de cada serviço (os "balões"): mesmo efeito do Our Services. A seção
+   fica presa no meio da tela e a rolagem conduz a cena: o balão (mancha verde
+   + foto) infla a partir da borda da tela, depois sobem rótulo, título, texto
+   e botão, e por fim as folhas soltas; ao aparecer o botão a seção se solta.
+   js põe --p (0 → 1) na seção; style.css (.svx-grow) tira de --p o andamento
+   de cada peça. Só prende se o palco couber na tela; senão a cena anda
+   conforme a seção passa. Volta ao rolar para cima. */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var scenes = [].slice.call(document.querySelectorAll('.svx')).map(function (sec) {
+    var stage = sec.querySelector('.svx-stage');
+    var pin = document.createElement('div');
+    pin.className = 'svx-pin'; pin.setAttribute('aria-hidden', 'true');
+    sec.appendChild(pin);
+    sec.classList.add('svx-grow');
+    return { sec: sec, stage: stage, pin: pin, cur: 0, target: 0, top: 0 };
+  });
+  if (!scenes.length) return;
+
+  function mode() {
+    var vh = window.innerHeight;
+    scenes.forEach(function (sc) {
+      sc.sec.classList.remove('svx-pinned');
+      var h = sc.stage.offsetHeight, fits = h + 48 <= vh;
+      sc.sec.classList.toggle('svx-pinned', fits);
+      sc.top = fits ? Math.max(0, (vh - h) / 2 + 24) : 0;
+      sc.stage.style.top = fits ? sc.top + 'px' : '';
+    });
+  }
+  function measure(sc) {
+    var vh = window.innerHeight, r = sc.sec.getBoundingClientRect(), p;
+    if (sc.sec.classList.contains('svx-pinned')) {
+      var lead = vh * .35;   /* o balão começa a inflar um pouco antes de a seção parar */
+      p = (sc.top + lead - r.top) / (sc.pin.offsetHeight + lead);
+    } else {
+      p = (vh * .9 - r.top) / (r.height * .9);
+    }
+    sc.target = p < 0 ? 0 : p > 1 ? 1 : p;
+  }
+  function set(sc) { sc.sec.style.setProperty('--p', sc.cur.toFixed(4)); }
+
+  var running = false, last = 0;
+  function frame(now) {
+    var dt = Math.min(64, now - (last || now)); last = now;
+    var k = 1 - Math.exp(-dt / 120), moving = false;
+    scenes.forEach(function (sc) {
+      var d = sc.target - sc.cur;
+      if (Math.abs(d) < .0008) { if (sc.cur !== sc.target) { sc.cur = sc.target; set(sc); } return; }
+      sc.cur += d * k; moving = true; set(sc);
+    });
+    if (moving) requestAnimationFrame(frame); else { running = false; last = 0; }
+  }
+  function kick() {
+    /* todas, inclusive as longe da tela: um salto pelo menu deixa as de cima
+       completas e as de baixo no começo */
+    scenes.forEach(measure);
+    if (!running) { running = true; requestAnimationFrame(frame); }
+  }
+  function reset() { mode(); scenes.forEach(function (sc) { measure(sc); sc.cur = sc.target; set(sc); }); }
+  reset();
+  window.addEventListener('scroll', kick, { passive: true });
+  window.addEventListener('resize', reset);
+  window.addEventListener('load', reset);   /* fotos e fontes podem mudar a altura dos palcos */
 })();
